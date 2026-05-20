@@ -1,17 +1,17 @@
 (function () {
   function ready(fn) {
-    var ran = false;
     function run() {
-      if (ran) return;
-      ran = true;
       fn();
     }
     if (document.readyState === "loading") {
       run();
-      document.addEventListener("DOMContentLoaded", run, { once: true });
+      document.addEventListener("DOMContentLoaded", run);
     } else {
       run();
     }
+    setTimeout(run, 160);
+    setTimeout(run, 700);
+    setTimeout(run, 1800);
   }
 
   function isHomePage() {
