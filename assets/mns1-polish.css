@@ -1,0 +1,361 @@
+/* MNS1 launch polish: interactive lane map, proof modules, and subtle motion. */
+:root {
+  --mns1-bg: #0b1020;
+  --mns1-panel: #101836;
+  --mns1-panel-2: #17214a;
+  --mns1-line: #243063;
+  --mns1-line-2: #34407a;
+  --mns1-blue: #0099d7;
+  --mns1-text: #ffffff;
+  --mns1-muted: #b9c1d9;
+  --mns1-dim: #7a84a3;
+  --mns1-green: #2fd083;
+}
+
+.mns1-premium-section {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 18% 0%, rgba(0, 153, 215, 0.18), transparent 34%),
+    linear-gradient(180deg, #0b1020 0%, #101836 100%);
+  padding: 92px 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.mns1-premium-wrap {
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+.mns1-premium-kicker {
+  font-family: Overpass, system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mns1-blue);
+  margin-bottom: 12px;
+}
+
+.mns1-premium-title {
+  max-width: 760px;
+  margin: 0 0 32px;
+  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+  font-style: italic;
+  font-weight: 900;
+  line-height: 1.04;
+  text-transform: uppercase;
+  color: var(--mns1-text);
+  font-size: clamp(34px, 5vw, 60px);
+}
+
+.mns1-module-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.mns1-proof-card,
+.mns1-polished-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(52, 64, 122, 0.9);
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, rgba(23, 33, 74, 0.78), rgba(11, 16, 32, 0.92)),
+    var(--mns1-panel);
+  box-shadow: 0 24px 60px -32px rgba(0, 0, 0, 0.85);
+  transition: transform 220ms cubic-bezier(.2,.7,.2,1), border-color 220ms, box-shadow 220ms, background 220ms;
+}
+
+.mns1-proof-card {
+  min-height: 260px;
+  padding: 24px;
+}
+
+.mns1-proof-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  pointer-events: none;
+}
+
+.mns1-proof-card::after {
+  content: "";
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--mns1-blue), rgba(47, 208, 131, 0.65));
+  opacity: 0.82;
+}
+
+.mns1-proof-card:hover,
+.mns1-polished-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(0, 153, 215, 0.86);
+  box-shadow: 0 32px 74px -34px rgba(0, 153, 215, 0.9);
+}
+
+.mns1-proof-icon {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  background: rgba(0, 153, 215, 0.12);
+  border: 1px solid rgba(0, 153, 215, 0.35);
+  color: var(--mns1-blue);
+  margin-bottom: 18px;
+  font-family: "Barlow Condensed", sans-serif;
+  font-style: italic;
+  font-weight: 900;
+  font-size: 20px;
+}
+
+.mns1-proof-card h3 {
+  margin: 0 0 10px;
+  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+  font-style: italic;
+  font-weight: 900;
+  font-size: 26px;
+  line-height: 1.05;
+  color: var(--mns1-text);
+  text-transform: uppercase;
+}
+
+.mns1-proof-card p {
+  margin: 0 0 18px;
+  font-family: Overpass, system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--mns1-muted);
+}
+
+.mns1-proof-stat {
+  margin-top: auto;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  color: var(--mns1-blue);
+}
+
+.mns1-proof-stat strong {
+  font-family: "Barlow Condensed", sans-serif;
+  font-style: italic;
+  font-weight: 900;
+  font-size: 38px;
+  line-height: 1;
+}
+
+.mns1-proof-stat span {
+  font-family: Overpass, system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mns1-dim);
+}
+
+.mns1-lane-map {
+  position: relative;
+  width: 100%;
+  min-height: 520px;
+  border: 1px solid rgba(52, 64, 122, 0.9);
+  border-radius: 14px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 28% 24%, rgba(0, 153, 215, 0.22), transparent 32%),
+    linear-gradient(135deg, #101836 0%, #0b1020 58%, #070b17 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 30px 70px -42px rgba(0, 0, 0, 1);
+}
+
+.mns1-map-toolbar {
+  position: absolute;
+  z-index: 3;
+  top: 18px;
+  left: 18px;
+  right: 18px;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.mns1-map-copy h3 {
+  margin: 0 0 6px;
+  color: var(--mns1-text);
+  font-family: "Barlow Condensed", sans-serif;
+  font-style: italic;
+  font-size: 30px;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.mns1-map-copy p {
+  margin: 0;
+  max-width: 420px;
+  color: var(--mns1-muted);
+  font: 14px/1.55 Overpass, system-ui, sans-serif;
+}
+
+.mns1-map-controls {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.mns1-map-control {
+  border: 1px solid rgba(52, 64, 122, 0.95);
+  border-radius: 4px;
+  background: rgba(11, 16, 32, 0.72);
+  color: var(--mns1-muted);
+  cursor: pointer;
+  padding: 9px 11px;
+  font: 700 12px/1 Overpass, system-ui, sans-serif;
+  transition: background 160ms, border-color 160ms, color 160ms;
+}
+
+.mns1-map-control.is-active,
+.mns1-map-control:hover {
+  background: rgba(0, 153, 215, 0.18);
+  border-color: var(--mns1-blue);
+  color: #fff;
+}
+
+.mns1-map-svg {
+  position: absolute;
+  inset: 76px 0 0;
+  width: 100%;
+  height: calc(100% - 76px);
+}
+
+.mns1-state {
+  fill: rgba(36, 48, 99, 0.72);
+  stroke: rgba(185, 193, 217, 0.22);
+  stroke-width: 1.3;
+  transition: fill 180ms, stroke 180ms, opacity 180ms, transform 180ms;
+}
+
+.mns1-state.is-hiring {
+  fill: rgba(0, 153, 215, 0.28);
+  stroke: rgba(0, 153, 215, 0.9);
+}
+
+.mns1-state.is-network {
+  fill: rgba(47, 208, 131, 0.18);
+  stroke: rgba(47, 208, 131, 0.7);
+}
+
+.mns1-map-label {
+  fill: #d7dcec;
+  font: 800 12px Overpass, system-ui, sans-serif;
+  text-anchor: middle;
+  pointer-events: none;
+}
+
+.mns1-lane-line {
+  fill: none;
+  stroke: rgba(0, 153, 215, 0.68);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 8 10;
+  animation: mns1-dash 2.8s linear infinite;
+}
+
+.mns1-lane-line.is-freight {
+  stroke: rgba(47, 208, 131, 0.58);
+}
+
+.mns1-terminal-dot {
+  fill: #fff;
+  stroke: var(--mns1-blue);
+  stroke-width: 5;
+  filter: drop-shadow(0 0 10px rgba(0, 153, 215, 0.85));
+}
+
+.mns1-map-legend {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 18px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.mns1-map-chip {
+  border: 1px solid rgba(52, 64, 122, 0.86);
+  border-radius: 8px;
+  background: rgba(11, 16, 32, 0.78);
+  padding: 12px;
+  color: var(--mns1-muted);
+  font: 12px/1.35 Overpass, system-ui, sans-serif;
+}
+
+.mns1-map-chip strong {
+  display: block;
+  color: var(--mns1-text);
+  font-family: "Barlow Condensed", sans-serif;
+  font-style: italic;
+  font-size: 20px;
+  line-height: 1;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+
+.mns1-reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 520ms ease, transform 520ms cubic-bezier(.2,.7,.2,1);
+}
+
+.mns1-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes mns1-dash {
+  to { stroke-dashoffset: -36; }
+}
+
+@media (max-width: 900px) {
+  .mns1-module-grid,
+  .mns1-map-legend {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .mns1-map-toolbar {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    padding: 18px;
+    flex-direction: column;
+  }
+
+  .mns1-map-svg {
+    position: relative;
+    inset: auto;
+    height: 360px;
+  }
+}
+
+@media (max-width: 640px) {
+  .mns1-premium-section {
+    padding: 62px 18px;
+  }
+
+  .mns1-module-grid,
+  .mns1-map-legend {
+    grid-template-columns: 1fr;
+  }
+
+  .mns1-lane-map {
+    min-height: 660px;
+  }
+}
