@@ -122,21 +122,27 @@
       card.style.removeProperty("--card-delay");
     });
 
+    function textLength(node) {
+      return (node.innerText || "").replace(/\s+/g, " ").trim().length;
+    }
+
     function hasCardShape(node) {
       var style = node.getAttribute("style") || "";
-      if (style.indexOf("border") === -1 || style.indexOf("border-radius") === -1) return false;
       if (style.indexOf("grid-template-columns") !== -1 || style.indexOf("display:grid") !== -1) return false;
       if ((style.indexOf("border-top") === 0 || style.indexOf("border-bottom") === 0) && style.indexOf("border:") === -1) return false;
-      return true;
+      var framedCard = style.indexOf("border") !== -1 && style.indexOf("border-radius") !== -1;
+      var panelCard = style.indexOf("background") !== -1 && style.indexOf("padding") !== -1 && (style.indexOf("min-height") !== -1 || style.indexOf("box-shadow") !== -1 || style.indexOf("justify-content: space-between") !== -1);
+      var segmentedCell = style.indexOf("padding") !== -1 && style.indexOf("border") !== -1 && node.parentElement && /grid-template-columns/.test(node.parentElement.getAttribute("style") || "");
+      return framedCard || panelCard || segmentedCell;
     }
 
     function isIndividualCard(card) {
       if (!hasCardShape(card)) return false;
       if (card.closest("header") || card.closest("footer")) return false;
       if (/^(A|BUTTON|INPUT|SELECT|TEXTAREA|FORM)$/i.test(card.tagName)) return false;
-      if ((card.innerText || "").replace(/\s+/g, " ").trim().length < 32) return false;
+      if (textLength(card) < 24) return false;
       var nestedCards = Array.prototype.slice.call(card.querySelectorAll("[style*='border']")).filter(function (child) {
-        if ((child.innerText || "").replace(/\s+/g, " ").trim().length < 20) return false;
+        if (textLength(child) < 20) return false;
         return hasCardShape(child);
       });
       return nestedCards.length === 0;
@@ -146,7 +152,7 @@
       if (section.id === "mns1-premium-modules") return;
       section.classList.add("mns1-assemble-section");
       section.dataset.mns1Section = String(sectionIndex);
-      Array.prototype.slice.call(section.querySelectorAll("[style*='border']")).filter(isIndividualCard).forEach(function (card, cardIndex) {
+      Array.prototype.slice.call(section.querySelectorAll("div[style]")).filter(isIndividualCard).forEach(function (card, cardIndex) {
         card.classList.add("mns1-polished-card", "mns1-home-card");
         card.dataset.mns1HomeCard = "true";
         card.style.setProperty("--card-delay", Math.min(cardIndex, 8) * 38 + "ms");
