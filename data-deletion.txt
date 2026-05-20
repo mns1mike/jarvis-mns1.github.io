@@ -1,0 +1,21 @@
+Data Deletion Instructions | MNS1 Express
+
+Last updated May 18, 2026.
+
+MNS1 Express respects requests to delete personal information submitted through our website, recruiting forms, contact forms, and Meta-connected business tools used for advertising and reporting.
+
+How to request deletion:
+Email privacy@mns1express.com with the subject line "Data deletion request." Include your name, preferred contact method, and a short description of the data you want deleted, such as a driver inquiry, shipper inquiry, website contact form submission, or Facebook/Instagram advertising interaction.
+
+What we delete:
+After verifying the request, we will delete or anonymize personal information we control, including website form submissions, recruiting inquiry records, contact request details, and internally stored data connected to Meta advertising operations when applicable.
+
+Data we may not control:
+Some information may remain in systems controlled by third parties, including Meta, driver application platforms, email providers, analytics tools, or legal and compliance record systems. For data controlled by Meta, you may also use Meta's account privacy controls or contact Meta directly.
+
+Timing:
+We will respond to deletion requests within a reasonable period and aim to complete eligible deletion requests within 30 days unless a longer period is required for verification, legal, safety, employment, tax, or regulatory reasons.
+
+Contact:
+privacy@mns1express.com
+info@mns1express.com
