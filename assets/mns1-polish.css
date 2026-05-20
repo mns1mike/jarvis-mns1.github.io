@@ -100,6 +100,108 @@
   box-shadow: 0 32px 74px -34px rgba(0, 153, 215, 0.9);
 }
 
+.mns1-home-card {
+  isolation: isolate;
+}
+
+.mns1-home-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  background:
+    linear-gradient(135deg, rgba(0, 153, 215, 0.12), transparent 36%),
+    radial-gradient(circle at 88% 12%, rgba(47, 208, 131, 0.12), transparent 28%);
+  opacity: 0.72;
+  z-index: -1;
+}
+
+.mns1-home-card::after {
+  content: "";
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--mns1-blue), rgba(47, 208, 131, 0.72), transparent);
+  opacity: 0.72;
+}
+
+.mns1-assemble-section {
+  --assemble: 0;
+  position: relative;
+  transform:
+    perspective(1200px)
+    translateY(calc((1 - var(--assemble)) * 28px))
+    scale(calc(0.982 + (var(--assemble) * 0.018)));
+  opacity: calc(0.72 + (var(--assemble) * 0.28));
+  filter: saturate(calc(0.82 + (var(--assemble) * 0.18)));
+  transform-origin: 50% 45%;
+  transition: transform 280ms cubic-bezier(.2,.7,.2,1), opacity 280ms, filter 280ms;
+  will-change: transform, opacity;
+}
+
+.mns1-assemble-section .mns1-home-card {
+  transform: translateY(calc((1 - var(--assemble)) * 18px));
+  transition:
+    transform 320ms cubic-bezier(.2,.7,.2,1) var(--card-delay, 0ms),
+    border-color 220ms,
+    box-shadow 220ms,
+    background 220ms;
+}
+
+.mns1-review-track {
+  display: flex !important;
+  width: max-content;
+  gap: 18px !important;
+  animation: mns1-review-roll 42s linear infinite;
+  will-change: transform;
+}
+
+.mns1-review-track:hover {
+  animation-play-state: paused;
+}
+
+.mns1-review-card {
+  width: min(360px, 78vw);
+  flex: 0 0 min(360px, 78vw);
+}
+
+@keyframes mns1-review-roll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-50% - 9px));
+  }
+}
+
+section[data-mns1-reviews="rolling"] {
+  overflow: hidden;
+}
+
+section[data-mns1-reviews="rolling"]::before,
+section[data-mns1-reviews="rolling"]::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: min(120px, 16vw);
+  pointer-events: none;
+  z-index: 2;
+}
+
+section[data-mns1-reviews="rolling"]::before {
+  left: 0;
+  background: linear-gradient(90deg, #101836, transparent);
+}
+
+section[data-mns1-reviews="rolling"]::after {
+  right: 0;
+  background: linear-gradient(270deg, #101836, transparent);
+}
+
 .mns1-proof-icon {
   width: 44px;
   height: 44px;

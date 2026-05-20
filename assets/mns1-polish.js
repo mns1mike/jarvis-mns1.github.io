@@ -20,75 +20,8 @@
   }
 
   function createProofModules() {
-    if (!isHomePage() || document.getElementById("mns1-premium-modules")) return;
-
-    var firstSection = document.querySelector("section");
-    if (!firstSection || !firstSection.parentNode) return;
-
-    var modules = [
-      {
-        icon: "$",
-        title: "Pay Built For Miles",
-        copy: "Clear weekly earning story, accessorial pay, per diem advantage, and no mystery math before a driver applies.",
-        stat: "$1,650+",
-        label: "Top driver weekly range",
-      },
-      {
-        icon: "EQ",
-        title: "Equipment Proof",
-        copy: "2023+ Freightliners, eAPU, inverter, refrigerator, microwave, double bunk, and outward-only cameras.",
-        stat: "2023+",
-        label: "Freightliner fleet",
-      },
-      {
-        icon: "34",
-        title: "Home Time Planning",
-        copy: "Focused Midwest freight makes the home-time promise believable because lanes stay inside the operating network.",
-        stat: "34 HR",
-        label: "Weekend reset target",
-      },
-      {
-        icon: "FIT",
-        title: "Driver Fit",
-        copy: "The site should qualify the right CDL-A drivers early: experience, lane fit, home ZIP, and schedule preference.",
-        stat: "11",
-        label: "Hiring states",
-      },
-    ];
-
-    var section = document.createElement("section");
-    section.id = "mns1-premium-modules";
-    section.className = "mns1-premium-section";
-    section.innerHTML =
-      '<div class="mns1-premium-wrap">' +
-      '<div class="mns1-premium-kicker">Driver decision points</div>' +
-      '<h2 class="mns1-premium-title">The proof drivers look for before they apply.</h2>' +
-      '<div class="mns1-module-grid">' +
-      modules
-        .map(function (item) {
-          return (
-            '<article class="mns1-proof-card mns1-reveal">' +
-            '<div class="mns1-proof-icon">' +
-            item.icon +
-            "</div>" +
-            "<h3>" +
-            item.title +
-            "</h3>" +
-            "<p>" +
-            item.copy +
-            "</p>" +
-            '<div class="mns1-proof-stat"><strong>' +
-            item.stat +
-            "</strong><span>" +
-            item.label +
-            "</span></div>" +
-            "</article>"
-          );
-        })
-        .join("") +
-      "</div></div>";
-
-    firstSection.insertAdjacentElement("afterend", section);
+    var existing = document.getElementById("mns1-premium-modules");
+    if (existing) existing.remove();
   }
 
   function createLaneMap() {
@@ -180,6 +113,68 @@
     });
   }
 
+  function enhanceHomeCards() {
+    if (!isHomePage()) return;
+    document.querySelectorAll("section").forEach(function (section, sectionIndex) {
+      if (section.id === "mns1-premium-modules") return;
+      section.classList.add("mns1-assemble-section");
+      section.dataset.mns1Section = String(sectionIndex);
+      section.querySelectorAll("[style*='border:1px solid #243063'], [style*='border: 1px solid #243063'], [style*='border:2px solid #0099D7'], [style*='border: 2px solid #0099D7']").forEach(function (card, cardIndex) {
+        if (card.closest("header") || card.closest("footer")) return;
+        card.classList.add("mns1-polished-card", "mns1-home-card");
+        card.style.setProperty("--card-delay", Math.min(cardIndex, 8) * 38 + "ms");
+      });
+    });
+  }
+
+  function assembleOnScroll() {
+    if (!isHomePage()) return;
+    var sections = Array.prototype.slice.call(document.querySelectorAll(".mns1-assemble-section"));
+    if (!sections.length) return;
+
+    function update() {
+      var vh = window.innerHeight || 900;
+      sections.forEach(function (section) {
+        var rect = section.getBoundingClientRect();
+        var center = rect.top + rect.height * 0.5;
+        var distance = Math.abs(center - vh * 0.54);
+        var progress = Math.max(0, Math.min(1, 1 - distance / (vh * 0.82)));
+        section.style.setProperty("--assemble", progress.toFixed(3));
+      });
+    }
+
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+  }
+
+  function createRollingReviews() {
+    if (!isHomePage()) return;
+    var reviewSection = Array.prototype.find.call(document.querySelectorAll("section"), function (section) {
+      return /DRIVER REVIEWS|WHAT DRIVERS SAY/.test(section.innerText || "");
+    });
+    if (!reviewSection || reviewSection.dataset.mns1Reviews === "rolling") return;
+
+    var candidates = Array.prototype.slice.call(reviewSection.querySelectorAll("div")).filter(function (node) {
+      var style = node.getAttribute("style") || "";
+      return style.indexOf("grid-template-columns") !== -1 && node.children.length >= 3 && /GOOGLE|INDEED|FACEBOOK|review/i.test(node.innerText || "");
+    });
+    var track = candidates[candidates.length - 1];
+    if (!track) return;
+
+    reviewSection.dataset.mns1Reviews = "rolling";
+    track.classList.add("mns1-review-track");
+    Array.prototype.slice.call(track.children).forEach(function (card, index) {
+      card.classList.add("mns1-review-card", "mns1-polished-card");
+      card.style.setProperty("--card-delay", index * 55 + "ms");
+    });
+    Array.prototype.slice.call(track.children).forEach(function (card) {
+      var clone = card.cloneNode(true);
+      clone.setAttribute("aria-hidden", "true");
+      track.appendChild(clone);
+    });
+  }
+
   function addMotion() {
     var revealTargets = document.querySelectorAll("section, .card, [style*='border-radius:8px'], [style*='border-radius: 8px']");
     revealTargets.forEach(function (el) {
@@ -228,7 +223,10 @@
   ready(function () {
     document.documentElement.classList.add("mns1-polished");
     createProofModules();
+    enhanceHomeCards();
     createLaneMap();
+    createRollingReviews();
+    assembleOnScroll();
     addMotion();
   });
 })();
