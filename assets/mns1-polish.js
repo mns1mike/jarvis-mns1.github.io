@@ -212,8 +212,17 @@
     );
 
     document.querySelectorAll(".mns1-reveal").forEach(function (el) {
+      if (el.getBoundingClientRect().top < window.innerHeight * 0.96) {
+        el.classList.add("is-visible");
+      }
       observer.observe(el);
     });
+
+    setTimeout(function () {
+      document.querySelectorAll(".mns1-reveal:not(.is-visible)").forEach(function (el) {
+        el.classList.add("is-visible");
+      });
+    }, 1400);
   }
 
   ready(function () {
