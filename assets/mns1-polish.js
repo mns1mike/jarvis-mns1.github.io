@@ -1,9 +1,16 @@
 (function () {
   function ready(fn) {
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", fn);
-    } else {
+    var ran = false;
+    function run() {
+      if (ran) return;
+      ran = true;
       fn();
+    }
+    if (document.readyState === "loading") {
+      run();
+      document.addEventListener("DOMContentLoaded", run, { once: true });
+    } else {
+      run();
     }
   }
 
