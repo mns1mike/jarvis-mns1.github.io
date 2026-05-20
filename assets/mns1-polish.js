@@ -119,8 +119,10 @@
       if (section.id === "mns1-premium-modules") return;
       section.classList.add("mns1-assemble-section");
       section.dataset.mns1Section = String(sectionIndex);
-      section.querySelectorAll("[style*='border:1px solid #243063'], [style*='border: 1px solid #243063'], [style*='border:2px solid #0099D7'], [style*='border: 2px solid #0099D7']").forEach(function (card, cardIndex) {
+      section.querySelectorAll("[style*='border']").forEach(function (card, cardIndex) {
         if (card.closest("header") || card.closest("footer")) return;
+        var style = card.getAttribute("style") || "";
+        if (style.indexOf("border-radius") === -1 || style.indexOf("border-top") === 0 || style.indexOf("border-bottom") === 0) return;
         card.classList.add("mns1-polished-card", "mns1-home-card");
         card.style.setProperty("--card-delay", Math.min(cardIndex, 8) * 38 + "ms");
       });
