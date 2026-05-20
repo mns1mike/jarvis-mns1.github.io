@@ -133,7 +133,10 @@
     function isIndividualCard(card) {
       if (!hasCardShape(card)) return false;
       if (card.closest("header") || card.closest("footer")) return false;
+      if (/^(A|BUTTON|INPUT|SELECT|TEXTAREA|FORM)$/i.test(card.tagName)) return false;
+      if ((card.innerText || "").replace(/\s+/g, " ").trim().length < 32) return false;
       var nestedCards = Array.prototype.slice.call(card.querySelectorAll("[style*='border']")).filter(function (child) {
+        if ((child.innerText || "").replace(/\s+/g, " ").trim().length < 20) return false;
         return hasCardShape(child);
       });
       return nestedCards.length === 0;
