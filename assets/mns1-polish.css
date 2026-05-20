@@ -142,6 +142,14 @@
   will-change: transform, opacity;
 }
 
+.mns1-card-grid-reset {
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  overflow: visible !important;
+  gap: 18px !important;
+}
+
 .mns1-assemble-section .mns1-home-card {
   transform: translateY(calc((1 - var(--assemble)) * 18px));
   transition:

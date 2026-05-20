@@ -121,6 +121,9 @@
       card.removeAttribute("data-mns1-home-card");
       card.style.removeProperty("--card-delay");
     });
+    document.querySelectorAll(".mns1-card-grid-reset").forEach(function (grid) {
+      grid.classList.remove("mns1-card-grid-reset");
+    });
 
     function textLength(node) {
       return (node.innerText || "").replace(/\s+/g, " ").trim().length;
@@ -156,6 +159,9 @@
         card.classList.add("mns1-polished-card", "mns1-home-card");
         card.dataset.mns1HomeCard = "true";
         card.style.setProperty("--card-delay", Math.min(cardIndex, 8) * 38 + "ms");
+        if (card.parentElement && /grid-template-columns/.test(card.parentElement.getAttribute("style") || "")) {
+          card.parentElement.classList.add("mns1-card-grid-reset");
+        }
       });
     });
   }
