@@ -115,15 +115,37 @@
 
   function enhanceHomeCards() {
     if (!isHomePage()) return;
+
+    document.querySelectorAll("[data-mns1-home-card='true']").forEach(function (card) {
+      card.classList.remove("mns1-polished-card", "mns1-home-card");
+      card.removeAttribute("data-mns1-home-card");
+      card.style.removeProperty("--card-delay");
+    });
+
+    function hasCardShape(node) {
+      var style = node.getAttribute("style") || "";
+      if (style.indexOf("border") === -1 || style.indexOf("border-radius") === -1) return false;
+      if (style.indexOf("grid-template-columns") !== -1 || style.indexOf("display:grid") !== -1) return false;
+      if ((style.indexOf("border-top") === 0 || style.indexOf("border-bottom") === 0) && style.indexOf("border:") === -1) return false;
+      return true;
+    }
+
+    function isIndividualCard(card) {
+      if (!hasCardShape(card)) return false;
+      if (card.closest("header") || card.closest("footer")) return false;
+      var nestedCards = Array.prototype.slice.call(card.querySelectorAll("[style*='border']")).filter(function (child) {
+        return hasCardShape(child);
+      });
+      return nestedCards.length === 0;
+    }
+
     document.querySelectorAll("section").forEach(function (section, sectionIndex) {
       if (section.id === "mns1-premium-modules") return;
       section.classList.add("mns1-assemble-section");
       section.dataset.mns1Section = String(sectionIndex);
-      section.querySelectorAll("[style*='border']").forEach(function (card, cardIndex) {
-        if (card.closest("header") || card.closest("footer")) return;
-        var style = card.getAttribute("style") || "";
-        if (style.indexOf("border-radius") === -1 || style.indexOf("border-top") === 0 || style.indexOf("border-bottom") === 0) return;
+      Array.prototype.slice.call(section.querySelectorAll("[style*='border']")).filter(isIndividualCard).forEach(function (card, cardIndex) {
         card.classList.add("mns1-polished-card", "mns1-home-card");
+        card.dataset.mns1HomeCard = "true";
         card.style.setProperty("--card-delay", Math.min(cardIndex, 8) * 38 + "ms");
       });
     });
@@ -166,14 +188,19 @@
 
     reviewSection.dataset.mns1Reviews = "rolling";
     track.classList.add("mns1-review-track");
-    Array.prototype.slice.call(track.children).forEach(function (card, index) {
+    var originalCards = Array.prototype.slice.call(track.children);
+    track.dataset.mns1Sets = "3";
+    originalCards.forEach(function (card, index) {
       card.classList.add("mns1-review-card", "mns1-polished-card");
       card.style.setProperty("--card-delay", index * 55 + "ms");
     });
-    Array.prototype.slice.call(track.children).forEach(function (card) {
-      var clone = card.cloneNode(true);
-      clone.setAttribute("aria-hidden", "true");
-      track.appendChild(clone);
+    [1, 2].forEach(function () {
+      originalCards.forEach(function (card) {
+        var clone = card.cloneNode(true);
+        clone.setAttribute("aria-hidden", "true");
+        clone.classList.add("mns1-review-card", "mns1-polished-card");
+        track.appendChild(clone);
+      });
     });
   }
 

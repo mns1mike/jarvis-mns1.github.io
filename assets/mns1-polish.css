@@ -151,11 +151,18 @@
     background 220ms;
 }
 
+.mns1-assemble-section .mns1-home-card:hover {
+  transform: translateY(calc(((1 - var(--assemble)) * 18px) - 5px)) scale(1.01);
+  border-color: rgba(0, 153, 215, 0.9);
+  box-shadow: 0 34px 78px -34px rgba(0, 153, 215, 0.95);
+  z-index: 3;
+}
+
 .mns1-review-track {
   display: flex !important;
   width: max-content;
   gap: 18px !important;
-  animation: mns1-review-roll 42s linear infinite;
+  animation: mns1-review-roll 56s linear infinite;
   will-change: transform;
 }
 
@@ -166,6 +173,16 @@
 .mns1-review-card {
   width: min(360px, 78vw);
   flex: 0 0 min(360px, 78vw);
+  transform-origin: center;
+}
+
+.mns1-review-track .mns1-review-card:hover {
+  transform: translateY(-6px) scale(1.025);
+  border-color: rgba(0, 153, 215, 0.92);
+  box-shadow:
+    0 36px 82px -34px rgba(0, 153, 215, 0.95),
+    0 0 0 1px rgba(255, 255, 255, 0.08) inset;
+  z-index: 4;
 }
 
 @keyframes mns1-review-roll {
@@ -173,7 +190,7 @@
     transform: translateX(0);
   }
   to {
-    transform: translateX(calc(-50% - 9px));
+    transform: translateX(-33.3333%);
   }
 }
 
