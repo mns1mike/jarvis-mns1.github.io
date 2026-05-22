@@ -15,7 +15,7 @@
 
   function isHomePage() {
     var path = window.location.pathname.replace(/\/+$/, "");
-    return path === "" || path === "/" || path === "/mns1-website-preview";
+    return path === "" || path === "/" || path === "";
   }
 
   function isShippersPage() {
@@ -24,10 +24,6 @@
 
   function isBlogPage() {
     return /^\/blog(?:\/|\.html|$)/i.test(window.location.pathname);
-  }
-
-  function isFaqPage() {
-    return /\/faq(?:\.html)?$/i.test(window.location.pathname.replace(/\/+$/, ""));
   }
 
   function observeOnce(target, visibleClass, options) {
@@ -67,47 +63,6 @@
     }, 120);
   }
 
-  function isElementInView(target, options) {
-    if (!target || !target.getBoundingClientRect) return false;
-    var rect = target.getBoundingClientRect();
-    var vh = window.innerHeight || document.documentElement.clientHeight || 900;
-    var topEdge = options && options.topEdge ? options.topEdge : 0.9;
-    var bottomEdge = options && options.bottomEdge ? options.bottomEdge : 0.08;
-    return rect.top < vh * topEdge && rect.bottom > vh * bottomEdge;
-  }
-
-  function watchViewportRepeat(target, key, onEnter, onLeave, options) {
-    if (!target || target.dataset[key] === "ready") return;
-    target.dataset[key] = "ready";
-    var active = false;
-    var frame = 0;
-
-    function update() {
-      frame = 0;
-      var visible = isElementInView(target, options);
-      if (visible === active) return;
-      active = visible;
-      if (visible) {
-        onEnter(target);
-      } else if (onLeave) {
-        onLeave(target);
-      }
-    }
-
-    function schedule() {
-      if (frame) return;
-      frame = window.requestAnimationFrame ? window.requestAnimationFrame(update) : window.setTimeout(update, 16);
-    }
-
-    window.addEventListener("scroll", schedule, { passive: true });
-    window.addEventListener("resize", schedule);
-    window.addEventListener("pageshow", schedule);
-    [40, 180, 620, 1400].forEach(function (delay) {
-      window.setTimeout(schedule, delay);
-    });
-    update();
-  }
-
   function enhanceQuickApplyGlow() {
     if (!isHomePage()) return;
     document.querySelectorAll("form.quick-apply").forEach(function (form) {
@@ -119,6 +74,40 @@
     Array.prototype.slice.call(document.querySelectorAll("header button, header a")).forEach(function (cta) {
       if (!/Apply\s+in\s+4\s+mins/i.test(cta.textContent || "")) return;
       cta.classList.add("mns1-top-apply-cta");
+    });
+  }
+
+  function linkLaneCityJobs() {
+    if (!/\/lanes(?:\.html)?$/i.test(window.location.pathname.replace(/\/+$/, ""))) return;
+    var cityLinks = [
+      { label: "kansas city ks", href: "/jobs/cdl-a-driver-kansas-city-mo/" },
+      { label: "omaha ne", href: "/jobs/cdl-a-driver-omaha-ne/" }
+    ];
+
+    Array.prototype.slice.call(document.querySelectorAll("div, a")).forEach(function (node) {
+      var text = normalizeHeadingText(node.innerText || node.textContent);
+      var match = cityLinks.find(function (item) {
+        return text === item.label;
+      });
+      if (!match || node.dataset.mns1LaneJobLink === "ready") return;
+
+      node.dataset.mns1LaneJobLink = "ready";
+      node.dataset.mns1LaneJobHref = match.href;
+      node.classList.add("mns1-lane-city-link");
+      node.setAttribute("role", "link");
+      node.setAttribute("tabindex", "0");
+      if (/^A$/i.test(node.tagName || "")) {
+        node.setAttribute("href", match.href);
+      }
+      node.addEventListener("click", function () {
+        window.location.href = match.href;
+      });
+      node.addEventListener("keydown", function (event) {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          window.location.href = match.href;
+        }
+      });
     });
   }
 
@@ -183,17 +172,7 @@
         cell.style.setProperty("--roll-tilt", fromLeft ? "-4deg" : "4deg");
       });
 
-      watchViewportRepeat(
-        strip,
-        "mns1StatWatch",
-        function (target) {
-          target.classList.add("is-rolled-in");
-        },
-        function (target) {
-          target.classList.remove("is-rolled-in");
-        },
-        { topEdge: 0.9, bottomEdge: 0.08 }
-      );
+      observeOnce(strip, "is-rolled-in", { rootMargin: "0px 0px -18% 0px", threshold: 0.28 });
     });
   }
 
@@ -313,17 +292,28 @@
     }
 
     function observeWriteRepeat(heading) {
-      watchViewportRepeat(
-        heading,
-        "mns1WriteWatch",
-        function (target) {
-          triggerWrite(target);
+      if (!("IntersectionObserver" in window)) {
+        triggerWrite(heading);
+        return;
+      }
+
+      var observer = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              triggerWrite(entry.target);
+            } else {
+              entry.target.classList.remove("is-writing");
+            }
+          });
         },
-        function (target) {
-          target.classList.remove("is-writing");
-        },
-        { topEdge: 0.88, bottomEdge: 0.04 }
+        { rootMargin: "0px 0px -18% 0px", threshold: 0.32 }
       );
+
+      observer.observe(heading);
+      if (heading.getBoundingClientRect().top < (window.innerHeight || 900) * 0.86) {
+        triggerWrite(heading);
+      }
     }
 
     function applyWriteHeading(heading, text) {
@@ -352,6 +342,7 @@
     }
 
     Array.prototype.slice.call(document.querySelectorAll("h1, h2, h3")).forEach(function (heading) {
+      if (isBlogPage()) return;
       var text = normalizeHeadingText(heading.innerText || heading.textContent);
       var match = phrases.some(function (phrase) {
         return text === phrase || text.indexOf(phrase) !== -1;
@@ -368,7 +359,6 @@
         heading.dataset.mns1BlogTitle = "ready";
         heading.classList.add("mns1-blog-title");
         splitHeadingAfterColon(heading);
-        applyWriteHeading(heading, text);
       });
     }
   }
@@ -494,16 +484,11 @@
       return box.getBoundingClientRect().height > 2;
     }
 
-    function animateAnswer(node) {
+    function showAnswer(node) {
       var text = (node.innerText || node.textContent || "").replace(/\s+/g, " ").trim();
       if (text.length < 10) return;
-      node.classList.add("mns1-faq-answer-text", "mns1-write-text");
+      node.classList.add("mns1-faq-answer-text");
       node.dataset.mns1FaqAnswer = "ready";
-      node.dataset.mns1FaqOpen = "true";
-      node.style.setProperty("--write-steps", String(Math.max(22, Math.min(88, text.length))));
-      node.classList.remove("is-writing");
-      void node.offsetWidth;
-      node.classList.add("is-writing");
     }
 
     function answerNodes(card) {
@@ -522,34 +507,22 @@
 
     function triggerOpenAnswer(card) {
       answerNodes(card).forEach(function (node) {
-        if (isOpenAnswer(node, card)) {
-          if (node.dataset.mns1FaqOpen !== "true") animateAnswer(node);
-          return;
-        }
-        node.dataset.mns1FaqOpen = "false";
-        node.classList.remove("is-writing");
+        if (isOpenAnswer(node, card)) showAnswer(node);
       });
     }
 
-    var onFaqPage = isFaqPage();
     Array.prototype.slice.call(document.querySelectorAll("button")).forEach(function (button, index) {
       var text = normalizedButtonText(button);
       updatePassengerLabel(button, text);
       if (!questionPattern.test(text)) return;
       var card = button.parentElement;
       if (!card || !card.closest("section")) return;
-      if (onFaqPage) {
-        card.classList.add("mns1-faq-card");
-        card.style.setProperty("--card-delay", Math.min(index, 8) * 34 + "ms");
-      } else {
-        card.classList.remove("mns1-faq-card", "mns1-polished-card", "mns1-home-card");
-        card.removeAttribute("data-mns1-home-card");
-        card.style.removeProperty("--card-delay");
-      }
+      card.classList.add("mns1-faq-card");
+      card.style.setProperty("--card-delay", Math.min(index, 8) * 34 + "ms");
       if (button.dataset.mns1FaqButton !== "ready") {
         button.dataset.mns1FaqButton = "ready";
         button.addEventListener("click", function () {
-          [90, 260].forEach(function (delay) {
+          [40, 180, 380].forEach(function (delay) {
             window.setTimeout(function () {
               triggerOpenAnswer(card);
             }, delay);
@@ -609,16 +582,20 @@
     if (!mount || mount.dataset.mns1Map === "ready") return;
     mount.dataset.mns1Map = "ready";
     mount.className = "mns1-lane-map";
+    if (isHomePage()) mount.classList.add("mns1-home-lane-map");
     mount.removeAttribute("style");
 
+    var isHomeMap = isHomePage();
     mount.innerHTML =
-      '<div class="mns1-map-toolbar">' +
-      '<div class="mns1-map-copy"><h3>Midwest Network</h3><p>Hiring coverage, freight density, and terminal gravity in one quick view.</p></div>' +
-      '<div class="mns1-map-controls" aria-label="Map filters">' +
-      '<button class="mns1-map-control is-active" type="button" data-mode="all">All</button>' +
-      '<button class="mns1-map-control" type="button" data-mode="hiring">Hiring</button>' +
-      '<button class="mns1-map-control" type="button" data-mode="freight">Freight</button>' +
-      "</div></div>" +
+      (isHomeMap
+        ? ""
+        : '<div class="mns1-map-toolbar">' +
+          '<div class="mns1-map-copy"><h3>Midwest Network</h3><p>Hiring coverage, freight density, and terminal gravity in one quick view.</p></div>' +
+          '<div class="mns1-map-controls" aria-label="Map filters">' +
+          '<button class="mns1-map-control is-active" type="button" data-mode="all">All</button>' +
+          '<button class="mns1-map-control" type="button" data-mode="hiring">Hiring</button>' +
+          '<button class="mns1-map-control" type="button" data-mode="freight">Freight</button>' +
+          "</div></div>") +
       '<svg class="mns1-map-svg" viewBox="0 0 920 520" role="img" aria-label="MNS1 Midwest lane and hiring coverage map">' +
       '<path class="mns1-lane-line" d="M465 220 C420 190 360 180 306 212 S220 280 172 322" />' +
       '<path class="mns1-lane-line" d="M465 220 C505 170 570 148 640 132 S740 145 804 178" />' +
@@ -633,8 +610,8 @@
       state("Ohio", "OH", 660, 232, 118, 112, "is-hiring is-network") +
       state("Missouri", "MO", 322, 340, 160, 112, "is-hiring is-network") +
       state("Kentucky", "KY", 520, 384, 188, 78, "is-hiring is-network") +
-      state("Nebraska", "NE", 118, 246, 148, 76, "is-network") +
-      state("Kansas", "KS", 142, 346, 152, 74, "is-network") +
+      state("Nebraska", "NE", 118, 246, 148, 76, "is-hiring is-network") +
+      state("Kansas", "KS", 142, 346, 152, 74, "is-hiring is-network") +
       '<circle class="mns1-terminal-dot" cx="465" cy="220" r="9" />' +
       '<text class="mns1-map-label" x="465" y="198">Plainfield HQ</text>' +
       '<circle class="mns1-terminal-dot" cx="172" cy="322" r="7" />' +
@@ -642,12 +619,14 @@
       '<circle class="mns1-terminal-dot" cx="232" cy="382" r="7" />' +
       '<text class="mns1-map-label" x="232" y="362">Kansas City</text>' +
       "</svg>" +
-      '<div class="mns1-map-legend">' +
-      '<div class="mns1-map-chip"><strong>11</strong>Hiring states</div>' +
-      '<div class="mns1-map-chip"><strong>16</strong>Operating states</div>' +
-      '<div class="mns1-map-chip"><strong>180+</strong>Company trucks</div>' +
-      '<div class="mns1-map-chip"><strong>400+</strong>Dry vans</div>' +
-      "</div>";
+      (isHomeMap
+        ? ""
+        : '<div class="mns1-map-legend">' +
+          '<div class="mns1-map-chip"><strong>13</strong>Hiring states</div>' +
+          '<div class="mns1-map-chip"><strong>16</strong>Operating states</div>' +
+          '<div class="mns1-map-chip"><strong>180+</strong>Company trucks</div>' +
+          '<div class="mns1-map-chip"><strong>400+</strong>Dry vans</div>' +
+          "</div>");
 
     function state(name, label, x, y, w, h, cls) {
       return (
@@ -694,6 +673,15 @@
   }
 
   function enhanceHomeCards() {
+    document.querySelectorAll("[data-mns1-home-card='true']").forEach(function (card) {
+      card.classList.remove("mns1-polished-card", "mns1-home-card");
+      card.removeAttribute("data-mns1-home-card");
+      card.style.removeProperty("--card-delay");
+    });
+    document.querySelectorAll(".mns1-card-grid-reset").forEach(function (grid) {
+      grid.classList.remove("mns1-card-grid-reset");
+    });
+
     function textLength(node) {
       return (node.innerText || "").replace(/\s+/g, " ").trim().length;
     }
@@ -716,7 +704,6 @@
       if (card.classList.contains("mns1-story-timeline-card")) return false;
       if (card.classList.contains("mns1-pay-snapshot-card")) return false;
       if (card.classList.contains("mns1-founder-quote-text")) return false;
-      if (isHomePage() && card.classList.contains("mns1-faq-card")) return false;
       var sectionText = card.closest("section") ? card.closest("section").innerText || "" : "";
       if (/DRIVER REVIEWS|WHAT DRIVERS SAY/i.test(sectionText)) return false;
       if (/^(BUTTON|INPUT|SELECT|TEXTAREA|FORM)$/i.test(card.tagName)) return false;
@@ -745,9 +732,10 @@
   }
 
   function assembleOnScroll() {
+    var sections = Array.prototype.slice.call(document.querySelectorAll(".mns1-assemble-section"));
+    if (!sections.length) return;
+
     function update() {
-      var sections = Array.prototype.slice.call(document.querySelectorAll(".mns1-assemble-section"));
-      if (!sections.length) return;
       var vh = window.innerHeight || 900;
       sections.forEach(function (section) {
         var rect = section.getBoundingClientRect();
@@ -759,8 +747,6 @@
     }
 
     update();
-    if (window.__mns1AssembleScrollReady) return;
-    window.__mns1AssembleScrollReady = true;
     window.addEventListener("scroll", update, { passive: true });
     window.addEventListener("resize", update);
   }
@@ -877,6 +863,7 @@
     enhanceHomeCards();
     manageMobileStickyCta();
     createLaneMap();
+    linkLaneCityJobs();
     createRollingReviews();
     assembleOnScroll();
     addMotion();
@@ -891,16 +878,12 @@
     window.__mns1PolishRescanReady = true;
     var timer = 0;
 
-    function runRefreshBurst() {
-      [0, 160, 420, 900, 1700, 2800].forEach(function (delay) {
-        window.setTimeout(runEnhancements, delay);
-      });
-    }
-
     function scheduleRefresh(delay) {
       window.clearTimeout(timer);
       timer = window.setTimeout(function () {
-        runRefreshBurst();
+        runEnhancements();
+        window.setTimeout(runEnhancements, 220);
+        window.setTimeout(runEnhancements, 760);
       }, delay || 90);
     }
 
@@ -922,9 +905,6 @@
     });
     document.addEventListener("visibilitychange", function () {
       if (!document.hidden) scheduleRefresh(80);
-    });
-    window.addEventListener("load", function () {
-      scheduleRefresh(80);
     });
     document.addEventListener(
       "click",

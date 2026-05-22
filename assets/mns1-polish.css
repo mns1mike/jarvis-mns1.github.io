@@ -182,6 +182,10 @@ header .mns1-top-apply-cta {
   position: relative !important;
   isolation: isolate;
   overflow: hidden !important;
+  min-width: 148px !important;
+  min-height: 38px !important;
+  justify-content: center !important;
+  text-align: center !important;
   border-radius: 3px !important;
   border-color: rgba(102, 212, 242, 0.95) !important;
   background:
@@ -223,6 +227,17 @@ header .mns1-top-apply-cta::before {
 header .mns1-top-apply-cta > * {
   position: relative;
   z-index: 2;
+}
+
+header nav.hide-mobile {
+  gap: 15px !important;
+}
+
+header nav.hide-mobile > a {
+  font-size: 14.5px !important;
+  font-weight: 700 !important;
+  height: 34px !important;
+  align-items: center !important;
 }
 
 header .mns1-top-apply-cta:hover {
@@ -407,10 +422,15 @@ header .mns1-top-apply-cta:hover {
 .mns1-assemble-section {
   --assemble: 0;
   position: relative;
-  transform: none;
-  opacity: 1;
-  filter: none;
+  transform:
+    perspective(1200px)
+    translateY(calc((1 - var(--assemble)) * 28px))
+    scale(calc(0.982 + (var(--assemble) * 0.018)));
+  opacity: calc(0.72 + (var(--assemble) * 0.28));
+  filter: saturate(calc(0.82 + (var(--assemble) * 0.18)));
   transform-origin: 50% 45%;
+  transition: transform 280ms cubic-bezier(.2,.7,.2,1), opacity 280ms, filter 280ms;
+  will-change: transform, opacity;
 }
 
 .mns1-card-grid-reset {
@@ -516,6 +536,15 @@ header .mns1-top-apply-cta:hover {
   box-sizing: border-box;
 }
 
+.mns1-lane-city-link {
+  cursor: pointer !important;
+}
+
+.mns1-lane-city-link:focus-visible {
+  outline: 2px solid var(--mns1-blue);
+  outline-offset: 3px;
+}
+
 .mns1-assemble-section .mns1-lane-city-card:hover,
 .mns1-lane-city-card:hover {
   transform: translateY(-4px) scale(1.02) !important;
@@ -531,16 +560,16 @@ header .mns1-top-apply-cta:hover {
 }
 
 .mns1-assemble-section .mns1-home-card {
-  transform: none;
+  transform: translateY(calc((1 - var(--assemble)) * 18px));
   transition:
-    transform 220ms cubic-bezier(.2,.7,.2,1),
+    transform 320ms cubic-bezier(.2,.7,.2,1) var(--card-delay, 0ms),
     border-color 220ms,
     box-shadow 220ms,
     background 220ms;
 }
 
 .mns1-assemble-section .mns1-home-card:hover {
-  transform: translateY(-5px) scale(1.01);
+  transform: translateY(calc(((1 - var(--assemble)) * 18px) - 5px)) scale(1.01);
   border-color: rgba(0, 153, 215, 0.9);
   box-shadow: 0 34px 78px -34px rgba(0, 153, 215, 0.95);
   z-index: 3;
@@ -569,7 +598,7 @@ header .mns1-top-apply-cta:hover {
 
 .mns1-assemble-section .mns1-story-timeline-card.mns1-home-card:hover,
 .mns1-story-timeline-card.mns1-polished-card:hover {
-  transform: none !important;
+  transform: translateY(calc((1 - var(--assemble)) * 18px)) !important;
   border-color: transparent !important;
   box-shadow: none !important;
   filter: none !important;
@@ -834,6 +863,19 @@ section[data-mns1-reviews="rolling"]::after {
     radial-gradient(circle at 28% 24%, rgba(0, 153, 215, 0.22), transparent 32%),
     linear-gradient(135deg, #101836 0%, #0b1020 58%, #070b17 100%);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 30px 70px -42px rgba(0, 0, 0, 1);
+}
+
+.mns1-home-lane-map {
+  min-height: 470px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.mns1-home-lane-map .mns1-map-svg {
+  inset: 0;
+  height: 100%;
 }
 
 .mns1-map-toolbar {
