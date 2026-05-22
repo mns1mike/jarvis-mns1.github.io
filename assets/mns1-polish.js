@@ -26,6 +26,10 @@
     return /^\/blog(?:\/|\.html|$)/i.test(window.location.pathname);
   }
 
+  function isFaqPage() {
+    return /\/faq(?:\.html)?$/i.test(window.location.pathname.replace(/\/+$/, ""));
+  }
+
   function observeOnce(target, visibleClass, options) {
     if (!target) return;
     function markVisible() {
@@ -495,6 +499,7 @@
       if (text.length < 10) return;
       node.classList.add("mns1-faq-answer-text", "mns1-write-text");
       node.dataset.mns1FaqAnswer = "ready";
+      node.dataset.mns1FaqOpen = "true";
       node.style.setProperty("--write-steps", String(Math.max(22, Math.min(88, text.length))));
       node.classList.remove("is-writing");
       void node.offsetWidth;
@@ -517,22 +522,34 @@
 
     function triggerOpenAnswer(card) {
       answerNodes(card).forEach(function (node) {
-        if (isOpenAnswer(node, card)) animateAnswer(node);
+        if (isOpenAnswer(node, card)) {
+          if (node.dataset.mns1FaqOpen !== "true") animateAnswer(node);
+          return;
+        }
+        node.dataset.mns1FaqOpen = "false";
+        node.classList.remove("is-writing");
       });
     }
 
+    var onFaqPage = isFaqPage();
     Array.prototype.slice.call(document.querySelectorAll("button")).forEach(function (button, index) {
       var text = normalizedButtonText(button);
       updatePassengerLabel(button, text);
       if (!questionPattern.test(text)) return;
       var card = button.parentElement;
       if (!card || !card.closest("section")) return;
-      card.classList.add("mns1-faq-card");
-      card.style.setProperty("--card-delay", Math.min(index, 8) * 34 + "ms");
+      if (onFaqPage) {
+        card.classList.add("mns1-faq-card");
+        card.style.setProperty("--card-delay", Math.min(index, 8) * 34 + "ms");
+      } else {
+        card.classList.remove("mns1-faq-card", "mns1-polished-card", "mns1-home-card");
+        card.removeAttribute("data-mns1-home-card");
+        card.style.removeProperty("--card-delay");
+      }
       if (button.dataset.mns1FaqButton !== "ready") {
         button.dataset.mns1FaqButton = "ready";
         button.addEventListener("click", function () {
-          [40, 180, 380].forEach(function (delay) {
+          [90, 260].forEach(function (delay) {
             window.setTimeout(function () {
               triggerOpenAnswer(card);
             }, delay);
@@ -677,15 +694,6 @@
   }
 
   function enhanceHomeCards() {
-    document.querySelectorAll("[data-mns1-home-card='true']").forEach(function (card) {
-      card.classList.remove("mns1-polished-card", "mns1-home-card");
-      card.removeAttribute("data-mns1-home-card");
-      card.style.removeProperty("--card-delay");
-    });
-    document.querySelectorAll(".mns1-card-grid-reset").forEach(function (grid) {
-      grid.classList.remove("mns1-card-grid-reset");
-    });
-
     function textLength(node) {
       return (node.innerText || "").replace(/\s+/g, " ").trim().length;
     }
@@ -708,6 +716,7 @@
       if (card.classList.contains("mns1-story-timeline-card")) return false;
       if (card.classList.contains("mns1-pay-snapshot-card")) return false;
       if (card.classList.contains("mns1-founder-quote-text")) return false;
+      if (isHomePage() && card.classList.contains("mns1-faq-card")) return false;
       var sectionText = card.closest("section") ? card.closest("section").innerText || "" : "";
       if (/DRIVER REVIEWS|WHAT DRIVERS SAY/i.test(sectionText)) return false;
       if (/^(BUTTON|INPUT|SELECT|TEXTAREA|FORM)$/i.test(card.tagName)) return false;
@@ -736,10 +745,9 @@
   }
 
   function assembleOnScroll() {
-    var sections = Array.prototype.slice.call(document.querySelectorAll(".mns1-assemble-section"));
-    if (!sections.length) return;
-
     function update() {
+      var sections = Array.prototype.slice.call(document.querySelectorAll(".mns1-assemble-section"));
+      if (!sections.length) return;
       var vh = window.innerHeight || 900;
       sections.forEach(function (section) {
         var rect = section.getBoundingClientRect();
@@ -751,6 +759,8 @@
     }
 
     update();
+    if (window.__mns1AssembleScrollReady) return;
+    window.__mns1AssembleScrollReady = true;
     window.addEventListener("scroll", update, { passive: true });
     window.addEventListener("resize", update);
   }
