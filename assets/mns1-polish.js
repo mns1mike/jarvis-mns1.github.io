@@ -63,6 +63,47 @@
     }, 120);
   }
 
+  function isElementInView(target, options) {
+    if (!target || !target.getBoundingClientRect) return false;
+    var rect = target.getBoundingClientRect();
+    var vh = window.innerHeight || document.documentElement.clientHeight || 900;
+    var topEdge = options && options.topEdge ? options.topEdge : 0.9;
+    var bottomEdge = options && options.bottomEdge ? options.bottomEdge : 0.08;
+    return rect.top < vh * topEdge && rect.bottom > vh * bottomEdge;
+  }
+
+  function watchViewportRepeat(target, key, onEnter, onLeave, options) {
+    if (!target || target.dataset[key] === "ready") return;
+    target.dataset[key] = "ready";
+    var active = false;
+    var frame = 0;
+
+    function update() {
+      frame = 0;
+      var visible = isElementInView(target, options);
+      if (visible === active) return;
+      active = visible;
+      if (visible) {
+        onEnter(target);
+      } else if (onLeave) {
+        onLeave(target);
+      }
+    }
+
+    function schedule() {
+      if (frame) return;
+      frame = window.requestAnimationFrame ? window.requestAnimationFrame(update) : window.setTimeout(update, 16);
+    }
+
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    window.addEventListener("pageshow", schedule);
+    [40, 180, 620, 1400].forEach(function (delay) {
+      window.setTimeout(schedule, delay);
+    });
+    update();
+  }
+
   function enhanceQuickApplyGlow() {
     if (!isHomePage()) return;
     document.querySelectorAll("form.quick-apply").forEach(function (form) {
@@ -138,7 +179,17 @@
         cell.style.setProperty("--roll-tilt", fromLeft ? "-4deg" : "4deg");
       });
 
-      observeOnce(strip, "is-rolled-in", { rootMargin: "0px 0px -18% 0px", threshold: 0.28 });
+      watchViewportRepeat(
+        strip,
+        "mns1StatWatch",
+        function (target) {
+          target.classList.add("is-rolled-in");
+        },
+        function (target) {
+          target.classList.remove("is-rolled-in");
+        },
+        { topEdge: 0.9, bottomEdge: 0.08 }
+      );
     });
   }
 
@@ -258,28 +309,17 @@
     }
 
     function observeWriteRepeat(heading) {
-      if (!("IntersectionObserver" in window)) {
-        triggerWrite(heading);
-        return;
-      }
-
-      var observer = new IntersectionObserver(
-        function (entries) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-              triggerWrite(entry.target);
-            } else {
-              entry.target.classList.remove("is-writing");
-            }
-          });
+      watchViewportRepeat(
+        heading,
+        "mns1WriteWatch",
+        function (target) {
+          triggerWrite(target);
         },
-        { rootMargin: "0px 0px -18% 0px", threshold: 0.32 }
+        function (target) {
+          target.classList.remove("is-writing");
+        },
+        { topEdge: 0.88, bottomEdge: 0.04 }
       );
-
-      observer.observe(heading);
-      if (heading.getBoundingClientRect().top < (window.innerHeight || 900) * 0.86) {
-        triggerWrite(heading);
-      }
     }
 
     function applyWriteHeading(heading, text) {
@@ -841,12 +881,16 @@
     window.__mns1PolishRescanReady = true;
     var timer = 0;
 
+    function runRefreshBurst() {
+      [0, 160, 420, 900, 1700, 2800].forEach(function (delay) {
+        window.setTimeout(runEnhancements, delay);
+      });
+    }
+
     function scheduleRefresh(delay) {
       window.clearTimeout(timer);
       timer = window.setTimeout(function () {
-        runEnhancements();
-        window.setTimeout(runEnhancements, 220);
-        window.setTimeout(runEnhancements, 760);
+        runRefreshBurst();
       }, delay || 90);
     }
 
@@ -868,6 +912,9 @@
     });
     document.addEventListener("visibilitychange", function () {
       if (!document.hidden) scheduleRefresh(80);
+    });
+    window.addEventListener("load", function () {
+      scheduleRefresh(80);
     });
     document.addEventListener(
       "click",
