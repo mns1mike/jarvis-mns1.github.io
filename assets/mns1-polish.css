@@ -352,16 +352,22 @@ header .mns1-top-apply-cta:hover {
   opacity: 1 !important;
   transform: none !important;
   filter: none !important;
-  will-change: auto !important;
+  transition: transform 220ms cubic-bezier(.2,.7,.2,1), border-color 220ms, box-shadow 220ms, background 220ms, filter 220ms !important;
+  will-change: transform !important;
 }
 
 .article-grid .article-card:hover,
 .article-grid .article-card.mns1-polished-card:hover {
-  transform: none !important;
+  transform: translateY(-6px) scale(1.012) !important;
+  border-color: rgba(0, 153, 215, 0.9) !important;
+  box-shadow:
+    0 30px 70px -34px rgba(0, 153, 215, 0.96),
+    0 0 0 1px rgba(255, 255, 255, 0.08) inset !important;
+  filter: brightness(1.06) !important;
 }
 
 .mns1-write-text.is-writing {
-  animation: none;
+  animation: mns1-write-text 920ms steps(var(--write-steps, 34), end) forwards;
 }
 
 .mns1-heading-blue {
@@ -446,15 +452,12 @@ header .mns1-top-apply-cta:hover {
 .mns1-assemble-section {
   --assemble: 0;
   position: relative;
-  transform:
-    perspective(1200px)
-    translateY(calc((1 - var(--assemble)) * 28px))
-    scale(calc(0.982 + (var(--assemble) * 0.018)));
-  opacity: calc(0.72 + (var(--assemble) * 0.28));
-  filter: saturate(calc(0.82 + (var(--assemble) * 0.18)));
+  transform: none;
+  opacity: 1;
+  filter: none;
   transform-origin: 50% 45%;
   transition: transform 280ms cubic-bezier(.2,.7,.2,1), opacity 280ms, filter 280ms;
-  will-change: transform, opacity;
+  will-change: auto;
 }
 
 .mns1-card-grid-reset {
@@ -584,7 +587,7 @@ header .mns1-top-apply-cta:hover {
 }
 
 .mns1-assemble-section .mns1-home-card {
-  transform: translateY(calc((1 - var(--assemble)) * 18px));
+  transform: none;
   transition:
     transform 320ms cubic-bezier(.2,.7,.2,1) var(--card-delay, 0ms),
     border-color 220ms,
@@ -593,7 +596,7 @@ header .mns1-top-apply-cta:hover {
 }
 
 .mns1-assemble-section .mns1-home-card:hover {
-  transform: translateY(calc(((1 - var(--assemble)) * 18px) - 5px)) scale(1.01);
+  transform: translateY(-5px) scale(1.01);
   border-color: rgba(0, 153, 215, 0.9);
   box-shadow: 0 34px 78px -34px rgba(0, 153, 215, 0.95);
   z-index: 3;
@@ -622,7 +625,7 @@ header .mns1-top-apply-cta:hover {
 
 .mns1-assemble-section .mns1-story-timeline-card.mns1-home-card:hover,
 .mns1-story-timeline-card.mns1-polished-card:hover {
-  transform: translateY(calc((1 - var(--assemble)) * 18px)) !important;
+  transform: none !important;
   border-color: transparent !important;
   box-shadow: none !important;
   filter: none !important;
@@ -767,7 +770,7 @@ header .mns1-top-apply-cta:hover {
 
 @keyframes mns1-write-text {
   0% {
-    clip-path: inset(0 0 0 0);
+    clip-path: inset(0 100% 0 0);
     opacity: 1;
     filter: blur(0);
   }
@@ -1048,8 +1051,8 @@ svg[aria-label="MNS1 Midwest lane coverage map"] {
 }
 
 .mns1-reveal {
-  opacity: 0;
-  transform: translateY(18px);
+  opacity: 1;
+  transform: translateY(0);
   transition: opacity 520ms ease, transform 520ms cubic-bezier(.2,.7,.2,1);
 }
 
