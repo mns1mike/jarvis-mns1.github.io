@@ -80,7 +80,7 @@
   function linkLaneCityJobs() {
     if (!/\/lanes(?:\.html)?$/i.test(window.location.pathname.replace(/\/+$/, ""))) return;
     var cityLinks = [
-      { label: "kansas city ks", href: "/jobs/cdl-a-driver-kansas-city-mo/" },
+      { label: "kansas city ks", href: "/jobs/cdl-a-driver-kansas-city-ks/" },
       { label: "omaha ne", href: "/jobs/cdl-a-driver-omaha-ne/" }
     ];
 
@@ -341,14 +341,21 @@
       heading.appendChild(span);
     }
 
+    function isWriteCandidate(heading, text) {
+      if (!text || text.length < 7 || text.length > 96) return false;
+      if (heading.closest("header") || heading.closest("footer")) return false;
+      if (heading.closest(".article-card, .job-card, .state-link-card, .card, .panel, .benefit-card")) return false;
+      if (/^0?\d+$/.test(text)) return false;
+      return /^(H1|H2)$/i.test(heading.tagName || "");
+    }
+
     Array.prototype.slice.call(document.querySelectorAll("h1, h2, h3")).forEach(function (heading) {
-      if (isBlogPage()) return;
       var text = normalizeHeadingText(heading.innerText || heading.textContent);
       var match = phrases.some(function (phrase) {
         return text === phrase || text.indexOf(phrase) !== -1;
       });
 
-      if (!match) return;
+      if (!match && !isWriteCandidate(heading, text)) return;
       applyWriteHeading(heading, text);
     });
 
@@ -690,6 +697,7 @@
     if (!card || card === document.body) return;
 
     card.dataset.mns1PlainMap = "ready";
+    card.classList.remove("mns1-polished-card", "mns1-home-card", "mns1-reveal");
     card.style.background = "transparent";
     card.style.border = "0";
     card.style.borderRadius = "0";
@@ -701,6 +709,7 @@
     if (grid && grid !== wrapper) {
       grid.style.inset = "0";
       grid.style.borderRadius = "0";
+      grid.style.display = "none";
     }
 
     Array.prototype.slice.call(card.children).forEach(function (child) {
@@ -710,6 +719,7 @@
   }
 
   function enhanceHomeCards() {
+    if (isBlogPage()) return;
     document.querySelectorAll("[data-mns1-home-card='true']").forEach(function (card) {
       card.classList.remove("mns1-polished-card", "mns1-home-card");
       card.removeAttribute("data-mns1-home-card");
@@ -769,6 +779,7 @@
   }
 
   function assembleOnScroll() {
+    if (isBlogPage()) return;
     var sections = Array.prototype.slice.call(document.querySelectorAll(".mns1-assemble-section"));
     if (!sections.length) return;
 
