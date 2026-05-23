@@ -26,6 +26,7 @@ Create a maintainable source-built MNS1 website foundation so future recruiting,
 - [x] Playwright checks enforce baseline design-system guardrails.
 - [x] Automated cutover-readiness smoke checks cover priority desktop/mobile pages and CTA paths.
 - [x] SEO fundamentals are covered by automated metadata, canonical, robots, and sitemap checks.
+- [x] Accessibility smoke checks cover landmarks, link names, image alt text, keyboard focus, and CTA contrast.
 
 ## Verification Evidence
 - Backup tag: `backup/mns1-website-pre-astro-20260523-1038`
@@ -40,6 +41,7 @@ Create a maintainable source-built MNS1 website foundation so future recruiting,
 - Public cutover gate: `docs/website/CUTOVER.md`.
 - Cutover smoke: `npm run verify:cutover` captures priority page screenshots and verifies apply/contact paths.
 - SEO smoke: `npm run verify:seo` checks priority page metadata, canonical URLs, organization schema, robots, and sitemap.
+- Accessibility smoke: `npm run verify:a11y` checks semantic landmarks, keyboard reachability, accessible names, image alt text, and primary CTA contrast.
 
 ## Decisions
 - Use Astro for the build system because the site is mostly static content with selective future interactivity.
