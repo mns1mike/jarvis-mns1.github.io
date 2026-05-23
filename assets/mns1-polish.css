@@ -432,6 +432,24 @@ header .mns1-top-apply-cta:hover {
   will-change: auto;
 }
 
+h1[style*="Barlow Condensed"]:not([data-mns1-write-played="ready"]):not([data-mns1-write-skip="ready"]),
+h2[style*="Barlow Condensed"]:not([data-mns1-write-played="ready"]):not([data-mns1-write-skip="ready"]),
+h3[style*="Barlow Condensed"]:not([data-mns1-write-played="ready"]):not([data-mns1-write-skip="ready"]) {
+  visibility: hidden;
+}
+
+h1[style*="Barlow Condensed"].is-writing,
+h2[style*="Barlow Condensed"].is-writing,
+h3[style*="Barlow Condensed"].is-writing,
+h1[style*="Barlow Condensed"][data-mns1-write-played="ready"],
+h2[style*="Barlow Condensed"][data-mns1-write-played="ready"],
+h3[style*="Barlow Condensed"][data-mns1-write-played="ready"],
+h1[style*="Barlow Condensed"][data-mns1-write-skip="ready"],
+h2[style*="Barlow Condensed"][data-mns1-write-skip="ready"],
+h3[style*="Barlow Condensed"][data-mns1-write-skip="ready"] {
+  visibility: visible;
+}
+
 .article-grid .article-card,
 .article-grid .article-card.mns1-home-card,
 .article-grid .article-card.mns1-polished-card,

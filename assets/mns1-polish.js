@@ -321,10 +321,10 @@
 
     function triggerWrite(heading) {
       if (heading.dataset.mns1WritePlayed === "ready") return;
-      heading.dataset.mns1WritePlayed = "ready";
       heading.classList.add("mns1-write-text");
       heading.classList.remove("is-writing");
       void heading.offsetWidth;
+      heading.dataset.mns1WritePlayed = "ready";
       heading.classList.add("is-writing");
       window.clearTimeout(heading._mns1WriteTimer);
       heading._mns1WriteTimer = window.setTimeout(function () {
@@ -359,8 +359,15 @@
     function applyWriteHeading(heading, text) {
       if (heading.dataset.mns1Write === "ready") return;
       heading.dataset.mns1Write = "ready";
+      heading.classList.add("mns1-write-text");
       heading.style.setProperty("--write-steps", String(Math.max(18, Math.min(72, text.length))));
       observeWriteOnce(heading);
+    }
+
+    function markWriteSkip(heading) {
+      if (/^(H1|H2|H3)$/i.test(heading.tagName || "")) {
+        heading.dataset.mns1WriteSkip = "ready";
+      }
     }
 
     function splitHeadingAfterColon(heading) {
@@ -394,7 +401,10 @@
         return text === phrase || text.indexOf(phrase) !== -1;
       });
 
-      if (!match && !isWriteCandidate(heading, text)) return;
+      if (!match && !isWriteCandidate(heading, text)) {
+        markWriteSkip(heading);
+        return;
+      }
       applyWriteHeading(heading, text);
     });
 
