@@ -361,7 +361,7 @@ header .mns1-top-apply-cta:hover {
 }
 
 .mns1-write-text.is-writing {
-  animation: mns1-write-text 920ms steps(var(--write-steps, 34), end) forwards;
+  animation: none;
 }
 
 .mns1-heading-blue {
@@ -767,9 +767,9 @@ header .mns1-top-apply-cta:hover {
 
 @keyframes mns1-write-text {
   0% {
-    clip-path: inset(0 100% 0 0);
-    opacity: 0.22;
-    filter: blur(0.8px);
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+    filter: blur(0);
   }
   100% {
     clip-path: inset(0 0 0 0);
