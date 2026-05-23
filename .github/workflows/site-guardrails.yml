@@ -2,15 +2,6 @@ name: Site Guardrails
 
 on:
   pull_request:
-    paths:
-      - "src/**"
-      - "tests/**"
-      - "public/**"
-      - "astro.config.mjs"
-      - "package.json"
-      - "package-lock.json"
-      - "playwright.config.ts"
-      - ".github/workflows/site-guardrails.yml"
   workflow_dispatch:
 
 permissions:
@@ -44,5 +35,10 @@ jobs:
 
       - name: Verify header geometry
         run: npm run verify:headers
+        env:
+          PLAYWRIGHT_CHANNEL: chrome
+
+      - name: Verify route parity
+        run: npm run verify:routes
         env:
           PLAYWRIGHT_CHANNEL: chrome

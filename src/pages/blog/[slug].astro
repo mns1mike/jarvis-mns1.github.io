@@ -1,0 +1,40 @@
+---
+import CtaButton from "@components/CtaButton.astro";
+import PageHero from "@components/PageHero.astro";
+import { blogPosts } from "@data/blog";
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+export function getStaticPaths() {
+  return blogPosts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+---
+
+<BaseLayout title={`${post.title} | MNS1 Express`} description={post.description}>
+  <PageHero eyebrow={post.category} title={post.title} lead={post.description} />
+
+  <article class="article wrap">
+    <p class="muted">{post.readingMinutes} min read</p>
+    {post.sections.map((section) => (
+      <section>
+        <h2>{section.heading}</h2>
+        <p>{section.body}</p>
+      </section>
+    ))}
+    <aside class="panel">
+      <h2>Talk with MNS1 recruiting</h2>
+      <p>
+        MNS1 Express hires experienced CDL-A drivers for Midwest regional dry van work with strong weekly
+        miles, newer Freightliners, and weekend home-time planning.
+      </p>
+      <div class="hero-actions">
+        <CtaButton />
+        <a class="button-secondary" href="/jobs/">View driver jobs</a>
+      </div>
+    </aside>
+  </article>
+</BaseLayout>

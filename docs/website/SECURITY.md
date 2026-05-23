@@ -22,6 +22,7 @@
 ## GitHub Actions
 - Actions are pinned to commit SHA, not floating tags.
 - Workflow permissions are `contents: read`.
+- `Site Guardrails` runs on every pull request so the required `build-and-verify` check cannot be skipped by path filters.
 - The guardrail workflow builds and tests only; it does not deploy.
 
 ## Deployment Policy

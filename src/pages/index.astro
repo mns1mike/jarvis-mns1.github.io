@@ -1,28 +1,48 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
+import CtaButton from "@components/CtaButton.astro";
 ---
 
 <BaseLayout title="MNS1 Express | CDL-A Driver Jobs & Midwest Trucking" description="MNS1 Express is a Midwest carrier hiring CDL-A drivers with strong pay, modern equipment, and practical regional lanes.">
-  <section class="hero">
-    <div class="wrap">
-      <p class="eyebrow">CDL-A Driver Jobs</p>
-      <h1 class="display-title">Top pay. Real respect. Midwest lanes.</h1>
-      <p class="lead">A source-controlled Astro foundation for the MNS1 recruiting site. The current production site remains backed up while this build system is prepared.</p>
+  <section class="hero hero--image">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">CDL-A Driver Jobs</p>
+        <h1 class="display-title">Top pay. Real respect. A truck you'll be proud to drive.</h1>
+        <p class="lead">
+          Earn up to $1,650-$1,900 per week running Midwest regional dry van freight in a 2023 or newer
+          Freightliner Cascadia. Family-owned in Plainfield, IL since 2011.
+        </p>
+        <div class="hero-actions">
+          <CtaButton />
+          <a class="button-secondary" href="tel:6302463280">Call 630-246-3280</a>
+        </div>
+      </div>
+      <div class="quick-panel">
+        <p class="eyebrow">4-minute quick apply</p>
+        <h2>See what you'd earn</h2>
+        <p>Recruiting follows up with real answers on pay, lanes, equipment, and home time.</p>
+        <ul class="check-list">
+          <li>Top drivers average $1,650-$1,900+ weekly</li>
+          <li>2023+ Freightliner Cascadias</li>
+          <li>Midwest regional lanes with weekend home-time planning</li>
+        </ul>
+      </div>
     </div>
   </section>
   <section class="section">
     <div class="wrap grid grid--cards">
       <article class="card">
-        <h2>Shared Header</h2>
-        <p>Home, Blog, Lanes, and Jobs use the same component so menu sizing cannot drift page-by-page.</p>
+        <h2>Strong Weekly Pay</h2>
+        <p>Consistent miles, weekly direct deposit, and a pay plan built around experienced CDL-A drivers.</p>
       </article>
       <article class="card">
-        <h2>Static Output</h2>
-        <p>Astro builds static pages that can stay on GitHub Pages or move to a CDN without vendor lock-in.</p>
+        <h2>Modern Equipment</h2>
+        <p>Drive a clean 2023 or newer Freightliner Cascadia with the comfort and reliability drivers expect.</p>
       </article>
       <article class="card">
-        <h2>Guardrails</h2>
-        <p>Playwright checks header geometry across core routes before visual regressions can ship.</p>
+        <h2>Midwest Freight</h2>
+        <p>Practical regional lanes, dry van freight, and dispatch support from a family-owned carrier.</p>
       </article>
     </div>
   </section>

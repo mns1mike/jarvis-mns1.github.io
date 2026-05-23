@@ -1,7 +1,29 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
+import PageHero from "@components/PageHero.astro";
 ---
 
 <BaseLayout title="MNS1 Express Equipment" description="MNS1 Express truck and trailer equipment.">
-  <section class="hero"><div class="wrap"><p class="eyebrow">Equipment</p><h1 class="display-title">Modern equipment</h1><p class="lead">Placeholder route for the Astro migration foundation.</p></div></section>
+  <PageHero
+    eyebrow="Equipment"
+    title="2023+ Freightliner Cascadias"
+    lead="Drivers should be proud of the truck they climb into. MNS1 Express runs newer Freightliner equipment for practical Midwest regional freight."
+  />
+  <section class="section">
+    <div class="wrap split">
+      <div>
+        <h2>Clean trucks, practical specs, dependable support</h2>
+        <p>Equipment quality affects pay, safety, comfort, and retention. MNS1 keeps the driver experience simple: newer tractors, dry van trailers, and a maintenance process built to reduce avoidable downtime.</p>
+      </div>
+      <aside class="panel">
+        <h3>Equipment highlights</h3>
+        <ul class="check-list">
+          <li>2023 or newer Freightliner Cascadias</li>
+          <li>Automatic transmissions</li>
+          <li>Dry van freight network</li>
+          <li>Maintenance support from operations that know the fleet</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
 </BaseLayout>

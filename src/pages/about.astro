@@ -1,7 +1,30 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
+import PageHero from "@components/PageHero.astro";
 ---
 
 <BaseLayout title="About MNS1 Express" description="About MNS1 Express.">
-  <section class="hero"><div class="wrap"><p class="eyebrow">About</p><h1 class="display-title">Family-owned since 2011</h1><p class="lead">Placeholder route for the Astro migration foundation.</p></div></section>
+  <PageHero
+    eyebrow="About"
+    title="Family-owned since 2011"
+    lead="MNS1 Express is a Plainfield, Illinois carrier built from one truck into a Midwest fleet serving drivers and shippers with practical, direct communication."
+  />
+  <section class="section">
+    <div class="wrap split">
+      <div>
+        <h2>Always forward.</h2>
+        <p>MNS1 Express grew by focusing on the work that matters: consistent freight, clean equipment, reliable pay, and a team that treats drivers like people instead of truck numbers.</p>
+        <p>The company serves Midwest freight markets from its Plainfield, IL base and continues building for scale without losing the direct family-owned operating style.</p>
+      </div>
+      <aside class="panel">
+        <h3>Company facts</h3>
+        <ul class="check-list">
+          <li>Founded in 2011</li>
+          <li>Plainfield, Illinois headquarters</li>
+          <li>180+ trucks</li>
+          <li>Midwest regional freight focus</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
 </BaseLayout>

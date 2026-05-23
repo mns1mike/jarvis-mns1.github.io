@@ -6,22 +6,18 @@
 
 ## Phase 2: Content Parity
 - Migrate current pages into Astro:
-  - Home
-  - Pay
-  - Equipment
-  - Home Time
-  - Lanes
-  - Shippers
+  - Home, Pay, Equipment, Home Time, Lanes, Shippers, FAQ, About, Contact, Requirements
+  - Apply, Privacy, Terms, Accessibility, Data Deletion
   - Jobs index and city pages
   - Blog index and articles
-  - FAQ
-  - About, Contact, Privacy, Terms, Accessibility
 - Move repeated content into data files or content collections.
 - Replace copied map/card/header behavior with shared components.
+- Maintain route parity through `src/data/routes.ts`, `robots.txt`, `sitemap.xml`, and Playwright route checks.
 
 ## Phase 3: Verification
 - Expand Playwright checks:
   - header geometry,
+  - route parity and non-placeholder content,
   - mobile header behavior,
   - CTA routing,
   - Jobs link routing,

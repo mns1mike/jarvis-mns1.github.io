@@ -1,7 +1,19 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
+import PageHero from "@components/PageHero.astro";
 ---
 
 <BaseLayout title="MNS1 Express Shippers" description="Dry van shipper service from MNS1 Express.">
-  <section class="hero"><div class="wrap"><p class="eyebrow">Shippers</p><h1 class="display-title">Dry van capacity</h1><p class="lead">Placeholder route for the Astro migration foundation.</p></div></section>
+  <PageHero
+    eyebrow="Shippers"
+    title="Midwest dry van capacity"
+    lead="MNS1 Express supports shippers with practical Midwest dry van coverage, a modern fleet, and a Plainfield-based operations team."
+  />
+  <section class="section">
+    <div class="wrap grid grid--cards">
+      <article class="card"><h2>Dry van freight</h2><p>Regional freight coverage built around repeatable lanes and accountable dispatch communication.</p></article>
+      <article class="card"><h2>Modern fleet</h2><p>Newer Freightliner tractors and dry van trailers support dependable service expectations.</p></article>
+      <article class="card"><h2>Midwest focus</h2><p>Coverage across practical Midwest operating areas rather than unfocused one-off freight.</p></article>
+    </div>
+  </section>
 </BaseLayout>

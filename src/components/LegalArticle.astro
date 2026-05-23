@@ -1,0 +1,22 @@
+---
+import type { LegalPage } from "@data/legalPages";
+
+type Props = {
+  page: LegalPage;
+};
+
+const { page } = Astro.props;
+---
+
+<article class="legal-article wrap">
+  <p class="eyebrow">MNS1 Express</p>
+  <h1>{page.title}</h1>
+  <p class="muted">Last updated {page.updated}.</p>
+  {page.sections.map((section) => (
+    <section>
+      {section.heading && <h2>{section.heading}</h2>}
+      {section.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+    </section>
+  ))}
+  <a class="text-link" href="/">Back to MNS1 Express</a>
+</article>

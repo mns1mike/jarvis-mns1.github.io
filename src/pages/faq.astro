@@ -1,7 +1,25 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
+import PageHero from "@components/PageHero.astro";
+
+const questions = [
+  ["What kind of freight does MNS1 run?", "MNS1 Express runs Midwest regional dry van freight with practical lane planning."],
+  ["What trucks do drivers use?", "Drivers run 2023 or newer Freightliner Cascadias, depending on current assignment and fleet availability."],
+  ["How much do top drivers make?", "Top drivers average $1,650-$1,900+ gross per week when freight, availability, and performance line up."],
+  ["Is home time every weekend?", "The operation is planned around weekend home-time expectations on Midwest regional lanes, with real-world timing discussed by recruiting."],
+];
 ---
 
 <BaseLayout title="MNS1 Express FAQ" description="Frequently asked driver questions for MNS1 Express.">
-  <section class="hero"><div class="wrap"><p class="eyebrow">FAQ</p><h1 class="display-title">Questions and answers</h1><p class="lead">Placeholder route for the Astro migration foundation.</p></div></section>
+  <PageHero eyebrow="FAQ" title="Questions and answers" lead="Straight answers for CDL-A drivers comparing MNS1 Express with other Midwest carriers." />
+  <section class="section">
+    <div class="wrap faq-list">
+      {questions.map(([question, answer]) => (
+        <article class="panel">
+          <h2>{question}</h2>
+          <p>{answer}</p>
+        </article>
+      ))}
+    </div>
+  </section>
 </BaseLayout>

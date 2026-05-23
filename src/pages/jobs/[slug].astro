@@ -1,0 +1,62 @@
+---
+import CtaButton from "@components/CtaButton.astro";
+import PageHero from "@components/PageHero.astro";
+import { driverBenefits, jobMarkets } from "@data/jobs";
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+export function getStaticPaths() {
+  return jobMarkets.map((market) => ({
+    params: { slug: market.slug },
+    props: { market },
+  }));
+}
+
+const { market } = Astro.props;
+---
+
+<BaseLayout title={market.title} description={market.description}>
+  <PageHero eyebrow="CDL-A Driver Jobs" title={market.headline} lead={market.description}>
+    <div class="hero-actions">
+      <CtaButton />
+      <a class="button-secondary" href="tel:6302463280">Call 630-246-3280</a>
+    </div>
+  </PageHero>
+
+  <section class="section">
+    <div class="wrap split">
+      <div>
+        <p class="eyebrow">{market.city}, {market.state}</p>
+        <h2>Run Midwest freight with a Plainfield-based carrier</h2>
+        <p>
+          MNS1 Express hires experienced CDL-A drivers around {market.city} and across {market.stateName}
+          for practical Midwest dry van work. The job is built around strong weekly miles, newer equipment,
+          weekend home-time planning, and direct dispatcher communication.
+        </p>
+        <p>
+          Drivers near {market.city} can apply online in a few minutes or call recruiting to confirm current
+          hiring needs before starting the full application.
+        </p>
+      </div>
+      <aside class="panel">
+        <h3>What drivers can expect</h3>
+        <ul class="check-list">
+          {driverBenefits.map((benefit) => <li>{benefit}</li>)}
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section section--panel">
+    <div class="wrap">
+      <h2>Ready to compare the fit?</h2>
+      <p class="lead-small">
+        Recruiting can walk through current freight lanes, equipment, pay expectations, and the first steps
+        from application to orientation.
+      </p>
+      <div class="hero-actions">
+        <CtaButton />
+        <a class="button-secondary" href="/requirements/">View requirements</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

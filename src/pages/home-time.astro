@@ -1,7 +1,19 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
+import PageHero from "@components/PageHero.astro";
 ---
 
 <BaseLayout title="MNS1 Express Home Time" description="MNS1 Express home time information for CDL-A drivers.">
-  <section class="hero"><div class="wrap"><p class="eyebrow">Home Time</p><h1 class="display-title">Predictable home time</h1><p class="lead">Placeholder route for the Astro migration foundation.</p></div></section>
+  <PageHero
+    eyebrow="Home Time"
+    title="Home weekends on practical Midwest lanes"
+    lead="MNS1 Express plans freight around Midwest density so experienced CDL-A drivers can run strong miles while keeping weekend home-time expectations realistic."
+  />
+  <section class="section">
+    <div class="wrap grid grid--cards">
+      <article class="card"><h2>Regional focus</h2><p>Midwest freight keeps dispatch closer to home markets and gives planners more recovery options.</p></article>
+      <article class="card"><h2>Dispatcher communication</h2><p>Drivers work with people who know the lanes and can explain the plan when timing changes.</p></article>
+      <article class="card"><h2>Real expectations</h2><p>Recruiting should be able to talk through your market, normal weekly rhythm, and weekend timing.</p></article>
+    </div>
+  </section>
 </BaseLayout>

@@ -1,0 +1,21 @@
+---
+import CtaButton from "@components/CtaButton.astro";
+import PageHero from "@components/PageHero.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Page Not Found | MNS1 Express"
+  description="The page you requested was not found. Return to MNS1 Express CDL-A driver jobs and Midwest trucking information."
+>
+  <PageHero
+    eyebrow="404"
+    title="Page not found"
+    lead="That page is not available in the current MNS1 Express site."
+  >
+    <div class="hero-actions">
+      <CtaButton href="/" label="Return home" />
+      <a class="button-secondary" href="/jobs/">View driver jobs</a>
+    </div>
+  </PageHero>
+</BaseLayout>

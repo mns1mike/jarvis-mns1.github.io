@@ -1,13 +1,24 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
+import PageHero from "@components/PageHero.astro";
+import { jobMarkets } from "@data/jobs";
 ---
 
 <BaseLayout title="MNS1 Express CDL-A Jobs" description="CDL-A truck driver jobs with MNS1 Express.">
-  <section class="hero">
-    <div class="wrap">
-      <p class="eyebrow">Jobs</p>
-      <h1 class="display-title">CDL-A jobs built around strong miles</h1>
-      <p class="lead">Job city pages will migrate from copied HTML into structured data-backed pages.</p>
+  <PageHero
+    eyebrow="Jobs"
+    title="CDL-A jobs built around strong miles"
+    lead="Browse current MNS1 Express hiring markets for experienced CDL-A drivers who want Midwest dry van freight, newer Freightliners, and weekend home-time planning."
+  />
+  <section class="section">
+    <div class="wrap grid grid--cards">
+      {jobMarkets.map((market) => (
+        <article class="card link-card">
+          <h2>{market.city}, {market.state}</h2>
+          <p>{market.description}</p>
+          <a class="text-link" href={`/jobs/${market.slug}/`}>View job details</a>
+        </article>
+      ))}
     </div>
   </section>
 </BaseLayout>
