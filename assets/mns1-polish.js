@@ -672,6 +672,43 @@
     });
   }
 
+  function flattenHomeReactMap() {
+    if (!isHomePage()) return;
+
+    var svg = document.querySelector('svg[aria-label="MNS1 Midwest lane coverage map"]');
+    if (!svg) return;
+
+    var wrapper = svg.closest("div[style]");
+    if (!wrapper || wrapper.dataset.mns1PlainMap === "ready") return;
+
+    var card = wrapper.parentElement;
+    while (card && card !== document.body) {
+      var text = card.textContent || "";
+      if (text.indexOf("Lane coverage") !== -1 && text.indexOf("16 states active") !== -1) break;
+      card = card.parentElement;
+    }
+    if (!card || card === document.body) return;
+
+    card.dataset.mns1PlainMap = "ready";
+    card.style.background = "transparent";
+    card.style.border = "0";
+    card.style.borderRadius = "0";
+    card.style.boxShadow = "none";
+    card.style.padding = "0";
+    card.style.overflow = "visible";
+
+    var grid = card.firstElementChild;
+    if (grid && grid !== wrapper) {
+      grid.style.inset = "0";
+      grid.style.borderRadius = "0";
+    }
+
+    Array.prototype.slice.call(card.children).forEach(function (child) {
+      if (child === wrapper || child === grid) return;
+      if ((child.textContent || "").indexOf("Lane coverage") !== -1) child.style.display = "none";
+    });
+  }
+
   function enhanceHomeCards() {
     document.querySelectorAll("[data-mns1-home-card='true']").forEach(function (card) {
       card.classList.remove("mns1-polished-card", "mns1-home-card");
@@ -863,6 +900,7 @@
     enhanceHomeCards();
     manageMobileStickyCta();
     createLaneMap();
+    flattenHomeReactMap();
     linkLaneCityJobs();
     createRollingReviews();
     assembleOnScroll();
