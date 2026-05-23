@@ -26,6 +26,7 @@
 - The guardrail workflow builds and tests only; it does not deploy.
 
 ## Deployment Policy
-- The existing GitHub Pages root-static deployment remains in place until Astro content parity is reviewed.
-- Switching deployment to Astro `dist/` requires a separate PR and approval.
+- The GitHub Pages deployment workflow builds Astro from source and deploys `dist/` from
+  `main` only after PR review/merge, or by explicit manual dispatch.
+- Switching production traffic to Astro `dist/` requires review approval before merge.
 - The backup tag and archive must be referenced in that PR's rollback plan.

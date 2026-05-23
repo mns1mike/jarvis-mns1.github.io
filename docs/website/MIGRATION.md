@@ -27,7 +27,9 @@
 - Capture screenshots for core pages at mobile, tablet, and desktop widths.
 
 ## Phase 4: Deployment Switch
-- Add a dedicated GitHub Pages deployment workflow for Astro `dist/`.
+- Add a dedicated GitHub Pages deployment workflow for Astro `dist/`. Completed in
+  `.github/workflows/deploy-pages.yml`; it builds from source, runs dependency security
+  gates, uploads `dist/`, and deploys only from `main` or manual dispatch.
 - Compare built Astro pages against the current live site.
 - Merge only after review and explicit approval.
 
