@@ -339,9 +339,9 @@ header .mns1-top-apply-cta:hover {
 .mns1-write-text {
   display: inline-block;
   max-width: 100%;
-  clip-path: inset(0 100% 0 0);
-  opacity: 0.2;
-  filter: blur(0.8px);
+  clip-path: inset(0 0 0 0);
+  opacity: 1;
+  filter: blur(0);
   will-change: clip-path, opacity, filter;
 }
 
