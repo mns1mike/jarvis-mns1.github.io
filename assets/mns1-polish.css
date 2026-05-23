@@ -100,6 +100,15 @@
   box-shadow: 0 32px 74px -34px rgba(0, 153, 215, 0.9);
 }
 
+[data-mns1-plain-map],
+[data-mns1-plain-map]:hover {
+  transform: none !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
+
 .quick-apply,
 .mns1-current-story-card,
 .mns1-feature-glow-card {
@@ -334,6 +343,21 @@ header .mns1-top-apply-cta:hover {
   opacity: 0.2;
   filter: blur(0.8px);
   will-change: clip-path, opacity, filter;
+}
+
+.article-grid .article-card,
+.article-grid .article-card.mns1-home-card,
+.article-grid .article-card.mns1-polished-card,
+.article-grid .article-card.mns1-reveal {
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+  will-change: auto !important;
+}
+
+.article-grid .article-card:hover,
+.article-grid .article-card.mns1-polished-card:hover {
+  transform: none !important;
 }
 
 .mns1-write-text.is-writing {
@@ -944,6 +968,16 @@ section[data-mns1-reviews="rolling"]::after {
   stroke: rgba(185, 193, 217, 0.22);
   stroke-width: 1.3;
   transition: fill 180ms, stroke 180ms, opacity 180ms, transform 180ms;
+}
+
+svg[aria-label="MNS1 Midwest lane coverage map"],
+svg[aria-label="MNS1 Midwest lane coverage map"] * {
+  transform: none !important;
+}
+
+svg[aria-label="MNS1 Midwest lane coverage map"] {
+  background: transparent !important;
+  transition: none !important;
 }
 
 .mns1-state.is-hiring {
