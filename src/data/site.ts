@@ -1,6 +1,7 @@
 export const site = {
   name: "MNS1 Express",
   tagline: "Always forward.",
+  url: "https://www.mns1express.com",
   phoneDisplay: "630-246-3280",
   phoneHref: "tel:6302463280",
   email: "info@mns1express.com",
