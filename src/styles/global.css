@@ -5,7 +5,7 @@
 }
 
 html {
-  background: var(--color-bg);
+  background: var(--color-canvas);
   color: var(--color-ink);
   font-family: var(--font-body);
 }
@@ -13,7 +13,7 @@ html {
 body {
   margin: 0;
   min-width: 320px;
-  background: var(--color-bg);
+  background: var(--color-canvas);
   color: var(--color-ink);
 }
 
@@ -32,7 +32,7 @@ a {
 
 .hero {
   padding: 84px 0 68px;
-  background: linear-gradient(180deg, #101836 0%, #0b1020 100%);
+  background: linear-gradient(180deg, var(--color-surface) 0%, var(--color-canvas) 100%);
 }
 
 .hero--image {
@@ -79,11 +79,11 @@ a {
 }
 
 .section {
-  padding: 64px 0;
+  padding: var(--space-section-y) 0;
 }
 
 .section--panel {
-  background: var(--color-panel);
+  background: var(--color-surface);
 }
 
 .grid {
@@ -97,10 +97,10 @@ a {
 
 .card {
   min-height: 178px;
-  padding: 22px;
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  background: var(--color-panel);
+  padding: var(--space-card);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
 }
 
 .card h2,
@@ -143,7 +143,7 @@ a {
   justify-content: center;
   min-height: var(--header-cta-height);
   padding: 9px 14px;
-  border: 1px solid #34407a;
+  border: 1px solid var(--color-surface-strong);
   border-radius: var(--radius-control);
   color: #fff;
   font: 700 13px/1 var(--font-body);
@@ -153,9 +153,9 @@ a {
 .quick-panel,
 .panel {
   padding: 26px;
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  background: rgba(16, 24, 54, 0.94);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-panel);
+  background: var(--color-surface-raised);
 }
 
 .quick-panel h2,
@@ -215,9 +215,9 @@ a {
 
 .map-frame {
   overflow: hidden;
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  background: var(--color-panel);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-panel);
+  background: var(--color-surface);
 }
 
 .map-frame svg {
@@ -235,7 +235,7 @@ a {
 
 .route-list a {
   padding: 12px;
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--color-line);
   border-radius: 6px;
   color: var(--color-muted);
   text-decoration: none;
