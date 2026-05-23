@@ -19,8 +19,9 @@ Create a maintainable source-built MNS1 website foundation so future recruiting,
 - [x] CI guardrail workflow installs without lifecycle scripts, builds Astro, audits dependencies, and runs Playwright checks.
 - [x] Astro source renders the current top-level, job-city, blog-article, legal, apply, robots, and sitemap route inventory.
 - [x] Playwright fails if migrated routes return an error or still contain foundation placeholder content.
-- [x] Full production content parity is completed before switching deployment from static root files to Astro `dist/`.
-- [x] Production deployment source is changed only after review and approval.
+- [x] Astro route inventory renders from source-backed content.
+- [ ] Full website rebuild is complete before public DNS cutover.
+- [ ] Public cutover happens only after final review and explicit approval.
 - [x] Design tokens and brand rules are documented.
 - [x] Playwright checks enforce baseline design-system guardrails.
 
@@ -34,9 +35,11 @@ Create a maintainable source-built MNS1 website foundation so future recruiting,
 - Playwright route parity: 44 checks passed for route status, shared header presence, visible H1, non-placeholder content, robots, sitemap inventory, and inline lane-map render.
 - PR #32: GitHub Pages deployment workflow builds Astro from source, runs security gates, uploads `dist/`, and deploys from `main`.
 - Design system: semantic tokens documented in `docs/website/DESIGN_SYSTEM.md`; Playwright design-system guardrails added to `npm run verify`.
+- Public cutover gate: `docs/website/CUTOVER.md`.
 
 ## Decisions
 - Use Astro for the build system because the site is mostly static content with selective future interactivity.
 - Use Playwright as a verification gate, not as a builder.
-- Switch production deployment only through reviewed GitHub Pages PRs with rollback references.
+- Treat GitHub Pages deploys as preview/staging until DNS and custom-domain cutover are explicitly approved.
+- Switch public traffic only through a reviewed cutover PR with rollback records.
 - Pin GitHub Actions by commit SHA and run npm with `--ignore-scripts`.
