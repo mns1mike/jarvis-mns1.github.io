@@ -1,0 +1,84 @@
+import { expect, test } from "@playwright/test";
+import { site } from "../../src/data/site";
+
+const visualRoutes = [
+  "/",
+  "/jobs/",
+  "/pay/",
+  "/equipment/",
+  "/home-time/",
+  "/requirements/",
+  "/apply/",
+  "/shippers/",
+  "/lanes/",
+  "/about/",
+  "/contact/",
+];
+
+const viewports = [
+  { name: "mobile", width: 390, height: 900 },
+  { name: "desktop", width: 1365, height: 1000 },
+];
+
+const funnelRoutes = ["/", "/jobs/cdl-a-driver-plainfield-il/", "/apply/"];
+
+test.describe("cutover readiness smoke", () => {
+  for (const viewport of viewports) {
+    test(`priority pages have stable ${viewport.name} layout`, async ({ page }, testInfo) => {
+      await page.setViewportSize({ width: viewport.width, height: viewport.height });
+
+      for (const route of visualRoutes) {
+        const response = await page.goto(route);
+        expect(response?.status(), `${route} status`).toBeLessThan(400);
+        await expect(page.locator("[data-site-header]")).toBeVisible();
+        await expect(page.locator("h1").first()).toBeVisible();
+
+        const layout = await page.evaluate(() => {
+          const root = document.documentElement;
+          const h1 = document.querySelector("h1")?.getBoundingClientRect();
+          return {
+            viewportWidth: root.clientWidth,
+            scrollWidth: root.scrollWidth,
+            h1Width: h1?.width ?? 0,
+            bodyTextLength: document.body.innerText.trim().length,
+          };
+        });
+
+        expect(layout.scrollWidth, `${route} should not overflow horizontally`).toBeLessThanOrEqual(
+          layout.viewportWidth + 1,
+        );
+        expect(layout.h1Width, `${route} h1 should fit viewport`).toBeLessThanOrEqual(layout.viewportWidth);
+        expect(layout.bodyTextLength, `${route} should have meaningful content`).toBeGreaterThan(500);
+
+        const screenshot = await page.screenshot({ fullPage: true });
+        await testInfo.attach(`${viewport.name}-${route.replaceAll("/", "_") || "home"}.png`, {
+          body: screenshot,
+          contentType: "image/png",
+        });
+      }
+    });
+  }
+
+  test("driver funnel pages expose apply and phone CTAs", async ({ page }) => {
+    for (const route of funnelRoutes) {
+      await page.goto(route);
+      await expect(page.locator(`a[href="${site.applyUrl}"]`).first(), `${route} apply link`).toBeVisible();
+      await expect(page.locator(`a[href="${site.phoneHref}"]`).first(), `${route} phone link`).toBeVisible();
+    }
+  });
+
+  test("footer keeps apply, jobs, and contact paths available", async ({ page }) => {
+    await page.goto("/");
+    const footer = page.locator(".site-footer");
+    await expect(footer.locator('a[href="/apply/"]')).toBeVisible();
+    await expect(footer.locator('a[href="/jobs/"]')).toBeVisible();
+    await expect(footer.locator('a[href="/contact/"]')).toBeVisible();
+  });
+
+  test("contact page exposes phone, email, and application paths", async ({ page }) => {
+    await page.goto("/contact/");
+    await expect(page.locator(`a[href="${site.phoneHref}"]`).first()).toBeVisible();
+    await expect(page.locator('a[href="mailto:recruiting@mns1express.com"]')).toBeVisible();
+    await expect(page.locator('a[href="/apply/"]').first()).toBeVisible();
+  });
+});

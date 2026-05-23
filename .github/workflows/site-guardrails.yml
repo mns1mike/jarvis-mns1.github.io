@@ -47,3 +47,8 @@ jobs:
         run: npm run verify:design
         env:
           PLAYWRIGHT_CHANNEL: chrome
+
+      - name: Verify cutover readiness smoke
+        run: npm run verify:cutover
+        env:
+          PLAYWRIGHT_CHANNEL: chrome
