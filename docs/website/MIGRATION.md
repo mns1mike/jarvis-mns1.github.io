@@ -30,8 +30,11 @@
 - Add a dedicated GitHub Pages deployment workflow for Astro `dist/`. Completed in
   `.github/workflows/deploy-pages.yml`; it builds from source, runs dependency security
   gates, uploads `dist/`, and deploys only from `main` or manual dispatch.
-- Compare built Astro pages against the current live site.
-- Merge only after review and explicit approval.
+- Keep public DNS pointed at the existing live site until the website is fully rebuilt,
+  reviewed, and approved for cutover.
+- Complete the cutover checklist in `docs/website/CUTOVER.md` before adding a `CNAME`
+  file or changing public DNS.
+- Merge cutover only after review and explicit approval.
 
 ## Rollback
 - Restore the pre-Astro static site from tag `backup/mns1-website-pre-astro-20260523-1038` or archive `/Users/jarvis/.openclaw/workspace/backups/mns1-website-pre-astro-20260523-1038-3fe60dbc5088.tar.gz`.

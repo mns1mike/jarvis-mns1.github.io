@@ -28,5 +28,7 @@
 ## Deployment Policy
 - The GitHub Pages deployment workflow builds Astro from source and deploys `dist/` from
   `main` only after PR review/merge, or by explicit manual dispatch.
-- Switching production traffic to Astro `dist/` requires review approval before merge.
+- Switching production traffic to Astro `dist/` is a separate cutover step. It requires
+  `docs/website/CUTOVER.md` readiness checks, a final reviewed cutover PR, and explicit
+  approval before DNS or GitHub Pages custom-domain changes.
 - The backup tag and archive must be referenced in that PR's rollback plan.
