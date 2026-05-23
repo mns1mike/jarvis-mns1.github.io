@@ -11,6 +11,7 @@ export const primaryNav = [
 
 export const footerNav = {
   Drive: [
+    { label: "Apply", href: "/apply/" },
     { label: "Pay", href: "/pay/" },
     { label: "Jobs", href: "/jobs/" },
     { label: "Requirements", href: "/requirements/" },

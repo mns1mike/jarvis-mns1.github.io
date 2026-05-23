@@ -19,6 +19,11 @@ Do not cut over until all items below are checked in a reviewed PR and Mike expl
 - [ ] GitHub Pages custom domain setting and `CNAME` file are added only in the final cutover PR.
 - [ ] Post-cutover checks are ready for apex and `www`: HTTP status, canonical behavior, SSL, sitemap, and apply flow.
 
+## Verification Progress
+- Automated desktop/mobile layout smoke exists for priority recruiting and shipper pages.
+- Automated CTA smoke verifies apply, phone, footer, and contact-page paths.
+- Playwright attaches full-page screenshots for the priority cutover routes during `npm run verify:cutover`.
+
 ## Rollback
 Primary rollback is to restore the previous site from:
 
