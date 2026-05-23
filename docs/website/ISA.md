@@ -19,8 +19,10 @@ Create a maintainable source-built MNS1 website foundation so future recruiting,
 - [x] CI guardrail workflow installs without lifecycle scripts, builds Astro, audits dependencies, and runs Playwright checks.
 - [x] Astro source renders the current top-level, job-city, blog-article, legal, apply, robots, and sitemap route inventory.
 - [x] Playwright fails if migrated routes return an error or still contain foundation placeholder content.
-- [ ] Full production content parity is completed before switching deployment from static root files to Astro `dist/`.
-- [ ] Production deployment source is changed only after review and approval.
+- [x] Full production content parity is completed before switching deployment from static root files to Astro `dist/`.
+- [x] Production deployment source is changed only after review and approval.
+- [x] Design tokens and brand rules are documented.
+- [x] Playwright checks enforce baseline design-system guardrails.
 
 ## Verification Evidence
 - Backup tag: `backup/mns1-website-pre-astro-20260523-1038`
@@ -30,9 +32,11 @@ Create a maintainable source-built MNS1 website foundation so future recruiting,
 - npm audit: 0 vulnerabilities.
 - Route parity build: 43 Astro pages generated, including 15 job-city pages, 10 blog article pages, legal/apply pages, `robots.txt`, and `sitemap.xml`.
 - Playwright route parity: 44 checks passed for route status, shared header presence, visible H1, non-placeholder content, robots, sitemap inventory, and inline lane-map render.
+- PR #32: GitHub Pages deployment workflow builds Astro from source, runs security gates, uploads `dist/`, and deploys from `main`.
+- Design system: semantic tokens documented in `docs/website/DESIGN_SYSTEM.md`; Playwright design-system guardrails added to `npm run verify`.
 
 ## Decisions
 - Use Astro for the build system because the site is mostly static content with selective future interactivity.
 - Use Playwright as a verification gate, not as a builder.
-- Keep the current production site unchanged while the Astro source reaches parity.
+- Switch production deployment only through reviewed GitHub Pages PRs with rollback references.
 - Pin GitHub Actions by commit SHA and run npm with `--ignore-scripts`.

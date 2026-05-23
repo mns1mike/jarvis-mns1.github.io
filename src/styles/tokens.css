@@ -1,15 +1,27 @@
 :root {
+  --color-canvas: #0b1020;
+  --color-surface: #101836;
+  --color-surface-raised: rgba(16, 24, 54, 0.94);
+  --color-surface-strong: #16214a;
   --color-ink: #ffffff;
   --color-muted: #b9c1d9;
   --color-dim: #7a84a3;
-  --color-bg: #0b1020;
-  --color-panel: #101836;
-  --color-border: #243063;
-  --color-blue: #0099d7;
-  --color-blue-dark: #007ab0;
+  --color-line: #243063;
+  --color-line-soft: rgba(255, 255, 255, 0.08);
+  --color-accent: #0099d7;
+  --color-accent-hover: #007ab0;
+  --color-accent-soft: rgba(0, 153, 215, 0.15);
+  --color-bg: var(--color-canvas);
+  --color-panel: var(--color-surface);
+  --color-border: var(--color-line);
+  --color-blue: var(--color-accent);
+  --color-blue-dark: var(--color-accent-hover);
   --font-body: Overpass, Arial, sans-serif;
   --font-display: "Barlow Condensed", "Arial Narrow", sans-serif;
   --site-max: 1240px;
+  --space-section-y: 64px;
+  --space-section-y-compact: 44px;
+  --space-card: 22px;
   --header-topbar-height: 33px;
   --header-row-height: 72px;
   --header-logo-height: 40px;
@@ -19,5 +31,8 @@
   --header-cta-width: 150px;
   --header-cta-height: 38px;
   --radius-control: 4px;
-  --shadow-blue: 0 8px 28px -6px rgba(0, 153, 215, 0.55);
+  --radius-card: 8px;
+  --radius-panel: 8px;
+  --shadow-accent: 0 8px 28px -6px rgba(0, 153, 215, 0.55);
+  --shadow-blue: var(--shadow-accent);
 }

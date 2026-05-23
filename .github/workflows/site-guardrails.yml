@@ -42,3 +42,8 @@ jobs:
         run: npm run verify:routes
         env:
           PLAYWRIGHT_CHANNEL: chrome
+
+      - name: Verify design system guardrails
+        run: npm run verify:design
+        env:
+          PLAYWRIGHT_CHANNEL: chrome
