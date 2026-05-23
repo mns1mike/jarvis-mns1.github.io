@@ -937,6 +937,38 @@ section[data-mns1-reviews="rolling"]::after {
   height: 100%;
 }
 
+.mns1-front-page-lane-map {
+  min-height: 330px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow: visible;
+}
+
+.mns1-front-page-map-grid {
+  position: absolute;
+  inset: 0;
+  border-radius: 0;
+  opacity: 0.4;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.mns1-front-page-map-frame {
+  position: relative;
+}
+
+.mns1-front-page-map-frame svg {
+  width: 100%;
+  min-height: 330px;
+  display: block;
+  position: relative;
+}
+
 .mns1-map-toolbar {
   position: absolute;
   z-index: 3;
