@@ -10,6 +10,9 @@ type Props = {
 };
 
 const { title, description } = Astro.props;
+const canonicalPath = Astro.url.pathname.endsWith("/") ? Astro.url.pathname : `${Astro.url.pathname}/`;
+const canonicalUrl = new URL(canonicalPath, site.url).toString();
+const socialImageUrl = new URL("/images/site/mns1-terminal-hero.jpg", site.url).toString();
 ---
 
 <!doctype html>
@@ -19,6 +22,17 @@ const { title, description } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={socialImageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImageUrl} />
     <link rel="icon" href="/images/logo/mns1-logo-transparent.png" />
     <script
       type="application/ld+json"
@@ -26,8 +40,8 @@ const { title, description } = Astro.props;
         "@context": "https://schema.org",
         "@type": "Organization",
         name: site.name,
-        url: "https://www.mns1express.com",
-        logo: `https://www.mns1express.com${site.logoPath}`,
+        url: site.url,
+        logo: new URL(site.logoPath, site.url).toString(),
         description: "Midwest CDL-A carrier. 180+ trucks. Founded 2011. Headquartered in Plainfield, IL.",
         address: {
           "@type": "PostalAddress",

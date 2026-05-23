@@ -25,6 +25,7 @@ Create a maintainable source-built MNS1 website foundation so future recruiting,
 - [x] Design tokens and brand rules are documented.
 - [x] Playwright checks enforce baseline design-system guardrails.
 - [x] Automated cutover-readiness smoke checks cover priority desktop/mobile pages and CTA paths.
+- [x] SEO fundamentals are covered by automated metadata, canonical, robots, and sitemap checks.
 
 ## Verification Evidence
 - Backup tag: `backup/mns1-website-pre-astro-20260523-1038`
@@ -38,6 +39,7 @@ Create a maintainable source-built MNS1 website foundation so future recruiting,
 - Design system: semantic tokens documented in `docs/website/DESIGN_SYSTEM.md`; Playwright design-system guardrails added to `npm run verify`.
 - Public cutover gate: `docs/website/CUTOVER.md`.
 - Cutover smoke: `npm run verify:cutover` captures priority page screenshots and verifies apply/contact paths.
+- SEO smoke: `npm run verify:seo` checks priority page metadata, canonical URLs, organization schema, robots, and sitemap.
 
 ## Decisions
 - Use Astro for the build system because the site is mostly static content with selective future interactivity.

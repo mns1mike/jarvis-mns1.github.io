@@ -48,6 +48,11 @@ jobs:
         env:
           PLAYWRIGHT_CHANNEL: chrome
 
+      - name: Verify SEO fundamentals
+        run: npm run verify:seo
+        env:
+          PLAYWRIGHT_CHANNEL: chrome
+
       - name: Verify cutover readiness smoke
         run: npm run verify:cutover
         env:
