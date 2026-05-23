@@ -1,0 +1,29 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="MNS1 Express | CDL-A Driver Jobs & Midwest Trucking" description="MNS1 Express is a Midwest carrier hiring CDL-A drivers with strong pay, modern equipment, and practical regional lanes.">
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">CDL-A Driver Jobs</p>
+      <h1 class="display-title">Top pay. Real respect. Midwest lanes.</h1>
+      <p class="lead">A source-controlled Astro foundation for the MNS1 recruiting site. The current production site remains backed up while this build system is prepared.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap grid grid--cards">
+      <article class="card">
+        <h2>Shared Header</h2>
+        <p>Home, Blog, Lanes, and Jobs use the same component so menu sizing cannot drift page-by-page.</p>
+      </article>
+      <article class="card">
+        <h2>Static Output</h2>
+        <p>Astro builds static pages that can stay on GitHub Pages or move to a CDN without vendor lock-in.</p>
+      </article>
+      <article class="card">
+        <h2>Guardrails</h2>
+        <p>Playwright checks header geometry across core routes before visual regressions can ship.</p>
+      </article>
+    </div>
+  </section>
+</BaseLayout>

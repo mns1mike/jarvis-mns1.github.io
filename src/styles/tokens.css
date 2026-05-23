@@ -1,0 +1,23 @@
+:root {
+  --color-ink: #ffffff;
+  --color-muted: #b9c1d9;
+  --color-dim: #7a84a3;
+  --color-bg: #0b1020;
+  --color-panel: #101836;
+  --color-border: #243063;
+  --color-blue: #0099d7;
+  --color-blue-dark: #007ab0;
+  --font-body: Overpass, Arial, sans-serif;
+  --font-display: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --site-max: 1240px;
+  --header-topbar-height: 33px;
+  --header-row-height: 72px;
+  --header-logo-height: 40px;
+  --header-nav-font-size: 14.5px;
+  --header-nav-link-height: 34px;
+  --header-nav-gap: 15px;
+  --header-cta-width: 150px;
+  --header-cta-height: 38px;
+  --radius-control: 4px;
+  --shadow-blue: 0 8px 28px -6px rgba(0, 153, 215, 0.55);
+}
