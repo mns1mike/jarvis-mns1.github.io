@@ -323,7 +323,7 @@
       window.clearTimeout(heading._mns1WriteTimer);
       heading._mns1WriteTimer = window.setTimeout(function () {
         heading.classList.remove("is-writing");
-      }, 1040);
+      }, 1180);
     }
 
     function observeWriteOnce(heading) {
