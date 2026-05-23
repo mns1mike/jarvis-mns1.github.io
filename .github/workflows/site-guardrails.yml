@@ -58,6 +58,11 @@ jobs:
         env:
           PLAYWRIGHT_CHANNEL: chrome
 
+      - name: Verify performance smoke
+        run: npm run verify:performance
+        env:
+          PLAYWRIGHT_CHANNEL: chrome
+
       - name: Verify cutover readiness smoke
         run: npm run verify:cutover
         env:
