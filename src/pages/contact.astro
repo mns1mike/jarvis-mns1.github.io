@@ -1,7 +1,20 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
+import PageHero from "@components/PageHero.astro";
+import { site } from "@data/site";
 ---
 
 <BaseLayout title="Contact MNS1 Express" description="Contact MNS1 Express.">
-  <section class="hero"><div class="wrap"><p class="eyebrow">Contact</p><h1 class="display-title">Talk with recruiting</h1><p class="lead">Placeholder route for the Astro migration foundation.</p></div></section>
+  <PageHero
+    eyebrow="Contact"
+    title="Talk with MNS1 Express"
+    lead="Drivers, applicants, and shippers can reach the Plainfield team directly."
+  />
+  <section class="section">
+    <div class="wrap grid grid--cards">
+      <article class="card"><h2>Recruiting</h2><p><a class="text-link" href={site.phoneHref}>{site.phoneDisplay}</a><br /><a class="text-link" href="mailto:recruiting@mns1express.com">recruiting@mns1express.com</a></p></article>
+      <article class="card"><h2>General</h2><p><a class="text-link" href={`mailto:${site.email}`}>{site.email}</a><br />{site.addressLines[0]}<br />{site.addressLines[1]}</p></article>
+      <article class="card"><h2>Apply</h2><p>Ready to start? The official application takes about four minutes.</p><p><a class="text-link" href="/apply/">Open application page</a></p></article>
+    </div>
+  </section>
 </BaseLayout>

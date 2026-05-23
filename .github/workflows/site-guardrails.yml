@@ -37,3 +37,8 @@ jobs:
         run: npm run verify:headers
         env:
           PLAYWRIGHT_CHANNEL: chrome
+
+      - name: Verify route parity
+        run: npm run verify:routes
+        env:
+          PLAYWRIGHT_CHANNEL: chrome

@@ -1,6 +1,7 @@
 ---
 import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
+import { site } from "@data/site";
 import "@styles/global.css";
 
 type Props = {
@@ -19,6 +20,32 @@ const { title, description } = Astro.props;
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="icon" href="/images/logo/mns1-logo-transparent.png" />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        name: site.name,
+        url: "https://www.mns1express.com",
+        logo: `https://www.mns1express.com${site.logoPath}`,
+        description: "Midwest CDL-A carrier. 180+ trucks. Founded 2011. Headquartered in Plainfield, IL.",
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: site.addressLines[0],
+          addressLocality: "Plainfield",
+          addressRegion: "IL",
+          postalCode: "60544",
+          addressCountry: "US",
+        },
+        telephone: "+1-630-246-3280",
+        foundingDate: "2011",
+        sameAs: [
+          "https://www.facebook.com/mns1express/",
+          "https://www.instagram.com/mns1exp/",
+          "https://www.linkedin.com/company/28994033/",
+        ],
+      })}
+    />
   </head>
   <body>
     <div class="page-shell">

@@ -1,7 +1,25 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
+import CtaButton from "@components/CtaButton.astro";
+import PageHero from "@components/PageHero.astro";
 ---
 
 <BaseLayout title="MNS1 Express Pay" description="MNS1 Express CDL-A driver pay information.">
-  <section class="hero"><div class="wrap"><p class="eyebrow">Pay</p><h1 class="display-title">Driver pay</h1><p class="lead">Placeholder route for the Astro migration foundation.</p></div></section>
+  <PageHero
+    eyebrow="Driver Pay"
+    title="Top drivers average $1,650-$1,900+ weekly"
+    lead="MNS1 Express focuses on experienced CDL-A drivers who want steady Midwest miles, direct weekly pay, and a carrier that can explain the numbers before orientation."
+  >
+    <div class="hero-actions">
+      <CtaButton />
+      <a class="button-secondary" href="/requirements/">View requirements</a>
+    </div>
+  </PageHero>
+  <section class="section">
+    <div class="wrap grid grid--cards">
+      <article class="card"><h2>Weekly direct deposit</h2><p>Pay is handled weekly so drivers can plan around predictable settlement timing.</p></article>
+      <article class="card"><h2>Per diem advantage</h2><p>Eligible drivers can use MNS1's per diem program as part of the overall compensation package.</p></article>
+      <article class="card"><h2>Consistent miles</h2><p>Regional dry van freight is planned to keep qualified drivers moving through the Midwest.</p></article>
+    </div>
+  </section>
 </BaseLayout>

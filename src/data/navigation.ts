@@ -22,5 +22,11 @@ export const footerNav = {
     { label: "Blog", href: "/blog/" },
     { label: "Contact", href: "/contact/" },
     { label: "Privacy", href: "/privacy/" },
+    { label: "Terms", href: "/terms/" },
+    { label: "Accessibility", href: "/accessibility/" },
+  ],
+  Shippers: [
+    { label: "Services", href: "/shippers/" },
+    { label: "Lanes & coverage", href: "/lanes/" },
   ],
 };

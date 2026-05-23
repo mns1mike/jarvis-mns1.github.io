@@ -1,13 +1,33 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
+import PageHero from "@components/PageHero.astro";
+import CtaButton from "@components/CtaButton.astro";
+import LaneMap from "@components/LaneMap.astro";
 ---
 
 <BaseLayout title="MNS1 Express Lanes" description="Midwest lane coverage and operating areas for MNS1 Express.">
-  <section class="hero">
-    <div class="wrap">
-      <p class="eyebrow">Lanes</p>
-      <h1 class="display-title">Midwest freight network</h1>
-      <p class="lead">The lane map and state content will move into reusable Astro components during migration.</p>
+  <PageHero
+    eyebrow="Lanes"
+    title="Midwest freight network"
+    lead="MNS1 Express runs practical regional dry van lanes across the Midwest with hiring markets near Illinois, Wisconsin, Iowa, Indiana, Missouri, Kansas, Nebraska, Minnesota, Ohio, and Kentucky."
+  />
+  <section class="section">
+    <div class="wrap split">
+      <LaneMap />
+      <div>
+        <h2>Regional routes with real density</h2>
+        <p>Dense Midwest freight helps dispatch build weeks with strong miles and more predictable weekend planning than random coast-to-coast freight.</p>
+        <div class="route-list">
+          <a href="/jobs/cdl-a-driver-plainfield-il/">Plainfield, IL</a>
+          <a href="/jobs/cdl-a-driver-kansas-city-mo/">Kansas City, MO</a>
+          <a href="/jobs/cdl-a-driver-omaha-ne/">Omaha, NE</a>
+          <a href="/jobs/cdl-a-driver-milwaukee-wi/">Milwaukee, WI</a>
+        </div>
+        <div class="hero-actions">
+          <CtaButton />
+          <a class="button-secondary" href="/jobs/">View all jobs</a>
+        </div>
+      </div>
     </div>
   </section>
 </BaseLayout>

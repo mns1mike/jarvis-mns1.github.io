@@ -1,7 +1,32 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
+import CtaButton from "@components/CtaButton.astro";
+import PageHero from "@components/PageHero.astro";
 ---
 
 <BaseLayout title="MNS1 Express Requirements" description="CDL-A driver requirements for MNS1 Express.">
-  <section class="hero"><div class="wrap"><p class="eyebrow">Requirements</p><h1 class="display-title">Driver requirements</h1><p class="lead">Placeholder route for the Astro migration foundation.</p></div></section>
+  <PageHero
+    eyebrow="Requirements"
+    title="Experienced CDL-A drivers wanted"
+    lead="MNS1 Express hires professional CDL-A drivers who are ready for Midwest regional dry van work, newer equipment, and direct communication."
+  />
+  <section class="section">
+    <div class="wrap split">
+      <div>
+        <h2>Core driver requirements</h2>
+        <ul class="check-list">
+          <li>Valid CDL-A</li>
+          <li>Verifiable tractor-trailer experience</li>
+          <li>Safe driving history</li>
+          <li>Ability to run Midwest regional freight</li>
+          <li>Live in one of MNS1's hiring areas</li>
+        </ul>
+      </div>
+      <aside class="panel">
+        <h3>Meet the requirements?</h3>
+        <p>The application takes about four minutes. Recruiting will review your information and follow up with current openings.</p>
+        <CtaButton />
+      </aside>
+    </div>
+  </section>
 </BaseLayout>

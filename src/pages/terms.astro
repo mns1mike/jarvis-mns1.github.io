@@ -3,7 +3,7 @@ import LegalArticle from "@components/LegalArticle.astro";
 import { legalPages } from "@data/legalPages";
 import BaseLayout from "@layouts/BaseLayout.astro";
 
-const page = legalPages.find((item) => item.slug === "privacy")!;
+const page = legalPages.find((item) => item.slug === "terms")!;
 ---
 
 <BaseLayout title={`${page.title} | MNS1 Express`} description={page.description}>
