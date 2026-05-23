@@ -314,6 +314,8 @@
     ];
 
     function triggerWrite(heading) {
+      if (heading.dataset.mns1WritePlayed === "ready") return;
+      heading.dataset.mns1WritePlayed = "ready";
       heading.classList.add("mns1-write-text");
       heading.classList.remove("is-writing");
       void heading.offsetWidth;
@@ -324,7 +326,7 @@
       }, 1040);
     }
 
-    function observeWriteRepeat(heading) {
+    function observeWriteOnce(heading) {
       if (!("IntersectionObserver" in window)) {
         triggerWrite(heading);
         return;
@@ -335,8 +337,7 @@
           entries.forEach(function (entry) {
             if (entry.isIntersecting) {
               triggerWrite(entry.target);
-            } else {
-              entry.target.classList.remove("is-writing");
+              observer.unobserve(entry.target);
             }
           });
         },
@@ -353,7 +354,7 @@
       if (heading.dataset.mns1Write === "ready") return;
       heading.dataset.mns1Write = "ready";
       heading.style.setProperty("--write-steps", String(Math.max(18, Math.min(72, text.length))));
-      observeWriteRepeat(heading);
+      observeWriteOnce(heading);
     }
 
     function splitHeadingAfterColon(heading) {

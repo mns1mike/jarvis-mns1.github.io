@@ -339,10 +339,11 @@ header .mns1-top-apply-cta:hover {
 .mns1-write-text {
   display: inline-block;
   max-width: 100%;
-  clip-path: inset(0 0 0 0);
   opacity: 1;
   filter: blur(0);
-  will-change: clip-path, opacity, filter;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  will-change: auto;
 }
 
 .article-grid .article-card,
@@ -367,7 +368,7 @@ header .mns1-top-apply-cta:hover {
 }
 
 .mns1-write-text.is-writing {
-  animation: mns1-write-text 920ms steps(var(--write-steps, 34), end) forwards;
+  animation: mns1-write-text 780ms cubic-bezier(.18,.86,.22,1) both;
 }
 
 .mns1-heading-blue {
@@ -770,14 +771,14 @@ header .mns1-top-apply-cta:hover {
 
 @keyframes mns1-write-text {
   0% {
-    clip-path: inset(0 100% 0 0);
-    opacity: 1;
-    filter: blur(0);
+    opacity: 0.94;
+    transform: translate3d(-10px, 0, 0);
+    text-shadow: 0 0 18px rgba(0, 153, 215, 0.18);
   }
   100% {
-    clip-path: inset(0 0 0 0);
     opacity: 1;
-    filter: blur(0);
+    transform: translate3d(0, 0, 0);
+    text-shadow: none;
   }
 }
 
