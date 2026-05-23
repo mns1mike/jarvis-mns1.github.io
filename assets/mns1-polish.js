@@ -128,6 +128,34 @@
     });
   }
 
+  function normalizeJobsIndexLinks() {
+    Array.prototype.slice.call(document.querySelectorAll("a[href]")).forEach(function (link) {
+      var raw = link.getAttribute("href") || "";
+      var url;
+      try {
+        url = new URL(raw, window.location.href);
+      } catch (error) {
+        return;
+      }
+      if (url.origin !== window.location.origin) return;
+      var path = url.pathname.replace(/\/+$/, "");
+      if (path !== "/jobs" && path !== "/jobs.html") return;
+      link.setAttribute("href", "/jobs/");
+      link.dataset.mns1JobsIndex = "ready";
+      if (link.dataset.mns1JobsClick === "ready") return;
+      link.dataset.mns1JobsClick = "ready";
+      link.addEventListener(
+        "click",
+        function (event) {
+          event.preventDefault();
+          event.stopImmediatePropagation();
+          window.location.href = "/jobs/";
+        },
+        true
+      );
+    });
+  }
+
   function prepareShipperStatStrip() {
     if (!isShippersPage()) return;
     var grid = Array.prototype.find.call(document.querySelectorAll("section div[style*='grid-template-columns']"), function (node) {
@@ -286,9 +314,14 @@
     ];
 
     function triggerWrite(heading) {
+      heading.classList.add("mns1-write-text");
       heading.classList.remove("is-writing");
       void heading.offsetWidth;
       heading.classList.add("is-writing");
+      window.clearTimeout(heading._mns1WriteTimer);
+      heading._mns1WriteTimer = window.setTimeout(function () {
+        heading.classList.remove("is-writing");
+      }, 1040);
     }
 
     function observeWriteRepeat(heading) {
@@ -319,7 +352,6 @@
     function applyWriteHeading(heading, text) {
       if (heading.dataset.mns1Write === "ready") return;
       heading.dataset.mns1Write = "ready";
-      heading.classList.add("mns1-write-text");
       heading.style.setProperty("--write-steps", String(Math.max(18, Math.min(72, text.length))));
       observeWriteRepeat(heading);
     }
@@ -524,8 +556,14 @@
       if (!questionPattern.test(text)) return;
       var card = button.parentElement;
       if (!card || !card.closest("section")) return;
-      card.classList.add("mns1-faq-card");
-      card.style.setProperty("--card-delay", Math.min(index, 8) * 34 + "ms");
+      if (isHomePage()) {
+        card.classList.remove("mns1-faq-card", "mns1-polished-card", "mns1-home-card");
+        card.removeAttribute("data-mns1-home-card");
+        card.style.removeProperty("--card-delay");
+      } else {
+        card.classList.add("mns1-faq-card");
+        card.style.setProperty("--card-delay", Math.min(index, 8) * 34 + "ms");
+      }
       if (button.dataset.mns1FaqButton !== "ready") {
         button.dataset.mns1FaqButton = "ready";
         button.addEventListener("click", function () {
@@ -720,14 +758,6 @@
 
   function enhanceHomeCards() {
     if (isBlogPage()) return;
-    document.querySelectorAll("[data-mns1-home-card='true']").forEach(function (card) {
-      card.classList.remove("mns1-polished-card", "mns1-home-card");
-      card.removeAttribute("data-mns1-home-card");
-      card.style.removeProperty("--card-delay");
-    });
-    document.querySelectorAll(".mns1-card-grid-reset").forEach(function (grid) {
-      grid.classList.remove("mns1-card-grid-reset");
-    });
 
     function textLength(node) {
       return (node.innerText || "").replace(/\s+/g, " ").trim().length;
@@ -902,6 +932,7 @@
     enhanceQuickApplyGlow();
     enhanceApplyCtas();
     normalizeBlogIndexLinks();
+    normalizeJobsIndexLinks();
     enhanceStatRoll();
     enhanceHeadingAccents();
     prepareWriteText();
