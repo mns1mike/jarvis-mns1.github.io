@@ -13,6 +13,7 @@ const requiredTokens = [
   "--color-accent",
   "--color-accent-hover",
   "--color-accent-soft",
+  "--color-cta",
   "--radius-control",
   "--radius-card",
   "--radius-panel",

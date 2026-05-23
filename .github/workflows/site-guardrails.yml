@@ -53,6 +53,11 @@ jobs:
         env:
           PLAYWRIGHT_CHANNEL: chrome
 
+      - name: Verify accessibility smoke
+        run: npm run verify:a11y
+        env:
+          PLAYWRIGHT_CHANNEL: chrome
+
       - name: Verify cutover readiness smoke
         run: npm run verify:cutover
         env:

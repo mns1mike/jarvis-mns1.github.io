@@ -11,6 +11,7 @@
   --color-accent: #0099d7;
   --color-accent-hover: #007ab0;
   --color-accent-soft: rgba(0, 153, 215, 0.15);
+  --color-cta: #007ab0;
   --color-bg: var(--color-canvas);
   --color-panel: var(--color-surface);
   --color-border: var(--color-line);
