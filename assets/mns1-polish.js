@@ -1,4 +1,6 @@
 (function () {
+  var lanesFrontMapQueued = false;
+
   function ready(fn) {
     function run() {
       fn();
@@ -24,6 +26,10 @@
 
   function isBlogPage() {
     return /^\/blog(?:\/|\.html|$)/i.test(window.location.pathname);
+  }
+
+  function isLanesPage() {
+    return /\/lanes(?:\.html)?$/i.test(window.location.pathname.replace(/\/+$/, ""));
   }
 
   function observeOnce(target, visibleClass, options) {
@@ -623,15 +629,49 @@
     if (existing) existing.remove();
   }
 
+  function renderFrontPageLaneMap() {
+    fetch("/assets/mns1-home-lane-map.svg", { cache: "force-cache" })
+      .then(function (response) {
+        if (!response.ok) throw new Error("Unable to load front page lane map");
+        return response.text();
+      })
+      .then(function (svg) {
+        if (!/^<svg[\s>]/.test(svg) || svg.indexOf("MNS1 Midwest lane coverage map") === -1) return;
+        var mount = document.getElementById("lane-map");
+        if (!mount) return;
+        mount.dataset.mns1Map = "ready";
+        mount.className = "mns1-lane-map mns1-front-page-lane-map";
+        mount.removeAttribute("style");
+        mount.innerHTML =
+          '<div class="mns1-front-page-map-grid" aria-hidden="true"></div>' +
+          '<div class="mns1-front-page-map-frame">' +
+          svg +
+          "</div>";
+      })
+      .catch(function () {
+        lanesFrontMapQueued = false;
+      });
+  }
+
+  function queueFrontPageLaneMap() {
+    if (lanesFrontMapQueued) return;
+    lanesFrontMapQueued = true;
+    window.setTimeout(renderFrontPageLaneMap, 800);
+  }
+
   function createLaneMap() {
     var mount = document.getElementById("lane-map");
     if (!mount || mount.dataset.mns1Map === "ready") return;
+    if (isLanesPage()) {
+      queueFrontPageLaneMap();
+      return;
+    }
     mount.dataset.mns1Map = "ready";
     mount.className = "mns1-lane-map";
-    if (isHomePage()) mount.classList.add("mns1-home-lane-map");
+    var isHomeMap = isHomePage();
+    if (isHomeMap) mount.classList.add("mns1-home-lane-map");
     mount.removeAttribute("style");
 
-    var isHomeMap = isHomePage();
     mount.innerHTML =
       (isHomeMap
         ? ""
