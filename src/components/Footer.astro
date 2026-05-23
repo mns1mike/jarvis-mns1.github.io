@@ -1,0 +1,67 @@
+---
+import { footerNav } from "@data/navigation";
+import { site } from "@data/site";
+---
+
+<footer class="site-footer">
+  <div class="footer__inner">
+    <div>
+      <img src={site.logoPath} alt="MNS1 Express" />
+      <p><strong>{site.tagline}</strong></p>
+      <p>
+        MNS1 Express Inc.<br />
+        {site.addressLines[0]}<br />
+        {site.addressLines[1]}<br />
+        <a href={site.phoneHref}>{site.phoneDisplay}</a> · <a href={`mailto:${site.email}`}>{site.email}</a>
+      </p>
+    </div>
+    {Object.entries(footerNav).map(([heading, links]) => (
+      <div>
+        <strong>{heading}</strong>
+        {links.map((link) => <a href={link.href}>{link.label}</a>)}
+      </div>
+    ))}
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--color-border);
+    background: var(--color-bg);
+    color: var(--color-muted);
+  }
+
+  .footer__inner {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 28px;
+    width: min(100% - 48px, var(--site-max));
+    margin: 0 auto;
+    padding: 42px 0;
+  }
+
+  img {
+    height: 46px;
+    width: auto;
+  }
+
+  a {
+    display: block;
+    margin: 8px 0;
+    color: var(--color-muted);
+    text-decoration: none;
+  }
+
+  a[href^="tel:"],
+  a[href^="mailto:"] {
+    display: inline;
+    color: var(--color-blue);
+  }
+
+  @media (max-width: 768px) {
+    .footer__inner {
+      grid-template-columns: 1fr;
+      width: min(100% - 36px, var(--site-max));
+    }
+  }
+</style>

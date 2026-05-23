@@ -1,0 +1,35 @@
+---
+import { site } from "@data/site";
+
+type Props = {
+  href?: string;
+  label?: string;
+  class?: string;
+};
+
+const { href = site.applyUrl, label = "Apply in 4 mins", class: className = "" } = Astro.props;
+---
+
+<a class={`cta-button ${className}`} href={href}>
+  <span>{label}</span>
+</a>
+
+<style>
+  .cta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: var(--header-cta-width);
+    min-height: var(--header-cta-height);
+    padding: 9px 14px;
+    border: 1px solid transparent;
+    border-radius: var(--radius-control);
+    background: var(--color-blue);
+    box-shadow: var(--shadow-blue);
+    color: #fff;
+    font: 700 13px/1 var(--font-body);
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+</style>

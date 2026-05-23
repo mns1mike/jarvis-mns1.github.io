@@ -1,0 +1,41 @@
+{
+  "name": "mns1-recruiting-site",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "ASTRO_TELEMETRY_DISABLED=1 astro dev --host 127.0.0.1",
+    "build": "ASTRO_TELEMETRY_DISABLED=1 astro build",
+    "preview": "ASTRO_TELEMETRY_DISABLED=1 astro preview --host 127.0.0.1",
+    "verify": "npm run build && npm run verify:headers",
+    "verify:headers": "playwright test tests/visual/header-geometry.spec.ts",
+    "audit:deps": "npm audit --audit-level=moderate",
+    "security:release-age": "node scripts/check-npm-release-age.mjs",
+    "security:osv": "node scripts/check-osv.mjs",
+    "security": "npm run audit:deps && npm run security:release-age && npm run security:osv"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.60.0",
+    "astro": "6.3.3"
+  },
+  "overrides": {
+    "@shikijs/core": "4.0.2",
+    "@shikijs/engine-javascript": "4.0.2",
+    "@shikijs/engine-oniguruma": "4.0.2",
+    "@shikijs/langs": "4.0.2",
+    "@shikijs/primitive": "4.0.2",
+    "@shikijs/themes": "4.0.2",
+    "@shikijs/types": "4.0.2",
+    "fast-wrap-ansi": "0.2.0",
+    "lru-cache": "11.3.6",
+    "p-queue": "9.2.0",
+    "postcss": "8.5.14",
+    "semver": "7.7.4",
+    "shiki": "4.0.2",
+    "tinyexec": "1.0.4"
+  },
+  "engines": {
+    "node": ">=22 <26",
+    "npm": ">=10"
+  }
+}
