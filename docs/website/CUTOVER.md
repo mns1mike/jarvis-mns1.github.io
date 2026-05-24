@@ -10,7 +10,7 @@ Do not cut over until all items below are checked in a reviewed PR and Mike expl
 
 - [ ] Priority recruiting pages pass desktop and mobile visual QA: `/`, `/jobs/`, `/pay/`, `/equipment/`, `/home-time/`, `/requirements/`, `/apply/`.
 - [ ] Shipper/credibility pages pass desktop and mobile visual QA: `/shippers/`, `/lanes/`, `/about/`, `/contact/`.
-- [ ] Apply and contact CTA paths are verified from header, hero, cards, footer, job-city pages, and blog pages.
+- [x] Apply and contact CTA paths are verified from header, hero, cards, footer, job-city pages, and blog pages.
 - [x] SEO fundamentals are verified: titles, descriptions, canonicals, robots, sitemap, and structured route inventory.
 - [x] Accessibility smoke checks pass for header, navigation, CTA contrast, keyboard focus, and mobile layout.
 - [x] Performance smoke check passes against the built Astro output.
@@ -22,6 +22,7 @@ Do not cut over until all items below are checked in a reviewed PR and Mike expl
 ## Verification Progress
 - Automated desktop/mobile layout smoke exists for priority recruiting and shipper pages.
 - Automated CTA smoke verifies apply, phone, footer, and contact-page paths.
+- Automated CTA path smoke verifies header, hero, secondary, footer, job-city, blog, lane, and contact-card paths against approved URLs.
 - Playwright attaches full-page screenshots for the priority cutover routes during `npm run verify:cutover`.
 - Automated SEO smoke verifies priority route metadata, canonical URLs, social metadata, organization schema, robots, and sitemap.
 - Automated accessibility smoke verifies landmarks, single H1, link names, image alt text, keyboard focus reachability, and primary CTA contrast.

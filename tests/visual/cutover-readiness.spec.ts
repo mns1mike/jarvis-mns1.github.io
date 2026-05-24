@@ -21,6 +21,12 @@ const viewports = [
 ];
 
 const funnelRoutes = ["/", "/jobs/cdl-a-driver-plainfield-il/", "/apply/"];
+const ctaSurfaceRoutes = [
+  { route: "/", applyCount: 2, secondaryHref: site.phoneHref },
+  { route: "/jobs/cdl-a-driver-plainfield-il/", applyCount: 3, secondaryHref: "/requirements/" },
+  { route: "/blog/best-trucking-companies-midwest/", applyCount: 2, secondaryHref: "/jobs/" },
+  { route: "/lanes/", applyCount: 2, secondaryHref: "/jobs/" },
+];
 
 test.describe("cutover readiness smoke", () => {
   for (const viewport of viewports) {
@@ -67,6 +73,21 @@ test.describe("cutover readiness smoke", () => {
     }
   });
 
+  test("header, hero, job-city, blog, and lane CTA surfaces use approved paths", async ({ page }) => {
+    for (const { route, applyCount, secondaryHref } of ctaSurfaceRoutes) {
+      await page.goto(route);
+
+      const header = page.locator("[data-site-header]");
+      await expect(header.locator(`a[href="${site.applyUrl}"]`), `${route} header apply`).toBeVisible();
+      await expect(header.locator('a[href="/contact/"]'), `${route} header contact`).toBeVisible();
+      await expect(header.locator(`a[href="${site.phoneHref}"]`), `${route} header phone`).toBeVisible();
+
+      await expect(page.locator(`main a[href="${site.applyUrl}"]`).first(), `${route} main apply`).toBeVisible();
+      await expect(page.locator(`main a[href="${secondaryHref}"]`).first(), `${route} secondary CTA`).toBeVisible();
+      await expect(page.locator(`a[href="${site.applyUrl}"]`), `${route} apply CTA count`).toHaveCount(applyCount);
+    }
+  });
+
   test("footer keeps apply, jobs, and contact paths available", async ({ page }) => {
     await page.goto("/");
     const footer = page.locator(".site-footer");
@@ -78,7 +99,7 @@ test.describe("cutover readiness smoke", () => {
   test("contact page exposes phone, email, and application paths", async ({ page }) => {
     await page.goto("/contact/");
     await expect(page.locator(`a[href="${site.phoneHref}"]`).first()).toBeVisible();
-    await expect(page.locator('a[href="mailto:recruiting@mns1express.com"]')).toBeVisible();
+    await expect(page.locator(`a[href="mailto:${site.recruitingEmail}"]`)).toBeVisible();
     await expect(page.locator('a[href="/apply/"]').first()).toBeVisible();
   });
 });

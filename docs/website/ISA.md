@@ -25,6 +25,7 @@ Create a maintainable source-built MNS1 website foundation so future recruiting,
 - [x] Design tokens and brand rules are documented.
 - [x] Playwright checks enforce baseline design-system guardrails.
 - [x] Automated cutover-readiness smoke checks cover priority desktop/mobile pages and CTA paths.
+- [x] CTA path checks cover header, hero, footer, job-city pages, blog pages, lane pages, and contact cards.
 - [x] SEO fundamentals are covered by automated metadata, canonical, robots, and sitemap checks.
 - [x] Accessibility smoke checks cover landmarks, link names, image alt text, keyboard focus, and CTA contrast.
 - [x] Performance smoke checks cover built asset budgets, no runtime JavaScript, no external runtime requests, image preload, and priority route load timing.
@@ -41,6 +42,7 @@ Create a maintainable source-built MNS1 website foundation so future recruiting,
 - Design system: semantic tokens documented in `docs/website/DESIGN_SYSTEM.md`; Playwright design-system guardrails added to `npm run verify`.
 - Public cutover gate: `docs/website/CUTOVER.md`.
 - Cutover smoke: `npm run verify:cutover` captures priority page screenshots and verifies apply/contact paths.
+- CTA smoke: approved apply, phone, contact, jobs, and requirements paths are checked from header, hero, footer, job-city, blog, lane, and contact-card surfaces.
 - SEO smoke: `npm run verify:seo` checks priority page metadata, canonical URLs, organization schema, robots, and sitemap.
 - Accessibility smoke: `npm run verify:a11y` checks semantic landmarks, keyboard reachability, accessible names, image alt text, and primary CTA contrast.
 - Performance smoke: `npm run verify:performance` checks static build budgets, no page JavaScript, local-only runtime requests, hero image preload, and priority route load timing.
