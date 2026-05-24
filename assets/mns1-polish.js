@@ -807,6 +807,32 @@
     });
   }
 
+  function enhanceTables() {
+    Array.prototype.slice.call(document.querySelectorAll("table")).forEach(function (table, tableIndex) {
+      if (table.closest("header") || table.closest("footer")) return;
+      if (table.dataset.mns1Table === "ready") return;
+      table.dataset.mns1Table = "ready";
+      table.classList.add("mns1-polished-table");
+      table.style.setProperty("--card-delay", Math.min(tableIndex, 8) * 38 + "ms");
+
+      var parent = table.parentElement;
+      if (parent && !parent.classList.contains("mns1-table-shell")) {
+        var parentText = (parent.innerText || parent.textContent || "").replace(/\s+/g, " ").trim();
+        var tableText = (table.innerText || table.textContent || "").replace(/\s+/g, " ").trim();
+        if (parent.children.length === 1 || parentText === tableText) {
+          parent.classList.add("mns1-table-shell", "mns1-table-scroll");
+        } else {
+          table.classList.add("mns1-table-scroll");
+        }
+      }
+
+      Array.prototype.slice.call(table.querySelectorAll("tbody tr")).forEach(function (row, rowIndex) {
+        row.classList.add("mns1-table-row");
+        row.style.setProperty("--card-delay", Math.min(rowIndex, 8) * 38 + "ms");
+      });
+    });
+  }
+
   function enhanceHomeCards() {
     if (isBlogPage()) return;
 
@@ -990,6 +1016,7 @@
     enhanceStoryTimeline();
     markSpecialCards();
     enhanceFaqInteractions();
+    enhanceTables();
     enhanceHomeCards();
     manageMobileStickyCta();
     createLaneMap();

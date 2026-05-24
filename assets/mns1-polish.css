@@ -100,6 +100,115 @@
   box-shadow: 0 32px 74px -34px rgba(0, 153, 215, 0.9);
 }
 
+.mns1-table-shell,
+.mns1-polished-table {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid rgba(52, 64, 122, 0.9) !important;
+  border-radius: 8px !important;
+  background:
+    linear-gradient(180deg, rgba(23, 33, 74, 0.78), rgba(11, 16, 32, 0.92)),
+    var(--mns1-panel) !important;
+  box-shadow: 0 24px 60px -32px rgba(0, 0, 0, 0.85);
+}
+
+.mns1-table-shell::before,
+.mns1-polished-table::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  background:
+    linear-gradient(135deg, rgba(0, 153, 215, 0.12), transparent 36%),
+    radial-gradient(circle at 88% 12%, rgba(47, 208, 131, 0.12), transparent 28%);
+  opacity: 0.72;
+  z-index: 1;
+}
+
+.mns1-table-shell::after,
+.mns1-polished-table::after {
+  content: "";
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 0;
+  height: 2px;
+  pointer-events: none;
+  background: linear-gradient(90deg, var(--mns1-blue), rgba(47, 208, 131, 0.72), transparent);
+  opacity: 0.72;
+  z-index: 2;
+}
+
+.mns1-polished-table {
+  width: 100%;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  color: var(--mns1-muted);
+  font-family: Overpass, system-ui, sans-serif;
+}
+
+.mns1-polished-table th,
+.mns1-polished-table td {
+  position: relative;
+  z-index: 3;
+  padding: 15px 18px !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+  text-align: left;
+}
+
+.mns1-polished-table th {
+  color: var(--mns1-text);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: rgba(11, 16, 32, 0.5);
+}
+
+.mns1-polished-table td {
+  color: var(--mns1-muted);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.mns1-polished-table tr:last-child td {
+  border-bottom: 0 !important;
+}
+
+.mns1-polished-table tbody tr,
+.mns1-table-row {
+  transition:
+    transform 220ms cubic-bezier(.2,.7,.2,1),
+    border-color 220ms,
+    background 220ms,
+    box-shadow 220ms,
+    filter 220ms;
+}
+
+.mns1-polished-table tbody tr:hover,
+.mns1-table-row:hover {
+  transform: translateX(6px);
+  background:
+    linear-gradient(135deg, rgba(0, 153, 215, 0.16), rgba(16, 24, 54, 0.94)) !important;
+  box-shadow:
+    0 20px 46px -24px rgba(0, 153, 215, 0.95),
+    0 0 0 1px rgba(255, 255, 255, 0.08) inset !important;
+  filter: brightness(1.05);
+}
+
+.mns1-table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 768px) {
+  .mns1-polished-table {
+    min-width: 620px;
+  }
+}
+
 [data-mns1-plain-map],
 [data-mns1-plain-map]:hover {
   transform: none !important;
