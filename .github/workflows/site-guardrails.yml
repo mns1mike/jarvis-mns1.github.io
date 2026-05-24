@@ -67,3 +67,6 @@ jobs:
         run: npm run verify:cutover
         env:
           PLAYWRIGHT_CHANNEL: chrome
+
+      - name: Verify GitHub Pages preview paths
+        run: npm run verify:pages-preview

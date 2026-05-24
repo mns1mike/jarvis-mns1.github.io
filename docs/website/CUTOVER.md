@@ -1,7 +1,7 @@
 # Website Cutover Readiness
 
 ## Current State
-The Astro site is built and deployed through GitHub Pages, but public traffic is not cut over. The live apex domain still resolves outside this repository, and no `CNAME` file is committed here.
+The Astro site is built and deployed through GitHub Pages preview/staging with repository-path asset URLs, but public traffic is not cut over. The live apex domain still resolves outside this repository, and no `CNAME` file is committed here.
 
 Cutover means changing public DNS and GitHub Pages custom-domain settings so `mns1express.com` and/or `www.mns1express.com` serve this Astro build.
 
