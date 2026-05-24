@@ -4,29 +4,76 @@ import CtaButton from "@components/CtaButton.astro";
 import PageHero from "@components/PageHero.astro";
 ---
 
-<BaseLayout title="MNS1 Express Requirements" description="CDL-A driver requirements for MNS1 Express.">
+<BaseLayout title="CDL-A Driver Requirements | MNS1 Express" description="No hidden disqualifiers. No wasted time. Here are the exact requirements to drive for MNS1 Express.">
   <PageHero
     eyebrow="Requirements"
-    title="Experienced CDL-A drivers wanted"
-    lead="MNS1 Express hires professional CDL-A drivers who are ready for Midwest regional dry van work, newer equipment, and direct communication."
+    title="Do You Qualify? Here's Everything."
+    lead="No hidden disqualifiers. No wasted time. Here are the exact requirements to drive for MNS1 Express. If you meet them, apply in 4 mins."
   />
   <section class="section">
     <div class="wrap split">
       <div>
-        <h2>Core driver requirements</h2>
+        <p class="eyebrow">Core Requirements</p>
+        <h2>The Basics</h2>
         <ul class="check-list">
-          <li>Valid CDL-A</li>
-          <li>Verifiable tractor-trailer experience</li>
-          <li>Safe driving history</li>
-          <li>Ability to run Midwest regional freight</li>
-          <li>Live in one of MNS1's hiring areas</li>
+          <li>Age: 25 years or older</li>
+          <li>CDL Experience: 24 months Class A CDL required</li>
+          <li>Medical: Current DOT physical card</li>
+          <li>Job History: Max 4 jobs in the last 12 months</li>
+          <li>Criminal/DUI: No DUI or felonies in the last 5 years</li>
+          <li>SAP Program: No SAP (Substance Abuse Professional) history</li>
         </ul>
       </div>
       <aside class="panel">
-        <h3>Meet the requirements?</h3>
-        <p>The application takes about four minutes. Recruiting will review your information and follow up with current openings.</p>
-        <CtaButton />
+        <h3>Driving Record (MVR)</h3>
+        <p>Motor Vehicle Record Standards</p>
+        <p>Your MVR tells us about your driving history. Here's exactly what we're looking at:</p>
+        <ul class="check-list">
+          <li>5-Year Major Violations: No major violations in the last 5 years. This includes reckless driving, hit-and-run, and driving under suspension.</li>
+          <li>1-Year Moving Violations: Maximum 2 moving violations (tickets) in the last 12 months.</li>
+          <li>3-Year Accident History: Maximum 1 at-fault accident in the last 3 years.</li>
+        </ul>
       </aside>
+    </div>
+  </section>
+  <section class="section section--panel">
+    <div class="wrap split">
+      <div>
+        <p class="eyebrow">Bring to Orientation</p>
+        <h2>Required Documents</h2>
+        <p>Have these ready for your 2-day orientation in Plainfield, IL:</p>
+        <ul class="check-list">
+          <li>Valid Class A CDL</li>
+          <li>Current DOT Medical Card</li>
+          <li>Social Security Card</li>
+          <li>Voided Check (for direct deposit)</li>
+        </ul>
+      </div>
+      <aside class="panel">
+        <p class="eyebrow">Quick Self-Check</p>
+        <h3>Not Sure If You Qualify?</h3>
+        <p>If you can answer "yes" to all of these, you're good to apply:</p>
+        <ul class="check-list">
+          <li>I'm 25 years old or older</li>
+          <li>I have 24+ months of Class A CDL experience</li>
+          <li>I have a current DOT physical</li>
+          <li>I've had 4 or fewer jobs in the last 12 months</li>
+          <li>No DUI or felony convictions in 5 years</li>
+          <li>No SAP history</li>
+          <li>Clean-ish MVR (see details above)</li>
+          <li>I live in one of MNS1's Midwest hiring areas</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap panel">
+      <h2>Meet the Requirements?</h2>
+      <p>The application takes about 4 minutes. A recruiter will review your info and reach out within 24 hours.</p>
+      <div class="hero-actions">
+        <CtaButton />
+        <a class="button-secondary" href="tel:6302463280">630-246-3280</a>
+      </div>
     </div>
   </section>
 </BaseLayout>

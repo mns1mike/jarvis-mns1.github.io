@@ -23,9 +23,9 @@ const viewports = [
 const funnelRoutes = ["/", "/jobs/cdl-a-driver-plainfield-il/", "/apply/"];
 const ctaSurfaceRoutes = [
   { route: "/", applyCount: 2, secondaryHref: site.phoneHref },
-  { route: "/jobs/cdl-a-driver-plainfield-il/", applyCount: 3, secondaryHref: "/requirements/" },
-  { route: "/blog/best-trucking-companies-midwest/", applyCount: 2, secondaryHref: "/jobs/" },
-  { route: "/lanes/", applyCount: 2, secondaryHref: "/jobs/" },
+  { route: "/jobs/cdl-a-driver-plainfield-il/", applyCount: 2, secondaryHref: "/requirements/" },
+  { route: "/blog/best-trucking-companies-midwest/", applyCount: 2, secondaryHref: "/blog/" },
+  { route: "/lanes/", applyCount: 2, secondaryHref: site.phoneHref },
 ];
 
 test.describe("cutover readiness smoke", () => {

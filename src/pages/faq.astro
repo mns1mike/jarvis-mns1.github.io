@@ -3,23 +3,36 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import PageHero from "@components/PageHero.astro";
 
 const questions = [
-  ["What kind of freight does MNS1 run?", "MNS1 Express runs Midwest regional dry van freight with practical lane planning."],
-  ["What trucks do drivers use?", "Drivers run 2023 or newer Freightliner Cascadias, depending on current assignment and fleet availability."],
-  ["How much do top drivers make?", "Top drivers average $1,650-$1,900+ gross per week when freight, availability, and performance line up."],
-  ["Is home time every weekend?", "The operation is planned around weekend home-time expectations on Midwest regional lanes, with real-world timing discussed by recruiting."],
+  "How much does MNS1 pay?",
+  "How does home time work?",
+  "What trucks do you run?",
+  "What's the pet policy?",
+  "Can I bring a rider?",
+  "What happens at orientation?",
+  "Are there inward-facing cameras?",
+  "Is dispatch forced?",
+  "How long does the application take?",
 ];
 ---
 
-<BaseLayout title="MNS1 Express FAQ" description="Frequently asked driver questions for MNS1 Express.">
-  <PageHero eyebrow="FAQ" title="Questions and answers" lead="Straight answers for CDL-A drivers comparing MNS1 Express with other Midwest carriers." />
+<BaseLayout title="CDL-A Driver FAQ | MNS1 Express" description="Everything drivers ask before applying — pay, home time, equipment, policies. No fluff, no dodging. Real answers.">
+  <PageHero
+    eyebrow="FAQ"
+    title="Questions? Answers."
+    lead="Everything drivers ask before applying — pay, home time, equipment, policies. No fluff, no dodging. Real answers."
+  />
   <section class="section">
     <div class="wrap faq-list">
-      {questions.map(([question, answer]) => (
-        <article class="panel">
-          <h2>{question}</h2>
-          <p>{answer}</p>
-        </article>
+      {questions.map((question) => (
+        <article class="panel"><h2>{question}</h2></article>
       ))}
+    </div>
+  </section>
+  <section class="section section--panel">
+    <div class="wrap panel">
+      <h2>Still Have Questions?</h2>
+      <p>Reach recruiting directly. Real person, real answers. Or apply and they'll reach out within 24 hours.</p>
+      <p><a class="text-link" href="tel:6302463280">630-246-3280</a></p>
     </div>
   </section>
 </BaseLayout>

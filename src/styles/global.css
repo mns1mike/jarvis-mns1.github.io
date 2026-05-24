@@ -95,6 +95,43 @@ select:focus-visible {
   background: var(--color-surface);
 }
 
+.section-heading {
+  margin-bottom: 24px;
+}
+
+.section-heading h2 {
+  max-width: 780px;
+  margin: 0 0 12px;
+  color: #fff;
+  font: 900 38px/1.05 var(--font-display);
+  text-transform: uppercase;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.stat-grid article {
+  padding: 22px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+  background: var(--color-surface-raised);
+}
+
+.stat-grid strong {
+  display: block;
+  color: #fff;
+  font: 900 30px/1 var(--font-display);
+}
+
+.stat-grid span {
+  display: block;
+  margin-top: 8px;
+  color: var(--color-muted);
+}
+
 .grid {
   display: grid;
   gap: 18px;
@@ -102,6 +139,10 @@ select:focus-visible {
 
 .grid--cards {
   grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.split .grid--cards {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .card {
@@ -281,6 +322,11 @@ select:focus-visible {
   }
 
   .grid--cards {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-grid,
+  .split .grid--cards {
     grid-template-columns: 1fr;
   }
 
