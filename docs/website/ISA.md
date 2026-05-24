@@ -30,6 +30,7 @@ Create a maintainable source-built MNS1 website foundation so future recruiting,
 - [x] Accessibility smoke checks cover landmarks, link names, image alt text, keyboard focus, and CTA contrast.
 - [x] Performance smoke checks cover built asset budgets, no runtime JavaScript, no external runtime requests, image preload, and priority route load timing.
 - [x] Form/backout plan is documented and confirmed against the pre-Astro backup archive.
+- [x] DNS cutover plan is documented with exact GitHub Pages records, TTLs, verification commands, and rollback records.
 
 ## Verification Evidence
 - Backup tag: `backup/mns1-website-pre-astro-20260523-1038`
@@ -48,6 +49,7 @@ Create a maintainable source-built MNS1 website foundation so future recruiting,
 - Accessibility smoke: `npm run verify:a11y` checks semantic landmarks, keyboard reachability, accessible names, image alt text, and primary CTA contrast.
 - Performance smoke: `npm run verify:performance` checks static build budgets, no page JavaScript, local-only runtime requests, hero image preload, and priority route load timing.
 - Form/backout plan: `docs/website/FORM_BACKOUT.md` documents IntelliApp/contact surfaces, pre-cutover checks, archive SHA, archived apply/contact pages, and rollback steps.
+- DNS plan: `docs/website/DNS_PLAN.md` documents pre-cutover observed DNS, GitHub Pages records, TTLs, verification commands, and rollback records.
 
 ## Decisions
 - Use Astro for the build system because the site is mostly static content with selective future interactivity.

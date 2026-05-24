@@ -33,3 +33,5 @@
   approval before DNS or GitHub Pages custom-domain changes.
 - The backup tag and archive must be referenced in that PR's rollback plan, and
   `docs/website/FORM_BACKOUT.md` must remain accurate for application/contact rollback.
+- `docs/website/DNS_PLAN.md` must remain accurate for target DNS, TTLs, verification
+  commands, and rollback records before any custom-domain change.
