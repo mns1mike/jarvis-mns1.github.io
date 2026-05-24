@@ -13,7 +13,7 @@ Do not cut over until all items below are checked in a reviewed PR and Mike expl
 - [ ] Apply and contact CTA paths are verified from header, hero, cards, footer, job-city pages, and blog pages.
 - [x] SEO fundamentals are verified: titles, descriptions, canonicals, robots, sitemap, and structured route inventory.
 - [x] Accessibility smoke checks pass for header, navigation, CTA contrast, keyboard focus, and mobile layout.
-- [ ] Performance smoke check passes against the built Astro output.
+- [x] Performance smoke check passes against the built Astro output.
 - [ ] Form/backout plan is confirmed against the pre-Astro backup archive.
 - [ ] DNS plan is written with exact records, TTL, and rollback records.
 - [ ] GitHub Pages custom domain setting and `CNAME` file are added only in the final cutover PR.
@@ -25,6 +25,7 @@ Do not cut over until all items below are checked in a reviewed PR and Mike expl
 - Playwright attaches full-page screenshots for the priority cutover routes during `npm run verify:cutover`.
 - Automated SEO smoke verifies priority route metadata, canonical URLs, social metadata, organization schema, robots, and sitemap.
 - Automated accessibility smoke verifies landmarks, single H1, link names, image alt text, keyboard focus reachability, and primary CTA contrast.
+- Automated performance smoke verifies built asset budgets, no page JavaScript, no external runtime requests, image preloading, and priority route load timing.
 
 ## Rollback
 Primary rollback is to restore the previous site from:
