@@ -36,6 +36,8 @@
   file or changing public DNS.
 - Keep `docs/website/FORM_BACKOUT.md` current with the active application/contact
   surfaces and rollback archive before any final cutover PR.
+- Keep `docs/website/DNS_PLAN.md` current with observed pre-cutover records, target
+  GitHub Pages records, TTLs, verification commands, and rollback records.
 - Merge cutover only after review and explicit approval.
 
 ## Rollback
