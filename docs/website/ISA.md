@@ -29,6 +29,7 @@ Create a maintainable source-built MNS1 website foundation so future recruiting,
 - [x] SEO fundamentals are covered by automated metadata, canonical, robots, and sitemap checks.
 - [x] Accessibility smoke checks cover landmarks, link names, image alt text, keyboard focus, and CTA contrast.
 - [x] Performance smoke checks cover built asset budgets, no runtime JavaScript, no external runtime requests, image preload, and priority route load timing.
+- [x] Form/backout plan is documented and confirmed against the pre-Astro backup archive.
 
 ## Verification Evidence
 - Backup tag: `backup/mns1-website-pre-astro-20260523-1038`
@@ -46,6 +47,7 @@ Create a maintainable source-built MNS1 website foundation so future recruiting,
 - SEO smoke: `npm run verify:seo` checks priority page metadata, canonical URLs, organization schema, robots, and sitemap.
 - Accessibility smoke: `npm run verify:a11y` checks semantic landmarks, keyboard reachability, accessible names, image alt text, and primary CTA contrast.
 - Performance smoke: `npm run verify:performance` checks static build budgets, no page JavaScript, local-only runtime requests, hero image preload, and priority route load timing.
+- Form/backout plan: `docs/website/FORM_BACKOUT.md` documents IntelliApp/contact surfaces, pre-cutover checks, archive SHA, archived apply/contact pages, and rollback steps.
 
 ## Decisions
 - Use Astro for the build system because the site is mostly static content with selective future interactivity.

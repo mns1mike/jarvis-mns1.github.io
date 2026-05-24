@@ -34,6 +34,8 @@
   reviewed, and approved for cutover.
 - Complete the cutover checklist in `docs/website/CUTOVER.md` before adding a `CNAME`
   file or changing public DNS.
+- Keep `docs/website/FORM_BACKOUT.md` current with the active application/contact
+  surfaces and rollback archive before any final cutover PR.
 - Merge cutover only after review and explicit approval.
 
 ## Rollback

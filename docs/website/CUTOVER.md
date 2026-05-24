@@ -14,7 +14,7 @@ Do not cut over until all items below are checked in a reviewed PR and Mike expl
 - [x] SEO fundamentals are verified: titles, descriptions, canonicals, robots, sitemap, and structured route inventory.
 - [x] Accessibility smoke checks pass for header, navigation, CTA contrast, keyboard focus, and mobile layout.
 - [x] Performance smoke check passes against the built Astro output.
-- [ ] Form/backout plan is confirmed against the pre-Astro backup archive.
+- [x] Form/backout plan is confirmed against the pre-Astro backup archive.
 - [ ] DNS plan is written with exact records, TTL, and rollback records.
 - [ ] GitHub Pages custom domain setting and `CNAME` file are added only in the final cutover PR.
 - [ ] Post-cutover checks are ready for apex and `www`: HTTP status, canonical behavior, SSL, sitemap, and apply flow.
@@ -27,6 +27,7 @@ Do not cut over until all items below are checked in a reviewed PR and Mike expl
 - Automated SEO smoke verifies priority route metadata, canonical URLs, social metadata, organization schema, robots, and sitemap.
 - Automated accessibility smoke verifies landmarks, single H1, link names, image alt text, keyboard focus reachability, and primary CTA contrast.
 - Automated performance smoke verifies built asset budgets, no page JavaScript, no external runtime requests, image preloading, and priority route load timing.
+- Form/backout plan is documented in `docs/website/FORM_BACKOUT.md`; the pre-Astro backup SHA and archived apply/contact pages were verified.
 
 ## Rollback
 Primary rollback is to restore the previous site from:

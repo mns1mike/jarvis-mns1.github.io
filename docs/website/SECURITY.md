@@ -31,4 +31,5 @@
 - Switching production traffic to Astro `dist/` is a separate cutover step. It requires
   `docs/website/CUTOVER.md` readiness checks, a final reviewed cutover PR, and explicit
   approval before DNS or GitHub Pages custom-domain changes.
-- The backup tag and archive must be referenced in that PR's rollback plan.
+- The backup tag and archive must be referenced in that PR's rollback plan, and
+  `docs/website/FORM_BACKOUT.md` must remain accurate for application/contact rollback.
