@@ -46,6 +46,7 @@ At least one business day before cutover:
 ## Final GitHub Pages Settings
 In the final cutover PR and GitHub Pages settings:
 
+1. Remove the preview-only `npm run prepare:pages-preview` step from `.github/workflows/deploy-pages.yml` so custom-domain production deploys use root-relative paths.
 1. Add the custom domain in repository Pages settings: `www.mns1express.com`.
 2. Add `public/CNAME` with exactly:
 
