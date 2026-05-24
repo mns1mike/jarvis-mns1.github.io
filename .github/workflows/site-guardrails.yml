@@ -68,5 +68,10 @@ jobs:
         env:
           PLAYWRIGHT_CHANNEL: chrome
 
+      - name: Verify content parity smoke
+        run: npm run verify:content
+        env:
+          PLAYWRIGHT_CHANNEL: chrome
+
       - name: Verify GitHub Pages preview paths
         run: npm run verify:pages-preview

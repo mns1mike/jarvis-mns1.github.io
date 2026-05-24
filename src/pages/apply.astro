@@ -7,12 +7,12 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 
 <BaseLayout
   title="Apply for CDL-A Regional Driver Jobs | MNS1 Express"
-  description="Apply for MNS1 Express CDL-A regional driver jobs. Home weekends, Midwest dry van freight, 2023+ Freightliners, and top drivers averaging $1,650-$1,900+ weekly."
+  description="Use the official IntelliApp application for MNS1 Express driver openings. Top drivers average $1,650-$1,900+ gross per week with Midwest regional lanes, 2023+ Freightliners, and weekend home time."
 >
   <PageHero
     eyebrow="CDL-A Driver Application"
     title="Apply With MNS1 Express"
-    lead="Use the official IntelliApp application for MNS1 Express driver openings. Top drivers average $1,650-$1,900+ gross per week with Midwest regional lanes, newer Freightliners, and weekend home time."
+    lead="Use the official IntelliApp application for MNS1 Express driver openings. Top drivers average $1,650-$1,900+ gross per week with Midwest regional lanes, 2023+ Freightliners, and weekend home time."
   >
     <div class="hero-actions">
       <CtaButton />
@@ -21,23 +21,10 @@ import BaseLayout from "@layouts/BaseLayout.astro";
   </PageHero>
 
   <section class="section">
-    <div class="wrap split">
-      <div>
-        <h2>Prefer to talk first?</h2>
-        <p>
-          Reach recruiting at <a class="text-link" href={site.phoneHref}>{site.phoneDisplay}</a> or email
-          <a class="text-link" href={`mailto:${site.recruitingEmail}`}>{site.recruitingEmail}</a>.
-        </p>
-        <p>The external application remains the official driver application system.</p>
-      </div>
-      <aside class="panel">
-        <h3>Before you apply</h3>
-        <ul class="check-list">
-          <li>Have your CDL-A work history ready</li>
-          <li>Confirm your current ZIP and contact info</li>
-          <li>Review driver requirements before orientation</li>
-        </ul>
-      </aside>
+    <div class="wrap panel">
+      <h2>Prefer to talk first?</h2>
+      <p>Reach recruiting at <a class="text-link" href={site.phoneHref}>{site.phoneDisplay}</a> or email <a class="text-link" href={`mailto:${site.recruitingEmail}`}>{site.recruitingEmail}</a>.</p>
+      <p>You will be redirected to IntelliApp automatically in a few seconds.</p>
     </div>
   </section>
 </BaseLayout>

@@ -4,11 +4,11 @@ import CtaButton from "@components/CtaButton.astro";
 import PageHero from "@components/PageHero.astro";
 ---
 
-<BaseLayout title="MNS1 Express Pay" description="MNS1 Express CDL-A driver pay information.">
+<BaseLayout title="CDL-A Driver Pay | MNS1 Express" description="Top drivers average $1,650-$1,900+ gross per week running 2,500-3,000 miles across Midwest regional lanes.">
   <PageHero
-    eyebrow="Driver Pay"
-    title="Top drivers average $1,650-$1,900+ weekly"
-    lead="MNS1 Express focuses on experienced CDL-A drivers who want steady Midwest miles, direct weekly pay, and a carrier that can explain the numbers before orientation."
+    eyebrow="CDL-A Regional Driver Pay"
+    title="Strong Weekly Pay. Real Weekend Home Time."
+    lead="Top drivers average $1,650-$1,900+ gross per week running 2,500-3,000 miles across Midwest regional lanes. Paid weekly, home every weekend, with consistent dry van freight and a 2023 or newer Freightliner."
   >
     <div class="hero-actions">
       <CtaButton />
@@ -16,10 +16,36 @@ import PageHero from "@components/PageHero.astro";
     </div>
   </PageHero>
   <section class="section">
+    <div class="wrap stat-grid">
+      <article><strong>$1,650-$1,900+</strong><span>Top driver weekly gross</span></article>
+      <article><strong>2,500-3,000</strong><span>Miles per week</span></article>
+      <article><strong>Paid weekly</strong><span>Consistent direct pay</span></article>
+    </div>
+  </section>
+  <section class="section section--panel">
+    <div class="wrap">
+      <div class="section-heading">
+        <p class="eyebrow">What Builds the Check</p>
+        <h2>Pay Components</h2>
+      </div>
+      <div class="grid grid--cards">
+        <article class="card"><h2>Weekly Miles</h2><p>Regional drivers run hard Monday through Friday/Saturday on Midwest dry van freight with strong mileage expectations.</p></article>
+        <article class="card"><h2>Base + Per Diem</h2><p>The current pay package includes a per diem structure.</p></article>
+        <article class="card"><h2>Accessorial Pay</h2><p>Stop pay, detention, layover, and breakdown pay are available when applicable.</p></article>
+        <article class="card"><h2>Bonus Opportunities</h2><p>Referral, safety, performance, and clean inspection bonus opportunities available.</p></article>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap section-heading">
+      <p class="eyebrow">Driver Support</p>
+      <h2>Benefits That Support the Pay</h2>
+      <p>A stronger paycheck matters more when the rest of the job is built to support the driver. We separate the personal benefit package from the operational support that keeps the week moving.</p>
+    </div>
     <div class="wrap grid grid--cards">
-      <article class="card"><h2>Weekly direct deposit</h2><p>Pay is handled weekly so drivers can plan around predictable settlement timing.</p></article>
-      <article class="card"><h2>Per diem advantage</h2><p>Eligible drivers can use MNS1's per diem program as part of the overall compensation package.</p></article>
-      <article class="card"><h2>Consistent miles</h2><p>Regional dry van freight is planned to keep qualified drivers moving through the Midwest.</p></article>
+      <article class="card"><h2>Personal Benefits</h2><ul class="check-list"><li>Medical, dental, and vision insurance</li><li>Company-paid life insurance</li><li>Supplemental insurance options</li><li>Paid time off and paid holidays</li><li>401(k) with company match</li><li>Employee Assistance Program</li></ul></article>
+      <article class="card"><h2>Operational Benefits</h2><ul class="check-list"><li>Fuel cards</li><li>Cash advances</li><li>EFS checks</li><li>Pet and passenger program</li><li>24/7 dispatch support</li><li>Roadside assistance</li></ul></article>
+      <article class="card"><h2>Plainfield Terminal Perks</h2><ul class="check-list"><li>Driver lounge with bathrooms and showers</li><li>Laundry machines, TV, ice, and vending</li><li>On-site maintenance</li><li>Courtesy car access for drivers routed through the terminal</li></ul></article>
     </div>
   </section>
 </BaseLayout>

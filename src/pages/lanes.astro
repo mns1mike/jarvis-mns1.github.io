@@ -5,29 +5,55 @@ import CtaButton from "@components/CtaButton.astro";
 import LaneMap from "@components/LaneMap.astro";
 ---
 
-<BaseLayout title="MNS1 Express Lanes" description="Midwest lane coverage and operating areas for MNS1 Express.">
+<BaseLayout title="Midwest OTR Lanes & Hiring Area | MNS1 Express" description="We run the Midwest. Consistent lanes, predictable routes, and home time that works because your loads stay in our coverage area.">
   <PageHero
-    eyebrow="Lanes"
-    title="Midwest freight network"
-    lead="MNS1 Express runs practical regional dry van lanes across the Midwest with hiring markets near Illinois, Wisconsin, Iowa, Indiana, Missouri, Kansas, Nebraska, Minnesota, Ohio, and Kentucky."
+    eyebrow="Lanes & Coverage"
+    title="OTR Midwest. No Southeast Surprises."
+    lead="We run the Midwest. Consistent lanes, predictable routes, and home time that works because your loads stay in our coverage area — not scattered across 48 states."
   />
   <section class="section">
     <div class="wrap split">
-      <LaneMap />
       <div>
-        <h2>Regional routes with real density</h2>
-        <p>Dense Midwest freight helps dispatch build weeks with strong miles and more predictable weekend planning than random coast-to-coast freight.</p>
+        <p class="eyebrow">Now Hiring From</p>
+        <h2>13 Midwest States</h2>
         <div class="route-list">
-          <a href="/jobs/cdl-a-driver-plainfield-il/">Plainfield, IL</a>
-          <a href="/jobs/cdl-a-driver-kansas-city-mo/">Kansas City, MO</a>
+          <a href="/jobs/cdl-a-driver-plainfield-il/">Illinois</a>
+          <a href="/jobs/cdl-a-driver-milwaukee-wi/">Wisconsin</a>
+          <a href="/jobs/cdl-a-driver-minneapolis-mn/">Minnesota</a>
+          <a href="/jobs/">Michigan</a>
+          <a href="/jobs/cdl-a-driver-toledo-oh/">Ohio</a>
+          <a href="/jobs/cdl-a-driver-indianapolis-in/">Indiana</a>
+          <a href="/jobs/cdl-a-driver-des-moines-ia/">Iowa</a>
+          <a href="/jobs/cdl-a-driver-st-louis-mo/">Missouri</a>
+          <a href="/jobs/cdl-a-driver-louisville-ky/">Kentucky</a>
+          <a href="/jobs/cdl-a-driver-kansas-city-ks/">Kansas City, KS</a>
           <a href="/jobs/cdl-a-driver-omaha-ne/">Omaha, NE</a>
-          <a href="/jobs/cdl-a-driver-milwaukee-wi/">Milwaukee, WI</a>
-        </div>
-        <div class="hero-actions">
-          <CtaButton />
-          <a class="button-secondary" href="/jobs/">View all jobs</a>
         </div>
       </div>
+      <aside class="panel">
+        <p class="eyebrow">Coverage Map</p>
+        <h3>Where We Run</h3>
+        <LaneMap />
+        <p>Interactive lane density map — coming soon</p>
+      </aside>
+    </div>
+  </section>
+  <section class="section section--panel">
+    <div class="wrap split">
+      <div>
+        <p class="eyebrow">Why Midwest Matters</p>
+        <h2>Focused Lanes = Better Home Time</h2>
+        <p>Mega carriers run you coast to coast and call it "flexibility." We call it chaos. MNS1 runs the Midwest because focused lanes mean predictable routes, consistent miles, and home time that actually works.</p>
+        <p>When your loads stay in the coverage area, dispatch can plan your home date weeks in advance — not scramble to relay you back from Florida.</p>
+      </div>
+      <aside class="panel">
+        <h3>In Our Coverage Area?</h3>
+        <p>CDL-A, 24+ months experience, based in one of our Midwest hiring areas. Apply in 4 mins.</p>
+        <div class="hero-actions">
+          <CtaButton />
+          <a class="button-secondary" href="tel:6302463280">630-246-3280</a>
+        </div>
+      </aside>
     </div>
   </section>
 </BaseLayout>
