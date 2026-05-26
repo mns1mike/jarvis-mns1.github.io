@@ -1,7 +1,7 @@
 ---
 import CtaButton from "@components/CtaButton.astro";
 import PageHero from "@components/PageHero.astro";
-import { benefitsSummary, driverBenefits, equipmentSummary, jobMarkets, perksSummary, requirementSummary } from "@data/jobs";
+import { benefitsSummary, equipmentSummary, jobMarkets, perksSummary, requirementSummary } from "@data/jobs";
 import BaseLayout from "@layouts/BaseLayout.astro";
 
 export function getStaticPaths() {
@@ -15,34 +15,42 @@ const { market } = Astro.props;
 ---
 
 <BaseLayout title={market.title} description={market.description}>
-  <PageHero eyebrow="CDL-A Driver Jobs" title={`CDL-A Driver Jobs in ${market.city}, ${market.state}`} lead={market.headline}>
+  <PageHero eyebrow={`CDL-A Driver Jobs in ${market.city}, ${market.state}`} title={market.headline} lead={market.description}>
     <div class="hero-actions">
       <CtaButton />
       <a class="button-secondary" href="/requirements/">View requirements</a>
     </div>
+    <aside class="hero-snapshot" aria-label="Job snapshot">
+      <p class="eyebrow">Job Snapshot</p>
+      <article><strong>$1,650-$1,900+</strong><span>Top 25% drivers average $1,650-$1,900+ gross per week</span></article>
+      <article><strong>2,500-3,000</strong><span>Miles per week</span></article>
+      <article><strong>Weekends</strong><span>Home time</span></article>
+    </aside>
   </PageHero>
 
   <section class="section">
-    <div class="wrap split">
-      <div>
-        <p>{market.description}</p>
-        <h2>Job Snapshot</h2>
-        <ul class="check-list">
-          {driverBenefits.map((benefit) => <li>{benefit}</li>)}
-        </ul>
-        <h2>2023 or newer Freightliners</h2>
+    <div class="wrap grid grid--cards">
+      <article class="card">
+        <h2>Equipment</h2>
         <p>{equipmentSummary}</p>
+      </article>
+      <article class="card">
         <h2>Benefits</h2>
         <p>{benefitsSummary}</p>
+      </article>
+      <article class="card">
         <h2>Driver Perks</h2>
         <p>{perksSummary}</p>
-      </div>
-      <aside class="panel">
-        <h3>Requirements</h3>
-        <ul class="check-list">
-          {requirementSummary.map((item) => <li>{item}</li>)}
-        </ul>
-      </aside>
+      </article>
+    </div>
+  </section>
+
+  <section class="section section--panel">
+    <div class="wrap panel">
+      <h2>Requirements</h2>
+      <ul class="check-list">
+        {requirementSummary.map((item) => <li>{item}</li>)}
+      </ul>
     </div>
   </section>
 </BaseLayout>
