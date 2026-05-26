@@ -7,19 +7,19 @@ import { site } from "@data/site";
   <div class="footer__inner">
     <div>
       <img src={site.logoPath} alt="MNS1 Express" />
-      <p><strong>{site.tagline}</strong></p>
-      <p>
+      <p class="footer__tagline">{site.tagline}</p>
+      <p class="footer__address">
         MNS1 Express Inc.<br />
         {site.addressLines[0]}<br />
         {site.addressLines[1]}<br />
-        <a href={site.phoneHref}>{site.phoneDisplay}</a> · <a href={`mailto:${site.email}`}>{site.email}</a>
+        <a href={site.phoneHref}>{site.phoneDisplay}</a> <span aria-hidden="true">·</span> <a href={`mailto:${site.email}`}>{site.email}</a>
       </p>
     </div>
     {Object.entries(footerNav).map(([heading, links]) => (
-      <div>
+      <nav aria-label={`${heading} footer links`}>
         <strong>{heading}</strong>
         {links.map((link) => <a href={link.href}>{link.label}</a>)}
-      </div>
+      </nav>
     ))}
   </div>
 </footer>
@@ -33,35 +33,63 @@ import { site } from "@data/site";
 
   .footer__inner {
     display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr;
-    gap: 28px;
+    grid-template-columns: 1.4fr repeat(3, 1fr);
+    gap: 40px;
     width: min(100% - 48px, var(--site-max));
     margin: 0 auto;
-    padding: 42px 0;
+    padding: 64px 0;
   }
 
   img {
-    height: 46px;
+    height: 48px;
     width: auto;
+  }
+
+  .footer__tagline,
+  strong {
+    display: block;
+    margin: 14px 0;
+    color: #fff;
+    text-transform: uppercase;
+  }
+
+  .footer__tagline {
+    font: italic 800 18px/1 var(--font-display);
+    letter-spacing: 0.04em;
+  }
+
+  .footer__address {
+    margin: 0;
+    color: var(--color-dim);
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  strong {
+    font: 800 12px/1 var(--font-body);
+    letter-spacing: 0.14em;
   }
 
   a {
     display: block;
-    margin: 8px 0;
+    margin-top: 10px;
     color: var(--color-muted);
     text-decoration: none;
   }
 
-  a[href^="tel:"],
-  a[href^="mailto:"] {
+  .footer__address a {
     display: inline;
+    margin-top: 0;
     color: var(--color-blue);
+    font-weight: 700;
   }
 
   @media (max-width: 768px) {
     .footer__inner {
       grid-template-columns: 1fr;
+      gap: 30px;
       width: min(100% - 36px, var(--site-max));
+      padding: 52px 0 32px;
     }
   }
 </style>
