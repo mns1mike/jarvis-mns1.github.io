@@ -1130,6 +1130,17 @@ tr:last-child td {
     padding: 56px 0 44px;
   }
 
+  .display-title {
+    max-width: 100%;
+    font-size: clamp(30px, 9vw, 42px);
+    overflow-wrap: anywhere;
+  }
+
+  .lead {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+
   .grid--cards {
     grid-template-columns: 1fr;
   }
