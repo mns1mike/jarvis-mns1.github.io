@@ -51,7 +51,6 @@ select:focus-visible {
   background:
     radial-gradient(ellipse at 82% 20%, rgba(0, 153, 215, 0.14), transparent 42%),
     linear-gradient(180deg, rgba(11, 16, 32, 0.72), rgba(11, 16, 32, 0.98)),
-    var(--page-hero-image, url("/images/site/mns1-terminal-hero.jpg")) center 44% / cover,
     url("/images/site/mns1-terminal-hero.jpg") center 44% / cover;
 }
 
@@ -78,7 +77,6 @@ select:focus-visible {
   background:
     radial-gradient(ellipse at 80% 50%, rgba(11, 16, 32, 0.85) 0%, transparent 60%),
     linear-gradient(180deg, rgba(11, 16, 32, 0.5) 0%, rgba(11, 16, 32, 0.25) 30%, rgba(11, 16, 32, 0.88) 85%, #0b1020 100%),
-    var(--hero-image, url("/images/site/mns1-terminal-hero.jpg")) center 48% / cover,
     url("/images/site/mns1-terminal-hero.jpg") center 48% / cover;
   border-bottom: 1px solid var(--color-line);
 }
