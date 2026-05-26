@@ -13,11 +13,41 @@ import PageHero from "@components/PageHero.astro";
     lead="Founded in 2011 with a single truck in Chicagoland. Today: 180+ trucks, 11 Midwest states, and a Plainfield HQ — still family-owned, still driver-first."
   />
   <section class="section">
-    <div class="wrap stat-grid">
-      <article><strong>2011</strong><span>Founded</span></article>
-      <article><strong>180+</strong><span>Trucks today</span></article>
-      <article><strong>500</strong><span>Target fleet size</span></article>
-      <article><strong>11</strong><span>Midwest states</span></article>
+    <div class="wrap stat-grid stat-grid--icons">
+      <article style="text-align:center">
+        <svg aria-hidden="true" viewBox="0 0 24 24" style="display:block;width:22px;height:22px;margin:0 auto 12px;color:var(--color-blue);fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round">
+          <path d="M8 2v4" />
+          <path d="M16 2v4" />
+          <rect width="18" height="18" x="3" y="4" rx="2" />
+          <path d="M3 10h18" />
+        </svg>
+        <strong>2011</strong><span>Founded</span>
+      </article>
+      <article style="text-align:center">
+        <svg aria-hidden="true" viewBox="0 0 24 24" style="display:block;width:22px;height:22px;margin:0 auto 12px;color:var(--color-blue);fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round">
+          <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2" />
+          <path d="M15 18H9" />
+          <path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 17.52 8H14" />
+          <circle cx="17" cy="18" r="2" />
+          <circle cx="7" cy="18" r="2" />
+        </svg>
+        <strong>180+</strong><span>Trucks today</span>
+      </article>
+      <article style="text-align:center">
+        <svg aria-hidden="true" viewBox="0 0 24 24" style="display:block;width:22px;height:22px;margin:0 auto 12px;color:var(--color-blue);fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round">
+          <circle cx="12" cy="12" r="10" />
+          <circle cx="12" cy="12" r="6" />
+          <circle cx="12" cy="12" r="2" />
+        </svg>
+        <strong>500</strong><span>Target fleet size</span>
+      </article>
+      <article style="text-align:center">
+        <svg aria-hidden="true" viewBox="0 0 24 24" style="display:block;width:22px;height:22px;margin:0 auto 12px;color:var(--color-blue);fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round">
+          <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
+          <circle cx="12" cy="10" r="3" />
+        </svg>
+        <strong>11</strong><span>Midwest states</span>
+      </article>
     </div>
   </section>
   <section class="section section--panel">
