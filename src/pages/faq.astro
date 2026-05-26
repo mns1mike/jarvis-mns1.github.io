@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
+import CtaButton from "@components/CtaButton.astro";
 import PageHero from "@components/PageHero.astro";
 
 const questions = [
@@ -49,12 +50,11 @@ const questions = [
     lead="Everything drivers ask before applying — pay, home time, equipment, policies. No fluff, no dodging. Real answers."
     centered
   />
-  <section class="section">
+  <section class="section" style="padding-top: 0">
     <div class="wrap faq-list">
-      {questions.map((item, index) => (
+      {questions.map((item) => (
         <details class="faq-card panel">
           <summary>
-            <span>{String(index + 1).padStart(2, "0")}</span>
             <h2>{item.question}</h2>
           </summary>
           <p>{item.answer}</p>
@@ -66,7 +66,10 @@ const questions = [
     <div class="wrap panel">
       <h2>Still Have Questions?</h2>
       <p>Reach recruiting directly. Real person, real answers. Or apply and they'll reach out within 24 hours.</p>
-      <p><a class="text-link" href="tel:6302463280">630-246-3280</a></p>
+      <div class="hero-actions">
+        <CtaButton />
+        <a class="button-secondary" href="tel:6302463280">630-246-3280</a>
+      </div>
     </div>
   </section>
 </BaseLayout>

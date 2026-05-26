@@ -1077,7 +1077,8 @@ tr:last-child td {
 .faq-card summary {
   display: flex;
   align-items: center;
-  gap: 20px;
+  justify-content: space-between;
+  gap: 16px;
   min-height: 78px;
   padding: 24px 26px;
   cursor: pointer;
@@ -1088,18 +1089,12 @@ tr:last-child td {
   display: none;
 }
 
-.faq-card summary > span {
-  min-width: 38px;
-  color: var(--color-line-2, #34407a);
-  font: italic 900 20px/1 var(--font-display);
-  letter-spacing: 0.02em;
-}
-
 .faq-card summary h2 {
   margin: 0;
   flex: 1;
   color: #fff;
-  font: 800 clamp(17px, 1.6vw, 21px)/1.35 var(--font-body);
+  font: italic 800 clamp(18px, 1.8vw, 24px)/1.22 var(--font-display);
+  text-transform: uppercase;
 }
 
 .faq-card summary::after {
@@ -1108,26 +1103,20 @@ tr:last-child td {
   height: 34px;
   flex: 0 0 auto;
   place-items: center;
-  border: 1px solid var(--color-surface-strong);
-  border-radius: var(--radius-control);
-  color: var(--color-muted);
+  color: var(--color-blue);
   content: "⌄";
-  transition: transform 220ms cubic-bezier(0.2, 0.7, 0.2, 1), border-color 220ms, color 220ms;
+  font-size: 22px;
+  transition: transform 220ms cubic-bezier(0.2, 0.7, 0.2, 1), color 220ms;
 }
 
 .faq-card[open] summary::after {
   transform: rotate(180deg);
-  border-color: var(--color-blue);
   color: #fff;
-}
-
-.faq-card[open] summary > span {
-  color: var(--color-blue);
 }
 
 .faq-card > p {
   margin: 0;
-  padding: 0 80px 26px 84px;
+  padding: 0 70px 26px 26px;
   color: var(--color-muted);
   line-height: 1.6;
 }
