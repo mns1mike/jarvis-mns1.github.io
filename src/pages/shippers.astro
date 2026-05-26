@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
+import CtaButton from "@components/CtaButton.astro";
 import PageHero from "@components/PageHero.astro";
 ---
 
@@ -11,7 +12,7 @@ import PageHero from "@components/PageHero.astro";
     lead="MNS1 Express provides reliable dry van capacity across 16 Midwest states. Asset-based, company-owned fleet — no brokered trucks, no surprises."
   >
     <div class="hero-actions">
-      <a class="button-secondary" href="/contact/">Request a Quote</a>
+      <CtaButton href="tel:6302463280" label="Request a Quote" />
       <a class="button-secondary" href="mailto:info@mns1express.com">Email Us</a>
     </div>
   </PageHero>
