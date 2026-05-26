@@ -25,12 +25,10 @@ const { post } = Astro.props;
         <p>{section.body}</p>
       </section>
     ))}
-    <aside class="panel">
-      <h2>Ask recruiting</h2>
-      <div class="hero-actions">
-        <CtaButton />
-        <a class="button-secondary" href="/blog/">Back to blog</a>
-      </div>
-    </aside>
+    <div class="hero-actions">
+      <CtaButton />
+      <a class="button-secondary" href="/blog/">Back to blog</a>
+      <a class="button-secondary" href="/contact/">Ask recruiting</a>
+    </div>
   </article>
 </BaseLayout>
