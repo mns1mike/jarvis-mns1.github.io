@@ -4,7 +4,21 @@ import CtaButton from "@components/CtaButton.astro";
 import PageHero from "@components/PageHero.astro";
 import { jobMarkets } from "@data/jobs";
 
-const states = Array.from(new Set(jobMarkets.map((market) => market.stateName)));
+const stateOrder = [
+  "Illinois",
+  "Wisconsin",
+  "Minnesota",
+  "Michigan",
+  "Ohio",
+  "Indiana",
+  "Iowa",
+  "Missouri",
+  "Kansas",
+  "Nebraska",
+  "Kentucky",
+];
+const stateSlug = (state: string) => state.toLowerCase().replace(/\s+/g, "-");
+const marketsByState = new Map(stateOrder.map((state) => [state, jobMarkets.filter((market) => market.stateName === state)]));
 ---
 
 <BaseLayout title="CDL-A Regional Driver Jobs | MNS1 Express" description="MNS1 Express hires experienced CDL-A regional drivers for Midwest dry van, no-touch freight.">
@@ -31,20 +45,43 @@ const states = Array.from(new Set(jobMarkets.map((market) => market.stateName)))
       <p>Choose a Midwest hiring state to see the matching local job pages.</p>
     </div>
     <div class="wrap grid grid--cards">
-      {states.map((state) => {
-        const markets = jobMarkets.filter((market) => market.stateName === state);
+      {stateOrder.map((state) => {
+        const markets = marketsByState.get(state) ?? [];
         return (
-          <article class="card link-card">
+          <a class="card link-card" href={`#${stateSlug(state)}`} style="text-decoration: none;">
             <h2>{state}</h2>
             <p>{markets.length} active local {markets.length === 1 ? "page" : "pages"}</p>
-            {markets.map((market) => (
-              <a class="text-link" href={`/jobs/${market.slug}/`}>{market.title.replace(" | MNS1 Express", "")}</a>
-            ))}
-          </article>
+          </a>
         );
       })}
     </div>
   </section>
+  {stateOrder.map((state) => {
+    const markets = marketsByState.get(state) ?? [];
+    return (
+      <section class="section state-section" id={stateSlug(state)}>
+        <div class="wrap section-heading">
+          <p class="eyebrow">{state}</p>
+          <h2>{state} Driver Jobs</h2>
+        </div>
+        <div class="wrap grid grid--cards">
+          {markets.length > 0 ? (
+            markets.map((market) => (
+              <a class="card link-card" href={`/jobs/${market.slug}/`} style="text-decoration: none;">
+                <h2>{market.title.replace(" | MNS1 Express", "")}</h2>
+                <p>Regional Midwest dry van routes, strong weekly pay, and weekend home time.</p>
+              </a>
+            ))
+          ) : (
+            <article class="card">
+              <h2>{state} CDL-A Driver Jobs</h2>
+              <p>MNS1 hires in {state}. Local city pages are being expanded; drivers in this state can apply through recruiting now.</p>
+            </article>
+          )}
+        </div>
+      </section>
+    );
+  })}
   <section class="section">
     <div class="wrap section-heading">
       <p class="eyebrow">Driver Support</p>
