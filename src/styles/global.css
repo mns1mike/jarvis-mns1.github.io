@@ -44,6 +44,33 @@ select:focus-visible {
   background: linear-gradient(180deg, var(--color-surface) 0%, var(--color-canvas) 100%);
 }
 
+.page-hero {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--color-line);
+  background:
+    radial-gradient(ellipse at 82% 20%, rgba(0, 153, 215, 0.14), transparent 42%),
+    linear-gradient(180deg, rgba(11, 16, 32, 0.72), rgba(11, 16, 32, 0.98)),
+    url("/images/site/mns1-terminal-hero.jpg") center 44% / cover;
+}
+
+.page-hero::after {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.026) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.026) 1px, transparent 1px);
+  background-size: 58px 58px;
+  content: "";
+  mask-image: radial-gradient(ellipse at 50% 35%, black 16%, transparent 78%);
+  pointer-events: none;
+}
+
+.page-hero > .wrap {
+  position: relative;
+  z-index: 1;
+}
+
 .hero--image {
   position: relative;
   overflow: hidden;
@@ -98,6 +125,18 @@ select:focus-visible {
   text-transform: uppercase;
 }
 
+.display-title,
+.section-heading h2,
+.split h2,
+.card h2,
+.card h3,
+.panel h2,
+.panel h3 {
+  animation: mns1-write-text 880ms steps(34, end) both;
+  clip-path: inset(0 0 0 0);
+  will-change: clip-path;
+}
+
 .display-title em {
   color: var(--color-blue);
   font-style: inherit;
@@ -142,10 +181,18 @@ select:focus-visible {
 }
 
 .stat-grid article {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   padding: 26px 22px;
   border: 1px solid var(--color-line);
   border-radius: 0;
   background: linear-gradient(180deg, rgba(16, 24, 54, 0.78), rgba(11, 16, 32, 0.92));
+  transition:
+    transform 220ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    border-color 220ms,
+    box-shadow 220ms,
+    filter 220ms;
 }
 
 .stat-grid strong {
@@ -166,7 +213,7 @@ select:focus-visible {
 }
 
 .grid--cards {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
 
 .split .grid--cards {
@@ -175,12 +222,72 @@ select:focus-visible {
 
 .card {
   position: relative;
+  isolation: isolate;
+  overflow: hidden;
   min-height: 210px;
   padding: var(--space-card);
   border: 1px solid var(--color-line);
   border-radius: var(--radius-card);
   background: linear-gradient(180deg, rgba(16, 24, 54, 0.88), rgba(11, 16, 32, 0.94));
   box-shadow: 0 20px 60px -42px rgba(0, 0, 0, 0.9);
+  transition:
+    transform 220ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    border-color 220ms,
+    box-shadow 220ms,
+    background 220ms,
+    filter 220ms;
+}
+
+.card::before,
+.panel::before,
+.stat-grid article::before,
+.route-list a::before {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  background:
+    linear-gradient(135deg, rgba(0, 153, 215, 0.12), transparent 38%),
+    radial-gradient(circle at 90% 10%, rgba(47, 208, 131, 0.1), transparent 26%);
+  content: "";
+  opacity: 0.68;
+  pointer-events: none;
+}
+
+.card::after,
+.panel::after,
+.stat-grid article::after,
+.route-list a::after {
+  position: absolute;
+  right: 18px;
+  bottom: 0;
+  left: 18px;
+  z-index: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-blue), rgba(47, 208, 131, 0.72), transparent);
+  content: "";
+  opacity: 0.72;
+  pointer-events: none;
+}
+
+.card > *,
+.panel > *,
+.stat-grid article > *,
+.route-list a {
+  position: relative;
+  z-index: 1;
+}
+
+.card:hover,
+.panel:hover,
+.stat-grid article:hover,
+.route-list a:hover {
+  transform: translateY(-5px);
+  border-color: rgba(0, 153, 215, 0.86);
+  box-shadow:
+    0 32px 74px -34px rgba(0, 153, 215, 0.9),
+    0 0 0 1px rgba(255, 255, 255, 0.08) inset;
+  filter: brightness(1.05);
 }
 
 .card h2,
@@ -242,6 +349,9 @@ select:focus-visible {
 
 .quick-panel,
 .panel {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   padding: 26px;
   border: 1px solid var(--color-line);
   border-radius: var(--radius-panel);
@@ -344,6 +454,12 @@ select:focus-visible {
   font: 800 15px/1 var(--font-body);
   letter-spacing: 0.02em;
   text-transform: uppercase;
+  transition: transform 180ms cubic-bezier(0.2, 0.7, 0.2, 1), filter 180ms;
+}
+
+.quick-form button:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
 }
 
 .quick-panel__proof,
@@ -495,6 +611,13 @@ select:focus-visible {
   color: var(--color-muted);
   font-size: 12px;
   font-weight: 800;
+  transition: transform 180ms cubic-bezier(0.2, 0.7, 0.2, 1), border-color 180ms, background 180ms;
+}
+
+.home-lane-card__grid span:hover {
+  transform: translateY(-3px);
+  border-color: rgba(0, 153, 215, 0.8);
+  background: rgba(0, 153, 215, 0.2);
 }
 
 .map-panel__caption {
@@ -514,11 +637,109 @@ select:focus-visible {
 }
 
 .route-list a {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   padding: 12px;
   border: 1px solid var(--color-line);
   border-radius: 6px;
   color: var(--color-muted);
   text-decoration: none;
+}
+
+.reviews-section {
+  overflow: hidden;
+}
+
+.review-rail {
+  position: relative;
+  width: min(100% - 48px, var(--site-max));
+  margin-inline: auto;
+  overflow: hidden;
+  padding: 8px 0 18px;
+}
+
+.review-rail::before,
+.review-rail::after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+  width: 120px;
+  content: "";
+  pointer-events: none;
+}
+
+.review-rail::before {
+  left: 0;
+  background: linear-gradient(90deg, var(--color-surface), transparent);
+}
+
+.review-rail::after {
+  right: 0;
+  background: linear-gradient(270deg, var(--color-surface), transparent);
+}
+
+.review-track {
+  display: flex;
+  width: max-content;
+  gap: 18px;
+  animation: mns1-review-roll 58s linear infinite;
+}
+
+.review-track:hover {
+  animation-play-state: paused;
+}
+
+.review-card {
+  width: clamp(300px, 31vw, 410px);
+  min-height: 230px;
+  flex: 0 0 auto;
+}
+
+table {
+  overflow: hidden;
+  width: 100%;
+  border: 1px solid var(--color-line);
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: var(--radius-card);
+  background: linear-gradient(180deg, rgba(23, 33, 74, 0.78), rgba(11, 16, 32, 0.92));
+  box-shadow: 0 24px 60px -32px rgba(0, 0, 0, 0.85);
+}
+
+th,
+td {
+  padding: 15px 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  color: var(--color-muted);
+  text-align: left;
+}
+
+th {
+  background: rgba(11, 16, 32, 0.5);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+tbody tr {
+  transition: transform 220ms cubic-bezier(0.2, 0.7, 0.2, 1), background 220ms, box-shadow 220ms, filter 220ms;
+}
+
+tbody tr:hover {
+  transform: translateX(6px);
+  background: linear-gradient(135deg, rgba(0, 153, 215, 0.16), rgba(16, 24, 54, 0.94));
+  box-shadow:
+    0 20px 46px -24px rgba(0, 153, 215, 0.95),
+    0 0 0 1px rgba(255, 255, 255, 0.08) inset;
+  filter: brightness(1.05);
+}
+
+tr:last-child td {
+  border-bottom: 0;
 }
 
 .article,
@@ -571,5 +792,45 @@ select:focus-visible {
 
   .route-list {
     grid-template-columns: 1fr;
+  }
+
+  .review-rail {
+    width: min(100% - 36px, var(--site-max));
+  }
+
+  .review-rail::before,
+  .review-rail::after {
+    width: 42px;
+  }
+}
+
+@keyframes mns1-review-roll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(calc(-50% - 27px), 0, 0);
+  }
+}
+
+@keyframes mns1-write-text {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
   }
 }
