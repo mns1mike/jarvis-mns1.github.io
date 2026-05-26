@@ -157,9 +157,14 @@ select:focus-visible {
   will-change: clip-path;
 }
 
-.display-title em {
+.display-title em,
+.display-title span {
   color: var(--color-blue);
   font-style: inherit;
+}
+
+.page-hero .display-title span {
+  display: block;
 }
 
 .lead {

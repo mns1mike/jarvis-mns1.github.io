@@ -3,15 +3,30 @@ type Props = {
   eyebrow: string;
   title: string;
   lead: string;
+  accent?: string;
 };
 
-const { eyebrow, title, lead } = Astro.props;
+const { eyebrow, title, lead, accent } = Astro.props;
+const accentIndex = accent ? title.indexOf(accent) : -1;
+const beforeAccent = accentIndex >= 0 ? title.slice(0, accentIndex).trimEnd() : title;
+const afterAccent = accentIndex >= 0 ? title.slice(accentIndex + accent.length).trimStart() : "";
 ---
 
 <section class="hero page-hero">
   <div class="wrap">
     <p class="eyebrow">{eyebrow}</p>
-    <h1 class="display-title">{title}</h1>
+    <h1 class="display-title">
+      {accentIndex >= 0 ? (
+        <>
+          {beforeAccent}
+          {beforeAccent && " "}
+          <span>{accent}</span>
+          {afterAccent && <> {afterAccent}</>}
+        </>
+      ) : (
+        title
+      )}
+    </h1>
     <p class="lead">{lead}</p>
     <slot />
   </div>
