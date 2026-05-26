@@ -7,22 +7,20 @@ import { blogPosts } from "@data/blog";
 <BaseLayout title="MNS1 Express Blog" description="CDL-A driver and Midwest trucking guides from MNS1 Express.">
   <PageHero
     eyebrow="MNS1 Express Blog"
-    title="Driver guides"
-    lead="Practical CDL-A driver guides on pay, routes, equipment, home time, orientation, and choosing a Midwest trucking company."
+    title="Driver Guides"
+    lead="Short, practical articles for experienced drivers comparing pay, home time, equipment, lanes, and carrier fit."
   />
   <section class="section">
     <div class="wrap section-heading">
-      <p class="eyebrow">Driver resources</p>
-      <h2>Latest Articles</h2>
+      <h2 style="font-size:44px;margin-bottom:24px">Latest Articles</h2>
     </div>
     <div class="wrap grid grid--cards">
       {blogPosts.map((post) => (
-        <article class="card link-card">
+        <a class="card link-card" href={`/blog/${post.slug}/`}>
           <p class="eyebrow">{post.category}</p>
           <h2>{post.title}</h2>
           <p>{post.description}</p>
-          <a class="text-link" href={`/blog/${post.slug}/`}>Read guide</a>
-        </article>
+        </a>
       ))}
     </div>
   </section>
