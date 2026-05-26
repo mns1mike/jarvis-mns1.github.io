@@ -11,25 +11,67 @@ const { href = site.applyUrl, label = "Apply in 4 mins", class: className = "" }
 ---
 
 <a class={`cta-button ${className}`} href={href}>
-  <span>{label}</span>
+  <span>{label}</span><span aria-hidden="true">-></span>
 </a>
 
 <style>
   .cta-button {
+    position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
+    isolation: isolate;
     min-width: var(--header-cta-width);
     min-height: var(--header-cta-height);
     padding: 9px 14px;
-    border: 1px solid transparent;
-    border-radius: var(--radius-control);
-    background: var(--color-cta);
-    box-shadow: var(--shadow-blue);
+    gap: 10px;
+    border: 1px solid rgba(102, 212, 242, 0.95);
+    border-radius: 3px;
+    background: linear-gradient(135deg, #0099d7 0%, #007fbc 54%, #00689a 100%);
+    box-shadow:
+      0 12px 30px -10px rgba(0, 153, 215, 0.95),
+      0 0 0 1px rgba(255, 255, 255, 0.18) inset,
+      0 0 30px -13px rgba(47, 208, 131, 0.86);
     color: #fff;
     font: 700 13px/1 var(--font-body);
     letter-spacing: 0.02em;
     text-decoration: none;
     white-space: nowrap;
+    transition: transform 180ms cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 180ms, filter 180ms;
+  }
+
+  .cta-button::before {
+    position: absolute;
+    inset: -2px;
+    z-index: 0;
+    border-radius: inherit;
+    padding: 2px;
+    background: conic-gradient(
+      from 0deg,
+      rgba(0, 153, 215, 0),
+      rgba(0, 153, 215, 1),
+      rgba(102, 212, 242, 1),
+      rgba(47, 208, 131, 1),
+      rgba(0, 153, 215, 0)
+    );
+    content: "";
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    pointer-events: none;
+    animation: mns1-quick-glow-spin 4.8s linear infinite;
+  }
+
+  .cta-button > span {
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-button:hover {
+    transform: translateY(-1px);
+    box-shadow:
+      0 18px 38px -12px rgba(0, 153, 215, 1),
+      0 0 0 1px rgba(255, 255, 255, 0.2) inset,
+      0 0 36px -12px rgba(47, 208, 131, 0.92);
   }
 </style>

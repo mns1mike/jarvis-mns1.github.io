@@ -7,7 +7,7 @@ import CtaButton from "@components/CtaButton.astro";
   title="MNS1 Express — Top Pay. Real Respect. CDL-A Driver Jobs Midwest"
   description="CDL-A regional driver jobs with MNS1 Express. Top drivers average $1,650-$1,900+ weekly. 2023+ Freightliners. Home every weekend. Midwest dry van freight."
 >
-  <section class="hero hero--image">
+  <section class="hero hero--image" style='--hero-image: url("images/site/mns1-terminal-hero.jpg")'>
     <div class="wrap hero-grid">
       <div>
         <p class="eyebrow">Always forward. · Hiring CDL-A across 11 states</p>
@@ -28,37 +28,42 @@ import CtaButton from "@components/CtaButton.astro";
         </div>
       </div>
       <div class="quick-panel">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
         <p class="eyebrow">4-Minute Quick Apply</p>
         <h2>See what you'd earn</h2>
         <p>A recruiter calls back within 15 minutes. Real person — no bots, no robocalls.</p>
         <form class="quick-form" action="https://intelliapp.driverapponline.com/c/mns1express?r=CompanyWebsite" method="get">
           <label>
             <span>First name</span>
-            <input type="text" name="first_name" autocomplete="given-name" />
+            <input type="text" name="first_name" autocomplete="given-name" placeholder="First name" />
           </label>
           <label>
             <span>Mobile phone</span>
-            <input type="tel" name="phone" autocomplete="tel" />
+            <input type="tel" name="phone" autocomplete="tel" placeholder="Mobile phone" />
           </label>
           <label>
             <span>Email optional</span>
-            <input type="email" name="email" autocomplete="email" />
+            <input type="email" name="email" autocomplete="email" placeholder="Email (optional)" />
           </label>
           <div class="quick-form__row">
             <label>
               <span>ZIP</span>
-              <input type="text" name="zip" autocomplete="postal-code" />
+              <input type="text" name="zip" autocomplete="postal-code" placeholder="ZIP" />
             </label>
             <label>
               <span>Experience</span>
               <select name="experience">
+                <option value="" selected>CDL-A experience</option>
                 <option>2+ years CDL-A</option>
                 <option>1-2 years CDL-A</option>
                 <option>New CDL-A</option>
               </select>
             </label>
           </div>
-          <button type="submit">Start quick apply</button>
+          <button type="submit">Get my match -></button>
         </form>
         <div class="quick-panel__proof">
           <span>CDL-A experience</span>

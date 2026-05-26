@@ -3,15 +3,42 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import PageHero from "@components/PageHero.astro";
 
 const questions = [
-  "How much does MNS1 pay?",
-  "How does home time work?",
-  "What trucks do you run?",
-  "What's the pet policy?",
-  "Can I bring a rider?",
-  "What happens at orientation?",
-  "Are there inward-facing cameras?",
-  "Is dispatch forced?",
-  "How long does the application take?",
+  {
+    question: "How much does MNS1 pay?",
+    answer: "Top drivers average $1,650-$1,900+ gross per week. Pay is built from miles, per diem structure, and accessorials like detention, stop pay, layover, and breakdown pay when applicable.",
+  },
+  {
+    question: "How does home time work?",
+    answer: "You choose the rhythm at orientation: 1, 2, or 3 weeks out. Dispatch plans around your designated Saturday so you can get a full 34-hour reset.",
+  },
+  {
+    question: "What trucks do you run?",
+    answer: "Every truck in the fleet is a 2023 or newer Freightliner Cascadia with automatic transmission, eAPU, inverter, refrigerator, microwave, Bluetooth, and double bunk sleeper.",
+  },
+  {
+    question: "What's the pet policy?",
+    answer: "Pets are allowed with a $500 non-refundable deposit. No breed restrictions and no weight limits.",
+  },
+  {
+    question: "Can I bring a rider?",
+    answer: "Yes. Spouse or partner ride-along is approved on day one. Passengers must be 18 or older.",
+  },
+  {
+    question: "What happens at orientation?",
+    answer: "Orientation is two days at the Plainfield, IL terminal. Bring your CDL, current DOT medical card, Social Security card, and voided check for direct deposit.",
+  },
+  {
+    question: "Are there inward-facing cameras?",
+    answer: "No. Dash cameras face outward for road protection. There is no inward-facing lens watching the cab.",
+  },
+  {
+    question: "Is dispatch forced?",
+    answer: "Dispatch works the Midwest lanes MNS1 knows and plans around your home-time choice. You get consistent dry van freight without surprise southeast or coast-to-coast dispatch.",
+  },
+  {
+    question: "How long does the application take?",
+    answer: "The quick apply takes about 4 minutes. A real recruiter follows up directly; no bots and no robocalls.",
+  },
 ];
 ---
 
@@ -23,8 +50,14 @@ const questions = [
   />
   <section class="section">
     <div class="wrap faq-list">
-      {questions.map((question) => (
-        <article class="panel"><h2>{question}</h2></article>
+      {questions.map((item, index) => (
+        <details class="faq-card panel">
+          <summary>
+            <span>{String(index + 1).padStart(2, "0")}</span>
+            <h2>{item.question}</h2>
+          </summary>
+          <p>{item.answer}</p>
+        </details>
       ))}
     </div>
   </section>
