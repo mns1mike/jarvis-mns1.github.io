@@ -2,9 +2,12 @@
 import BaseLayout from "@layouts/BaseLayout.astro";
 import CtaButton from "@components/CtaButton.astro";
 import PageHero from "@components/PageHero.astro";
+import { site } from "@data/site";
 
 const checkIcon =
   "display:block;width:20px;height:20px;margin-bottom:14px;color:var(--color-blue);fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round";
+const rowIcon =
+  "display:block;width:18px;height:18px;color:var(--color-blue);fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0";
 
 const requirements = [
   ["Age", "25 years or older"],
@@ -13,6 +16,24 @@ const requirements = [
   ["Job History", "Max 4 jobs in the last 12 months"],
   ["Criminal/DUI", "No DUI or felonies in the last 5 years"],
   ["SAP Program", "No SAP (Substance Abuse Professional) history"],
+];
+
+const documents = [
+  "Valid Class A CDL",
+  "Current DOT Medical Card",
+  "Social Security Card",
+  "Voided Check (for direct deposit)",
+];
+
+const selfCheckItems = [
+  "I'm 25 years old or older",
+  "I have 24+ months of Class A CDL experience",
+  "I have a current DOT physical",
+  "I've had 4 or fewer jobs in the last 12 months",
+  "No DUI or felony convictions in 5 years",
+  "No SAP history",
+  "Clean-ish MVR (see details above)",
+  "I live in one of MNS1's Midwest hiring areas",
 ];
 ---
 
@@ -57,42 +78,53 @@ const requirements = [
     </div>
   </section>
   <section class="section section--panel">
-    <div class="wrap split">
-      <div>
+    <div class="wrap">
+      <div class="section-heading">
         <p class="eyebrow">Bring to Orientation</p>
         <h2>Required Documents</h2>
         <p>Have these ready for your 2-day orientation in Plainfield, IL:</p>
-        <ul class="check-list">
-          <li>Valid Class A CDL</li>
-          <li>Current DOT Medical Card</li>
-          <li>Social Security Card</li>
-          <li>Voided Check (for direct deposit)</li>
-        </ul>
       </div>
-      <aside class="panel">
-        <p class="eyebrow">Quick Self-Check</p>
-        <h3>Not Sure If You Qualify?</h3>
-        <p>If you can answer "yes" to all of these, you're good to apply:</p>
-        <ul class="check-list">
-          <li>I'm 25 years old or older</li>
-          <li>I have 24+ months of Class A CDL experience</li>
-          <li>I have a current DOT physical</li>
-          <li>I've had 4 or fewer jobs in the last 12 months</li>
-          <li>No DUI or felony convictions in 5 years</li>
-          <li>No SAP history</li>
-          <li>Clean-ish MVR (see details above)</li>
-          <li>I live in one of MNS1's Midwest hiring areas</li>
-        </ul>
-      </aside>
+      <div class="requirement-cards">
+        {documents.map((document) => (
+          <article class="card requirement-card">
+            <svg aria-hidden="true" viewBox="0 0 24 24" style={checkIcon}>
+              <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+              <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+              <path d="M10 9H8" />
+              <path d="M16 13H8" />
+              <path d="M16 17H8" />
+            </svg>
+            <h3>{document}</h3>
+          </article>
+        ))}
+      </div>
     </div>
   </section>
   <section class="section">
-    <div class="wrap panel">
+    <div class="wrap section-heading" style="max-width:640px">
+      <p class="eyebrow">Quick Self-Check</p>
+      <h2>Not Sure If You Qualify?</h2>
+      <p>If you can answer "yes" to all of these, you're good to apply:</p>
+      <div style="display:flex;flex-direction:column;gap:14px;margin-top:24px">
+        {selfCheckItems.map((item) => (
+          <div style="display:flex;align-items:center;gap:12px;color:var(--color-muted);font:600 15px/1.5 var(--font-body)">
+            <svg aria-hidden="true" viewBox="0 0 24 24" style={rowIcon}>
+              <path d="M21.8 10A10 10 0 1 1 17 3.3" />
+              <path d="m9 11 3 3L22 4" />
+            </svg>
+            <span>{item}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+  <section class="section section--panel">
+    <div class="wrap panel" style="max-width:640px;text-align:center">
       <h2>Meet the Requirements?</h2>
       <p>The application takes about 4 minutes. A recruiter will review your info and reach out within 24 hours.</p>
-      <div class="hero-actions">
+      <div class="hero-actions" style="justify-content:center">
         <CtaButton />
-        <a class="button-secondary" href="tel:6302463280">630-246-3280</a>
+        <a class="button-secondary" href={site.phoneHref}>{site.phoneDisplay}</a>
       </div>
     </div>
   </section>
