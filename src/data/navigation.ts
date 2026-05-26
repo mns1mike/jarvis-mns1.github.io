@@ -17,6 +17,11 @@ export const footerNav = {
     { label: "Requirements", href: "/requirements/" },
     { label: "Equipment", href: "/equipment/" },
     { label: "Home time", href: "/home-time/" },
+    { label: "Routes", href: "/lanes/" },
+  ],
+  Shippers: [
+    { label: "Services", href: "/shippers/" },
+    { label: "Lanes & coverage", href: "/lanes/" },
   ],
   Company: [
     { label: "About", href: "/about/" },
@@ -25,9 +30,5 @@ export const footerNav = {
     { label: "Privacy", href: "/privacy/" },
     { label: "Terms", href: "/terms/" },
     { label: "Accessibility", href: "/accessibility/" },
-  ],
-  Shippers: [
-    { label: "Services", href: "/shippers/" },
-    { label: "Lanes & coverage", href: "/lanes/" },
   ],
 };

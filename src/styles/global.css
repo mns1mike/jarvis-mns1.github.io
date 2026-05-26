@@ -346,10 +346,6 @@ select:focus-visible {
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
 
-.split .grid--cards {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
 .card {
   position: relative;
   isolation: isolate;
@@ -370,8 +366,7 @@ select:focus-visible {
 
 .card::before,
 .panel::before,
-.stat-grid article::before,
-.route-list a::before {
+.stat-grid article::before {
   position: absolute;
   inset: 0;
   z-index: 0;
@@ -386,8 +381,7 @@ select:focus-visible {
 
 .card::after,
 .panel::after,
-.stat-grid article::after,
-.route-list a::after {
+.stat-grid article::after {
   position: absolute;
   right: 18px;
   bottom: 0;
@@ -402,16 +396,14 @@ select:focus-visible {
 
 .card > *,
 .panel > *,
-.stat-grid article > *,
-.route-list a {
+.stat-grid article > * {
   position: relative;
   z-index: 1;
 }
 
 .card:hover,
 .panel:hover,
-.stat-grid article:hover,
-.route-list a:hover {
+.stat-grid article:hover {
   transform: translateY(-5px);
   border-color: rgba(0, 153, 215, 0.86);
   box-shadow:
@@ -852,14 +844,6 @@ select:focus-visible {
   margin-top: 18px;
 }
 
-.requirement-card span {
-  display: block;
-  margin-bottom: 10px;
-  color: var(--color-blue);
-  font-size: 11px;
-  font-weight: 900;
-}
-
 .map-frame {
   overflow: hidden;
   border: 0;
@@ -938,24 +922,6 @@ select:focus-visible {
   gap: 16px;
   padding: 14px 4px 0;
   color: var(--color-muted);
-}
-
-.route-list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
-  margin-top: 18px;
-}
-
-.route-list a {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  padding: 12px;
-  border: 1px solid var(--color-line);
-  border-radius: 6px;
-  color: var(--color-muted);
-  text-decoration: none;
 }
 
 .reviews-section {
@@ -1165,8 +1131,7 @@ tr:last-child td {
     grid-template-columns: 1fr;
   }
 
-  .stat-grid,
-  .split .grid--cards {
+  .stat-grid {
     grid-template-columns: 1fr;
   }
 
@@ -1184,10 +1149,6 @@ tr:last-child td {
   }
 
   .quick-form__row {
-    grid-template-columns: 1fr;
-  }
-
-  .route-list {
     grid-template-columns: 1fr;
   }
 
