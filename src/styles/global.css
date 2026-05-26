@@ -1132,13 +1132,29 @@ tr:last-child td {
 
   .display-title {
     max-width: 100%;
-    font-size: clamp(30px, 9vw, 42px);
+    font-size: clamp(28px, 8.2vw, 34px);
+    line-height: 1.08;
+    overflow-wrap: anywhere;
+    word-break: normal;
+  }
+
+  .lead,
+  .lead-small,
+  .split p,
+  .card p,
+  .panel p,
+  .check-list li {
+    max-width: 100%;
     overflow-wrap: anywhere;
   }
 
-  .lead {
-    max-width: 100%;
-    overflow-wrap: anywhere;
+  .card,
+  .panel,
+  .quick-panel,
+  .hero-snapshot,
+  .split > *,
+  .grid > * {
+    min-width: 0;
   }
 
   .grid--cards {
