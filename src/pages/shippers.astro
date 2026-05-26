@@ -2,6 +2,54 @@
 import BaseLayout from "@layouts/BaseLayout.astro";
 import CtaButton from "@components/CtaButton.astro";
 import PageHero from "@components/PageHero.astro";
+import { site } from "@data/site";
+
+const iconStyle =
+  "display:block;width:22px;height:22px;margin-bottom:14px;color:var(--color-blue);fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round";
+const rowIcon =
+  "display:block;width:18px;height:18px;color:var(--color-blue);fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0";
+
+const capabilities = [
+  {
+    title: "Dry Van",
+    description: "53' dry van trailers — Great Dane and Utility. Standard, reliable, well-maintained.",
+    icon: "package",
+  },
+  {
+    title: "No-Touch Freight",
+    description: "Driver stays in the cab. No loading, no unloading. Clean cargo handled by the shipper/receiver.",
+    icon: "shield",
+  },
+  {
+    title: "Asset-Based Fleet",
+    description: "180+ company-owned trucks. No brokered capacity — every load moves on our equipment with our drivers.",
+    icon: "truck",
+  },
+  {
+    title: "16-State Coverage",
+    description: "16-state Midwest coverage — plus Kansas City and Omaha. Dense Midwest network.",
+    icon: "pin",
+  },
+  {
+    title: "On-Time Performance",
+    description: "Consistent lanes, professional drivers, and dispatch that plans ahead. We show up when we say we will.",
+    icon: "clock",
+  },
+  {
+    title: "Since 2011",
+    description: "Family-owned and operated from Plainfield, IL. Built on reputation, not marketing spend.",
+    icon: "building",
+  },
+];
+
+const differentiators = [
+  "Asset-based — no brokered loads, no third-party carriers",
+  "2023+ Freightliner fleet with GPS tracking",
+  "Consistent lane coverage across the Midwest",
+  "Single point of contact for capacity planning",
+  "Family-owned with direct access to operations leadership",
+  "Competitive rates backed by fleet efficiency",
+];
 ---
 
 <BaseLayout title="Midwest Dry Van Trucking & Drop Trailers | MNS1 Express" description="MNS1 Express provides reliable dry van capacity across 16 Midwest states. Asset-based, company-owned fleet — no brokered trucks, no surprises.">
@@ -16,21 +64,68 @@ import PageHero from "@components/PageHero.astro";
       <a class="button-secondary" href="mailto:info@mns1express.com">Email Us</a>
     </div>
   </PageHero>
-  <section class="section">
+  <section class="section section--panel">
     <div class="wrap section-heading">
       <p class="eyebrow">Capabilities</p>
       <h2>What We Haul</h2>
     </div>
     <div class="wrap grid grid--cards">
-      <article class="card"><h2>Dry Van</h2><p>53' dry van trailers — Great Dane and Utility. Standard, reliable, well-maintained.</p></article>
-      <article class="card"><h2>No-Touch Freight</h2><p>Driver stays in the cab. No loading, no unloading. Clean cargo handled by the shipper/receiver.</p></article>
-      <article class="card"><h2>Asset-Based Fleet</h2><p>180+ company-owned trucks. No brokered capacity — every load moves on our equipment with our drivers.</p></article>
-      <article class="card"><h2>16-State Coverage</h2><p>16-state Midwest coverage — plus Kansas City and Omaha. Dense Midwest network.</p></article>
-      <article class="card"><h2>On-Time Performance</h2><p>Consistent lanes, professional drivers, and dispatch that plans ahead. We show up when we say we will.</p></article>
-      <article class="card"><h2>Since 2011</h2><p>Family-owned and operated from Plainfield, IL. Built on reputation, not marketing spend.</p></article>
+      {capabilities.map((capability) => (
+        <article class="card">
+          <svg aria-hidden="true" viewBox="0 0 24 24" style={iconStyle}>
+            {capability.icon === "package" && (
+              <>
+                <path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z" />
+                <path d="M12 22V12" />
+                <polyline points="3.29 7 12 12 20.71 7" />
+                <path d="m7.5 4.27 9 5.15" />
+              </>
+            )}
+            {capability.icon === "shield" && <path d="M20 13c0 5-3.5 7.5-7.7 9a1 1 0 0 1-.6 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.2-2.7a1.2 1.2 0 0 1 1.6 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1z" />}
+            {capability.icon === "truck" && (
+              <>
+                <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2" />
+                <path d="M15 18H9" />
+                <path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 17.52 8H14" />
+                <circle cx="17" cy="18" r="2" />
+                <circle cx="7" cy="18" r="2" />
+              </>
+            )}
+            {capability.icon === "pin" && (
+              <>
+                <path d="M20 10c0 5-5.5 10.2-7.4 11.8a1 1 0 0 1-1.2 0C9.5 20.2 4 15 4 10a8 8 0 0 1 16 0" />
+                <circle cx="12" cy="10" r="3" />
+              </>
+            )}
+            {capability.icon === "clock" && (
+              <>
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </>
+            )}
+            {capability.icon === "building" && (
+              <>
+                <rect width="16" height="20" x="4" y="2" rx="2" />
+                <path d="M9 22v-4h6v4" />
+                <path d="M8 6h.01" />
+                <path d="M16 6h.01" />
+                <path d="M12 6h.01" />
+                <path d="M12 10h.01" />
+                <path d="M12 14h.01" />
+                <path d="M16 10h.01" />
+                <path d="M16 14h.01" />
+                <path d="M8 10h.01" />
+                <path d="M8 14h.01" />
+              </>
+            )}
+          </svg>
+          <h2>{capability.title}</h2>
+          <p>{capability.description}</p>
+        </article>
+      ))}
     </div>
   </section>
-  <section class="section section--panel">
+  <section class="section">
     <div class="wrap stat-grid">
       <article><strong>180+</strong><span>Company trucks</span></article>
       <article><strong>400+</strong><span>Dry van trailers</span></article>
@@ -38,32 +133,38 @@ import PageHero from "@components/PageHero.astro";
       <article><strong>2011</strong><span>Established</span></article>
     </div>
   </section>
-  <section class="section">
-    <div class="wrap split">
-      <div>
-        <p class="eyebrow">Why MNS1</p>
-        <h2>What Sets Us Apart</h2>
-        <ul class="check-list">
-          <li>Asset-based — no brokered loads, no third-party carriers</li>
-          <li>2023+ Freightliner fleet with GPS tracking</li>
-          <li>Consistent lane coverage across the Midwest</li>
-          <li>Single point of contact for capacity planning</li>
-          <li>Family-owned with direct access to operations leadership</li>
-          <li>Competitive rates backed by fleet efficiency</li>
-        </ul>
+  <section class="section section--panel">
+    <div class="wrap section-heading" style="max-width:640px">
+      <p class="eyebrow">Why MNS1</p>
+      <h2>What Sets Us Apart</h2>
+      <div style="display:flex;flex-direction:column;gap:16px;margin-top:24px">
+        {differentiators.map((item) => (
+          <div style="display:flex;align-items:center;gap:12px;color:var(--color-muted);font:600 15px/1.5 var(--font-body)">
+            <svg aria-hidden="true" viewBox="0 0 24 24" style={rowIcon}>
+              <path d="M21.8 10A10 10 0 1 1 17 3.3" />
+              <path d="m9 11 3 3L22 4" />
+            </svg>
+            <span>{item}</span>
+          </div>
+        ))}
       </div>
-      <aside class="panel">
-        <p class="eyebrow">Coverage Area</p>
-        <h3>Dense Midwest Network</h3>
-        <p>Our fleet operates across 16 Midwest states, with extensions into Kansas City and Omaha. Focused coverage means consistent capacity where you need it.</p>
-      </aside>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap section-heading" style="max-width:640px">
+      <p class="eyebrow">Coverage Area</p>
+      <h2>Dense Midwest Network</h2>
+      <p>Our fleet operates across 16 Midwest states, with extensions into Kansas City and Omaha. Focused coverage means consistent capacity where you need it.</p>
     </div>
   </section>
   <section class="section section--panel">
-    <div class="wrap panel">
+    <div class="wrap panel" style="max-width:640px;text-align:center">
       <h2>Need Midwest Capacity?</h2>
       <p>Contact us for rates and availability. Direct line to our freight team — no call center, no runaround.</p>
-      <p><a class="text-link" href="mailto:info@mns1express.com">Email for Rates</a></p>
+      <div class="hero-actions" style="justify-content:center">
+        <CtaButton href={site.phoneHref} label={site.phoneDisplay} />
+        <a class="button-secondary" href={`mailto:${site.email}`}>Email for Rates</a>
+      </div>
     </div>
   </section>
 </BaseLayout>
