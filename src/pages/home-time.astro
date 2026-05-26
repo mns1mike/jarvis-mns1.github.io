@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
+import CtaButton from "@components/CtaButton.astro";
 import PageHero from "@components/PageHero.astro";
 ---
 
@@ -9,7 +10,11 @@ import PageHero from "@components/PageHero.astro";
     title="Home When We Say You'll Be Home"
     accent="You'll Be Home"
     lead="Every carrier promises home time. We actually deliver it. Choose 1, 2, or 3 weeks out — home on your designated Saturday for a full 34-hour reset."
-  />
+  >
+    <div class="hero-actions">
+      <CtaButton />
+    </div>
+  </PageHero>
   <section class="section">
     <div class="wrap section-heading">
       <p class="eyebrow">Flexible Schedules</p>
