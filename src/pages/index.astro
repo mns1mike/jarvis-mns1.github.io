@@ -11,7 +11,7 @@ import CtaButton from "@components/CtaButton.astro";
     <div class="wrap hero-grid">
       <div>
         <p class="eyebrow">Always forward. · Hiring CDL-A across 11 states</p>
-        <h1 class="display-title">Top pay. Real respect. A truck you'll be proud to drive.</h1>
+        <h1 class="display-title">Top pay.<br /><span>Real respect.</span><br /><em>A truck you'll be proud to drive.</em></h1>
         <p class="lead">
           Earn up to $1,650-$1,900/wk running the Midwest in a 2023 or newer Freightliner Cascadia.
           Weekly direct deposit, consistent miles, planned loads, and a dispatcher who calls you by name.
@@ -21,21 +21,50 @@ import CtaButton from "@components/CtaButton.astro";
           <CtaButton />
           <a class="button-secondary" href="tel:6302463280">Call 630-246-3280</a>
         </div>
-        <ul class="check-list hero-checks">
-          <li>Top drivers $1,650-$1,900/wk</li>
-          <li>2023+ Freightliners</li>
-          <li>Home weekly · consistent miles</li>
-        </ul>
+        <div class="trust-row" aria-label="Driver highlights">
+          <span>Top drivers $1,650-$1,900/wk</span>
+          <span>2023+ Freightliners</span>
+          <span>Home weekly · consistent miles</span>
+        </div>
       </div>
       <div class="quick-panel">
         <p class="eyebrow">4-Minute Quick Apply</p>
         <h2>See what you'd earn</h2>
         <p>A recruiter calls back within 15 minutes. Real person — no bots, no robocalls.</p>
-        <ul class="check-list">
-          <li>CDL-A experience</li>
-          <li>SSL encrypted</li>
-          <li>We never sell your info</li>
-        </ul>
+        <form class="quick-form" action="https://intelliapp.driverapponline.com/c/mns1express?r=CompanyWebsite" method="get">
+          <label>
+            <span>First name</span>
+            <input type="text" name="first_name" autocomplete="given-name" />
+          </label>
+          <label>
+            <span>Mobile phone</span>
+            <input type="tel" name="phone" autocomplete="tel" />
+          </label>
+          <label>
+            <span>Email optional</span>
+            <input type="email" name="email" autocomplete="email" />
+          </label>
+          <div class="quick-form__row">
+            <label>
+              <span>ZIP</span>
+              <input type="text" name="zip" autocomplete="postal-code" />
+            </label>
+            <label>
+              <span>Experience</span>
+              <select name="experience">
+                <option>2+ years CDL-A</option>
+                <option>1-2 years CDL-A</option>
+                <option>New CDL-A</option>
+              </select>
+            </label>
+          </div>
+          <button type="submit">Start quick apply</button>
+        </form>
+        <div class="quick-panel__proof">
+          <span>CDL-A experience</span>
+          <span>SSL encrypted</span>
+          <span>We never sell your info</span>
+        </div>
       </div>
     </div>
   </section>
@@ -60,25 +89,25 @@ import CtaButton from "@components/CtaButton.astro";
         <p class="eyebrow">01</p>
         <h2>Freedom on the road</h2>
         <p>Consistent miles, planned loads. Your dispatcher knows your name and works with your schedule — not against it.</p>
-        <p><strong>24/7</strong> dispatch that picks up</p>
+        <p class="card-stat"><strong>24/7</strong> dispatch that picks up</p>
       </article>
       <article class="card">
         <p class="eyebrow">02</p>
         <h2>Earn what you're worth</h2>
         <p>Top drivers $1,650-$1,900/wk, paid weekly. Detention, stop, layover — every accessorial is published, not promised.</p>
-        <p><strong>$0.68</strong> top driver weekly gross</p>
+        <p class="card-stat"><strong>$0.68</strong> top driver mile rate</p>
       </article>
       <article class="card">
         <p class="eyebrow">03</p>
         <h2>Trucks built for the long haul</h2>
         <p>2023 or newer Freightliner Cascadias. eAPU, double bunk, inverter, fridge — standard on every truck.</p>
-        <p><strong>2023+</strong> Freightliner Cascadia</p>
+        <p class="card-stat"><strong>2023+</strong> Freightliner Cascadia</p>
       </article>
       <article class="card">
         <p class="eyebrow">04</p>
         <h2>Home time, your way</h2>
         <p>Weekly, bi-weekly, or hometown lanes — talk to dispatch and we'll build the rotation around your life.</p>
-        <p><strong>Weekly</strong> home for most drivers</p>
+        <p class="card-stat"><strong>Weekly</strong> home for most drivers</p>
       </article>
     </div>
   </section>
@@ -124,12 +153,20 @@ import CtaButton from "@components/CtaButton.astro";
         <p>Our lanes run through 16 states from our Plainfield, IL headquarters. We run the corridors we know, the shippers we trust, and the lanes that get drivers home.</p>
         <p><strong>Plainfield, IL — HQ</strong><br />14458 S Depot Dr · Shop · Orientation · Dispatch</p>
       </div>
-      <aside class="panel">
-        <h3>Lane coverage</h3>
-        <p><strong>16 states active</strong></p>
-        <p>Hire & Run</p>
-        <p>Run only</p>
-        <a class="text-link" href="/lanes/">View lanes & coverage</a>
+      <aside class="panel map-panel">
+        <div class="home-lane-card" aria-label="Midwest lane coverage">
+          <span>Plainfield, IL</span>
+          <strong>Midwest backbone</strong>
+          <div class="home-lane-card__grid">
+            <span>IL</span><span>WI</span><span>IA</span><span>IN</span>
+            <span>MN</span><span>MO</span><span>OH</span><span>KY</span>
+            <span>NE</span><span>KS</span><span>MI</span><span>TN</span>
+          </div>
+        </div>
+        <div class="map-panel__caption">
+          <strong>16 states active</strong>
+          <a class="text-link" href="/lanes/">View lanes & coverage</a>
+        </div>
       </aside>
     </div>
   </section>
