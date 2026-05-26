@@ -15,7 +15,8 @@ function rewrite(content) {
   return content
     .replaceAll('href="/', `href="${base}/`)
     .replaceAll('src="/', `src="${base}/`)
-    .replaceAll('url("/', `url("${base}/`);
+    .replaceAll('url("/', `url("${base}/`)
+    .replaceAll("url(/", `url(${base}/`);
 }
 
 const targets = collectFiles(distDir).filter((file) => /\.(html|css)$/.test(file));
@@ -29,7 +30,7 @@ const badReferences = [];
 for (const file of targets) {
   const content = readFileSync(file, "utf8");
   const path = relative(distDir, file);
-  const matches = content.match(/(?:href|src)="\/(?:_astro|images|about|accessibility|apply|blog|contact|data-deletion|equipment|faq|home-time|jobs|lanes|pay|privacy|requirements|robots\.txt|shippers|sitemap\.xml|terms)(?:\/|")|url\("\/(?:images|_astro)\//g);
+  const matches = content.match(/(?:href|src)="\/(?:_astro|images|about|accessibility|apply|blog|contact|data-deletion|equipment|faq|home-time|jobs|lanes|pay|privacy|requirements|robots\.txt|shippers|sitemap\.xml|terms)(?:\/|")|url\("?\/(?:images|_astro)\//g);
   if (matches) {
     badReferences.push(`${path}: ${matches.join(", ")}`);
   }
