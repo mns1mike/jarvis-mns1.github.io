@@ -51,6 +51,7 @@ select:focus-visible {
   background:
     radial-gradient(ellipse at 82% 20%, rgba(0, 153, 215, 0.14), transparent 42%),
     linear-gradient(180deg, rgba(11, 16, 32, 0.72), rgba(11, 16, 32, 0.98)),
+    var(--page-hero-image, url("/images/site/mns1-terminal-hero.jpg")) center 44% / cover,
     url("/images/site/mns1-terminal-hero.jpg") center 44% / cover;
 }
 
@@ -77,6 +78,7 @@ select:focus-visible {
   background:
     radial-gradient(ellipse at 80% 50%, rgba(11, 16, 32, 0.85) 0%, transparent 60%),
     linear-gradient(180deg, rgba(11, 16, 32, 0.5) 0%, rgba(11, 16, 32, 0.25) 30%, rgba(11, 16, 32, 0.88) 85%, #0b1020 100%),
+    var(--hero-image, url("/images/site/mns1-terminal-hero.jpg")) center 48% / cover,
     url("/images/site/mns1-terminal-hero.jpg") center 48% / cover;
   border-bottom: 1px solid var(--color-line);
 }
@@ -197,14 +199,18 @@ select:focus-visible {
 
 .stat-grid strong {
   display: block;
-  color: #fff;
-  font: 900 30px/1 var(--font-display);
+  color: var(--color-blue);
+  font: italic 900 clamp(46px, 4.5vw, 68px)/0.88 var(--font-display);
 }
 
 .stat-grid span {
   display: block;
-  margin-top: 8px;
+  margin-top: 12px;
   color: var(--color-muted);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 .grid {
@@ -360,6 +366,8 @@ select:focus-visible {
 
 .quick-panel {
   position: relative;
+  overflow: hidden;
+  isolation: isolate;
   border-color: rgba(0, 153, 215, 0.35);
   background: linear-gradient(180deg, rgba(23, 33, 74, 0.92) 0%, rgba(16, 24, 54, 0.96) 100%);
   box-shadow:
@@ -368,9 +376,62 @@ select:focus-visible {
     0 0 40px -12px rgba(0, 153, 215, 0.35);
 }
 
-.quick-panel::before,
+.quick-panel::before {
+  position: absolute;
+  inset: -60%;
+  z-index: 0;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 104deg,
+    rgba(0, 153, 215, 0.98) 132deg,
+    rgba(102, 212, 242, 1) 150deg,
+    rgba(47, 208, 131, 0.98) 172deg,
+    transparent 210deg,
+    transparent 360deg
+  );
+  content: "";
+  filter: blur(5px) saturate(1.18) brightness(1.2);
+  pointer-events: none;
+  animation: mns1-quick-glow-spin 5.8s linear infinite;
+}
+
 .quick-panel::after {
   position: absolute;
+  inset: 1px;
+  z-index: 1;
+  border-radius: 7px;
+  background:
+    linear-gradient(180deg, rgba(23, 33, 74, 0.94) 0%, rgba(16, 24, 54, 0.98) 100%),
+    #101836;
+  content: "";
+  pointer-events: none;
+}
+
+.quick-panel > * {
+  position: relative;
+  z-index: 2;
+}
+
+.quick-panel .eyebrow::before {
+  content: "⚡ ";
+}
+
+.quick-panel .eyebrow {
+  margin-bottom: 4px;
+}
+
+.quick-panel .eyebrow,
+.quick-form input,
+.quick-form select,
+.quick-form button {
+  position: relative;
+  z-index: 3;
+}
+
+.quick-panel > span {
+  position: absolute;
+  z-index: 3;
   width: 14px;
   height: 14px;
   border-color: var(--color-blue);
@@ -379,13 +440,25 @@ select:focus-visible {
   pointer-events: none;
 }
 
-.quick-panel::before {
+.quick-panel > span:nth-of-type(1) {
   top: 10px;
   left: 10px;
   border-width: 1.5px 0 0 1.5px;
 }
 
-.quick-panel::after {
+.quick-panel > span:nth-of-type(2) {
+  top: 10px;
+  right: 10px;
+  border-width: 1.5px 1.5px 0 0;
+}
+
+.quick-panel > span:nth-of-type(3) {
+  bottom: 10px;
+  left: 10px;
+  border-width: 0 0 1.5px 1.5px;
+}
+
+.quick-panel > span:nth-of-type(4) {
   right: 10px;
   bottom: 10px;
   border-width: 0 1.5px 1.5px 0;
@@ -415,15 +488,16 @@ select:focus-visible {
 }
 
 .quick-form label {
-  display: grid;
-  gap: 6px;
+  display: block;
 }
 
 .quick-form label span {
-  color: var(--color-dim);
-  font-size: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
 }
 
 .quick-form input,
@@ -434,7 +508,12 @@ select:focus-visible {
   background: rgba(11, 16, 32, 0.6);
   color: #fff;
   font: 15px/1.2 var(--font-body);
-  padding: 12px 14px;
+  padding: 13px 14px;
+}
+
+.quick-form input::placeholder {
+  color: var(--color-dim);
+  opacity: 1;
 }
 
 .quick-form__row {
@@ -447,8 +526,8 @@ select:focus-visible {
   min-height: 48px;
   border: 0;
   border-radius: var(--radius-control);
-  background: var(--color-blue);
-  box-shadow: var(--shadow-blue);
+  background: #414d8e;
+  box-shadow: none;
   color: #fff;
   cursor: pointer;
   font: 800 15px/1 var(--font-body);
@@ -460,6 +539,54 @@ select:focus-visible {
 .quick-form button:hover {
   transform: translateY(-2px);
   filter: brightness(1.08);
+}
+
+.contact-form {
+  display: grid;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.contact-form label {
+  display: block;
+}
+
+.contact-form label span {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-control);
+  background: rgba(11, 16, 32, 0.6);
+  color: #fff;
+  font: 15px/1.35 var(--font-body);
+  padding: 13px 14px;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: var(--color-dim);
+  opacity: 1;
+}
+
+.contact-form button {
+  min-height: 48px;
+  border: 0;
+  border-radius: var(--radius-control);
+  background: var(--color-blue);
+  color: #fff;
+  cursor: pointer;
+  font: 800 15px/1 var(--font-body);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
 }
 
 .quick-panel__proof,
@@ -475,7 +602,8 @@ select:focus-visible {
 .quick-panel__proof {
   margin-top: 16px;
   color: var(--color-dim);
-  font-size: 12px;
+  justify-content: center;
+  font-size: 11px;
 }
 
 .trust-row {
@@ -759,6 +887,68 @@ tr:last-child td {
   gap: 16px;
 }
 
+.faq-card {
+  padding: 0;
+}
+
+.faq-card summary {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  min-height: 78px;
+  padding: 24px 26px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.faq-card summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-card summary > span {
+  min-width: 38px;
+  color: var(--color-line-2, #34407a);
+  font: italic 900 20px/1 var(--font-display);
+  letter-spacing: 0.02em;
+}
+
+.faq-card summary h2 {
+  margin: 0;
+  flex: 1;
+  color: #fff;
+  font: 800 clamp(17px, 1.6vw, 21px)/1.35 var(--font-body);
+}
+
+.faq-card summary::after {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid var(--color-surface-strong);
+  border-radius: var(--radius-control);
+  color: var(--color-muted);
+  content: "⌄";
+  transition: transform 220ms cubic-bezier(0.2, 0.7, 0.2, 1), border-color 220ms, color 220ms;
+}
+
+.faq-card[open] summary::after {
+  transform: rotate(180deg);
+  border-color: var(--color-blue);
+  color: #fff;
+}
+
+.faq-card[open] summary > span {
+  color: var(--color-blue);
+}
+
+.faq-card > p {
+  margin: 0;
+  padding: 0 80px 26px 84px;
+  color: var(--color-muted);
+  line-height: 1.6;
+}
+
 .muted {
   color: var(--color-dim);
 }
@@ -821,6 +1011,12 @@ tr:last-child td {
 
   to {
     clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes mns1-quick-glow-spin {
+  to {
+    transform: rotate(1turn);
   }
 }
 

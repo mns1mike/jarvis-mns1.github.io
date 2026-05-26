@@ -6,9 +6,10 @@ type Props = {
 };
 
 const { eyebrow, title, lead } = Astro.props;
+const imagePath = Astro.url.pathname === "/" ? "images/site/mns1-terminal-hero.jpg" : "../images/site/mns1-terminal-hero.jpg";
 ---
 
-<section class="hero page-hero">
+<section class="hero page-hero" style={`--page-hero-image: url("${imagePath}")`}>
   <div class="wrap">
     <p class="eyebrow">{eyebrow}</p>
     <h1 class="display-title">{title}</h1>

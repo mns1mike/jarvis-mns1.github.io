@@ -24,11 +24,13 @@ import { site } from "@data/site";
       <aside class="panel">
         <p class="eyebrow">Send a Message</p>
         <h3>Contact Form</h3>
-        <p>Name</p>
-        <p>Email</p>
-        <p>Phone</p>
-        <p>Message</p>
-        <p>Send Message</p>
+        <form class="contact-form" action={`mailto:${site.email}`} method="post" enctype="text/plain">
+          <label><span>Name</span><input type="text" name="name" placeholder="Name" /></label>
+          <label><span>Email</span><input type="email" name="email" placeholder="Email" /></label>
+          <label><span>Phone</span><input type="tel" name="phone" placeholder="Phone" /></label>
+          <label><span>Message</span><textarea name="message" rows="5" placeholder="Message"></textarea></label>
+          <button type="submit">Send message</button>
+        </form>
       </aside>
     </div>
   </section>
