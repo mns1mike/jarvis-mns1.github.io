@@ -151,9 +151,8 @@ select:focus-visible {
 .card h3,
 .panel h2,
 .panel h3 {
-  animation: mns1-write-text 880ms steps(34, end) both;
-  clip-path: inset(0 0 0 0);
-  will-change: clip-path;
+  animation: mns1-write-text 520ms ease-out both;
+  will-change: opacity, transform;
 }
 
 .display-title em,
@@ -1118,11 +1117,13 @@ tr:last-child td {
 
 @keyframes mns1-write-text {
   from {
-    clip-path: inset(0 100% 0 0);
+    opacity: 0;
+    transform: translateY(6px);
   }
 
   to {
-    clip-path: inset(0 0 0 0);
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
