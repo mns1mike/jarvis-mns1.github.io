@@ -2,6 +2,59 @@
 import BaseLayout from "@layouts/BaseLayout.astro";
 import CtaButton from "@components/CtaButton.astro";
 import PageHero from "@components/PageHero.astro";
+import { site } from "@data/site";
+
+const payComponents = [
+  {
+    title: "Weekly Miles",
+    description:
+      "Regional drivers run hard Monday through Friday/Saturday on Midwest dry van freight with strong mileage expectations.",
+  },
+  {
+    title: "Base + Per Diem",
+    description: "The current pay package includes a per diem structure.",
+  },
+  {
+    title: "Accessorial Pay",
+    description: "Stop pay, detention, layover, and breakdown pay are available when applicable.",
+  },
+  {
+    title: "Bonus Opportunities",
+    description: "Referral, safety, performance, and clean inspection bonus opportunities available.",
+  },
+];
+
+const benefitGroups = [
+  {
+    title: "Personal Benefits",
+    items: [
+      "Medical, dental, and vision insurance",
+      "Company-paid life insurance",
+      "Supplemental insurance options",
+      "Paid time off and paid holidays",
+      "401(k) with company match",
+      "Employee Assistance Program",
+    ],
+  },
+  {
+    title: "Operational Benefits",
+    items: [
+      "Fuel cards",
+      "Cash advances",
+      "EFS checks",
+      "Pet and passenger program",
+      "24/7 dispatch support",
+      "Roadside assistance",
+    ],
+  },
+];
+
+const terminalPerks = [
+  "Driver lounge with bathrooms and showers",
+  "Laundry machines, TV, ice, and vending",
+  "On-site maintenance",
+  "Courtesy car access for drivers routed through the terminal",
+];
 ---
 
 <BaseLayout title="CDL-A Driver Pay | MNS1 Express" description="Top drivers average $1,650-$1,900+ gross per week running 2,500-3,000 miles across Midwest regional lanes.">
@@ -13,7 +66,12 @@ import PageHero from "@components/PageHero.astro";
   >
     <div class="hero-actions">
       <CtaButton />
-      <a class="button-secondary" href="tel:6302463280">630-246-3280</a>
+      <a class="button-secondary" href={site.phoneHref}>
+        <svg aria-hidden="true" viewBox="0 0 24 24" style="width:18px;height:18px;margin-right:8px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.18 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.72c.1.95.34 1.88.7 2.81a2 2 0 0 1-.45 2.11L8.1 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.93.36 1.86.6 2.81.7A2 2 0 0 1 22 16.92z" />
+        </svg>
+        {site.phoneDisplay}
+      </a>
     </div>
     <aside class="hero-snapshot" aria-label="Pay snapshot">
       <p class="eyebrow">Pay Snapshot</p>
@@ -22,30 +80,45 @@ import PageHero from "@components/PageHero.astro";
       <article><strong>Paid weekly</strong><span>Consistent direct pay</span></article>
     </aside>
   </PageHero>
-  <section class="section section--panel">
+  <section class="section">
     <div class="wrap">
       <div class="section-heading">
         <p class="eyebrow">What Builds the Check</p>
         <h2>Pay Components</h2>
       </div>
       <div class="grid grid--cards">
-        <article class="card"><h2>Weekly Miles</h2><p>Regional drivers run hard Monday through Friday/Saturday on Midwest dry van freight with strong mileage expectations.</p></article>
-        <article class="card"><h2>Base + Per Diem</h2><p>The current pay package includes a per diem structure.</p></article>
-        <article class="card"><h2>Accessorial Pay</h2><p>Stop pay, detention, layover, and breakdown pay are available when applicable.</p></article>
-        <article class="card"><h2>Bonus Opportunities</h2><p>Referral, safety, performance, and clean inspection bonus opportunities available.</p></article>
+        {payComponents.map((component) => (
+          <article class="card">
+            <h2>{component.title}</h2>
+            <p>{component.description}</p>
+          </article>
+        ))}
       </div>
     </div>
   </section>
   <section class="section">
-    <div class="wrap section-heading">
-      <p class="eyebrow">Driver Support</p>
-      <h2>Benefits That Support the Pay</h2>
-      <p>A stronger paycheck matters more when the rest of the job is built to support the driver. We separate the personal benefit package from the operational support that keeps the week moving.</p>
-    </div>
-    <div class="wrap grid grid--cards">
-      <article class="card"><h2>Personal Benefits</h2><ul class="check-list"><li>Medical, dental, and vision insurance</li><li>Company-paid life insurance</li><li>Supplemental insurance options</li><li>Paid time off and paid holidays</li><li>401(k) with company match</li><li>Employee Assistance Program</li></ul></article>
-      <article class="card"><h2>Operational Benefits</h2><ul class="check-list"><li>Fuel cards</li><li>Cash advances</li><li>EFS checks</li><li>Pet and passenger program</li><li>24/7 dispatch support</li><li>Roadside assistance</li></ul></article>
-      <article class="card"><h2>Plainfield Terminal Perks</h2><ul class="check-list"><li>Driver lounge with bathrooms and showers</li><li>Laundry machines, TV, ice, and vending</li><li>On-site maintenance</li><li>Courtesy car access for drivers routed through the terminal</li></ul></article>
+    <div class="wrap">
+      <div class="section-heading">
+        <p class="eyebrow">Driver Support</p>
+        <h2>Benefits That Support the Pay</h2>
+        <p>A stronger paycheck matters more when the rest of the job is built to support the driver. We separate the personal benefit package from the operational support that keeps the week moving.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-top:24px">
+        {benefitGroups.map((group) => (
+          <article class="card">
+            <h2>{group.title}</h2>
+            <ul class="check-list">
+              {group.items.map((item) => <li>{item}</li>)}
+            </ul>
+          </article>
+        ))}
+      </div>
+      <article class="card" style="margin-top:18px">
+        <h2>Plainfield Terminal Perks</h2>
+        <ul class="check-list">
+          {terminalPerks.map((item) => <li>{item}</li>)}
+        </ul>
+      </article>
     </div>
   </section>
 </BaseLayout>
