@@ -35,6 +35,7 @@ const socialImageUrl = new URL("/images/site/mns1-terminal-hero.jpg", site.url).
     <meta name="twitter:image" content={socialImageUrl} />
     <link rel="preload" as="image" href="/images/site/mns1-terminal-hero.jpg" fetchpriority="high" />
     <link rel="icon" href="/images/logo/mns1-logo-transparent.png" />
+    <slot name="head" />
     <script
       type="application/ld+json"
       set:html={JSON.stringify({
