@@ -50,8 +50,7 @@ select:focus-visible {
   border-bottom: 1px solid var(--color-line);
   background:
     radial-gradient(ellipse at 82% 20%, rgba(0, 153, 215, 0.14), transparent 42%),
-    linear-gradient(180deg, rgba(11, 16, 32, 0.72), rgba(11, 16, 32, 0.98)),
-    url("/images/site/mns1-terminal-hero.jpg") center 44% / cover;
+    linear-gradient(180deg, rgba(16, 24, 54, 0.94), rgba(11, 16, 32, 1));
 }
 
 .page-hero::after {
@@ -74,17 +73,25 @@ select:focus-visible {
 .hero--image {
   position: relative;
   overflow: hidden;
-  background:
-    radial-gradient(ellipse at 80% 50%, rgba(11, 16, 32, 0.85) 0%, transparent 60%),
-    linear-gradient(180deg, rgba(11, 16, 32, 0.5) 0%, rgba(11, 16, 32, 0.25) 30%, rgba(11, 16, 32, 0.88) 85%, #0b1020 100%),
-    url("/images/site/mns1-terminal-hero.jpg") center 48% / cover;
+  background: #0b1020;
   border-bottom: 1px solid var(--color-line);
+}
+
+.hero--image::before {
+  position: absolute;
+  inset: 0;
+  background: url("/images/site/mns1-terminal-hero.jpg") center 48% / cover;
+  content: "";
+  opacity: 0.42;
+  pointer-events: none;
 }
 
 .hero--image::after {
   position: absolute;
   inset: 0;
-  background-image:
+  background:
+    radial-gradient(ellipse at 80% 50%, rgba(11, 16, 32, 0.85) 0%, transparent 60%),
+    linear-gradient(180deg, rgba(11, 16, 32, 0.5) 0%, rgba(11, 16, 32, 0.25) 30%, rgba(11, 16, 32, 0.88) 85%, #0b1020 100%),
     linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
   background-size: 64px 64px;
@@ -96,6 +103,19 @@ select:focus-visible {
 .hero--image > .wrap {
   position: relative;
   z-index: 1;
+}
+
+.hero--image .hero-grid > div:first-child > .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 28px;
+  padding: 6px 14px 6px 10px;
+  border: 1px solid rgba(0, 153, 215, 0.35);
+  border-radius: 999px;
+  background: rgba(0, 153, 215, 0.12);
+  color: var(--color-muted);
+  letter-spacing: 0.14em;
 }
 
 .hero-grid {
@@ -118,7 +138,7 @@ select:focus-visible {
   margin: 0;
   max-width: 820px;
   font-family: var(--font-display);
-  font-size: clamp(44px, 6vw, 86px);
+  font-size: clamp(36px, 4.6vw, 72px);
   font-style: italic;
   font-weight: 900;
   line-height: 1.02;
@@ -146,8 +166,8 @@ select:focus-visible {
   max-width: 580px;
   margin: 30px 0 0;
   color: var(--color-muted);
-  font-size: 18px;
-  line-height: 1.65;
+  font-size: clamp(16px, 1.35vw, 19px);
+  line-height: 1.6;
 }
 
 .section {
@@ -160,6 +180,52 @@ select:focus-visible {
 
 .section--panel .stat-grid {
   transform: translateY(-1px);
+}
+
+.home-stat-strip {
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+  border-top: 1px solid var(--color-line);
+  border-bottom: 1px solid var(--color-line);
+}
+
+.home-stat-strip::before {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(90deg, transparent 0%, rgba(0, 153, 215, 0.04) 50%, transparent 100%);
+  content: "";
+  pointer-events: none;
+}
+
+.home-stat-strip .stat-grid {
+  position: relative;
+  gap: 20px;
+  padding: 52px 0;
+}
+
+.home-stat-strip .stat-grid article {
+  min-height: auto;
+  padding: 0 0 0 24px;
+  border: 0;
+  border-left: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.home-stat-strip .stat-grid article:first-child {
+  padding-left: 0;
+  border-left: 0;
+}
+
+.home-stat-strip .stat-grid article::before,
+.home-stat-strip .stat-grid article::after {
+  display: none;
+}
+
+.home-stat-strip .stat-grid strong {
+  font-size: clamp(44px, 4.5vw, 68px);
 }
 
 .section-heading {
@@ -338,6 +404,13 @@ select:focus-visible {
   margin-top: 32px;
 }
 
+.hero--image .hero-actions .cta-button,
+.hero--image .hero-actions .button-secondary {
+  min-height: 52px;
+  padding: 16px 26px;
+  font-size: 17px;
+}
+
 .button-secondary {
   display: inline-flex;
   align-items: center;
@@ -506,7 +579,44 @@ select:focus-visible {
   background: rgba(11, 16, 32, 0.6);
   color: #fff;
   font: 15px/1.2 var(--font-body);
-  padding: 13px 14px;
+  padding: 13px 14px 13px 42px;
+}
+
+.quick-form label {
+  position: relative;
+}
+
+.quick-form label::before {
+  position: absolute;
+  top: 50%;
+  left: 14px;
+  z-index: 4;
+  width: 16px;
+  height: 16px;
+  color: var(--color-dim);
+  font-size: 16px;
+  line-height: 1;
+  transform: translateY(-50%);
+}
+
+.quick-form label:nth-child(1)::before {
+  content: "○";
+}
+
+.quick-form label:nth-child(2)::before {
+  content: "☎";
+}
+
+.quick-form label:nth-child(3)::before {
+  content: "✉";
+}
+
+.quick-form__row label:nth-child(1)::before {
+  content: "⌖";
+}
+
+.quick-form__row label:nth-child(2)::before {
+  content: "♙";
 }
 
 .quick-form input::placeholder {
