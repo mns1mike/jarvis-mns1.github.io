@@ -15,7 +15,13 @@ const { page } = Astro.props;
   {page.sections.map((section) => (
     <section>
       {section.heading && <h2>{section.heading}</h2>}
-      {section.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+      {section.paragraphs.map((paragraph) => (
+        <p>
+          {Array.isArray(paragraph)
+            ? paragraph.map((part) => (typeof part === "string" ? part : <a href={part.href}>{part.text}</a>))
+            : paragraph}
+        </p>
+      ))}
     </section>
   ))}
   <a class="text-link" href="/">Back to MNS1 Express</a>

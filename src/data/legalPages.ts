@@ -5,7 +5,7 @@ export type LegalPage = {
   updated: string;
   sections: Array<{
     heading?: string;
-    paragraphs: string[];
+    paragraphs: Array<string | Array<string | { text: string; href: string }>>;
   }>;
 };
 
@@ -43,12 +43,24 @@ export const legalPages: LegalPage[] = [
       {
         heading: "Data deletion",
         paragraphs: [
-          "You may request deletion of data associated with MNS1 Express website forms or Meta-connected business tools by following the instructions on our Data Deletion Instructions page.",
+          [
+            "You may request deletion of data associated with MNS1 Express website forms or Meta-connected business tools by following the instructions on our ",
+            { text: "Data Deletion Instructions", href: "/data-deletion/" },
+            " page.",
+          ],
         ],
       },
       {
         heading: "Contact",
-        paragraphs: ["Questions can be sent to info@mns1express.com or by calling 630-246-3280."],
+        paragraphs: [
+          [
+            "Questions can be sent to ",
+            { text: "info@mns1express.com", href: "mailto:info@mns1express.com" },
+            " or by calling ",
+            { text: "630-246-3280", href: "tel:6302463280" },
+            ".",
+          ],
+        ],
       },
     ],
   },
@@ -77,7 +89,15 @@ export const legalPages: LegalPage[] = [
       },
       {
         heading: "Contact",
-        paragraphs: ["For current details, call 630-246-3280 or email info@mns1express.com."],
+        paragraphs: [
+          [
+            "For current details, call ",
+            { text: "630-246-3280", href: "tel:6302463280" },
+            " or email ",
+            { text: "info@mns1express.com", href: "mailto:info@mns1express.com" },
+            ".",
+          ],
+        ],
       },
     ],
   },
@@ -95,7 +115,13 @@ export const legalPages: LegalPage[] = [
       {
         heading: "Need help?",
         paragraphs: [
-          "If any page, form, or document is difficult to use, contact us and we will help directly. Call 630-246-3280 or email info@mns1express.com.",
+          [
+            "If any page, form, or document is difficult to use, contact us and we will help directly. Call ",
+            { text: "630-246-3280", href: "tel:6302463280" },
+            " or email ",
+            { text: "info@mns1express.com", href: "mailto:info@mns1express.com" },
+            ".",
+          ],
         ],
       },
     ],
@@ -114,7 +140,11 @@ export const legalPages: LegalPage[] = [
       {
         heading: "How to request deletion",
         paragraphs: [
-          'Email privacy@mns1express.com with the subject line "Data deletion request." Include your name, preferred contact method, and a short description of the data you want deleted, such as a driver inquiry, shipper inquiry, website contact form submission, or Facebook/Instagram advertising interaction.',
+          [
+            "Email ",
+            { text: "privacy@mns1express.com", href: "mailto:privacy@mns1express.com" },
+            ' with the subject line "Data deletion request." Include your name, preferred contact method, and a short description of the data you want deleted, such as a driver inquiry, shipper inquiry, website contact form submission, or Facebook/Instagram advertising interaction.',
+          ],
         ],
       },
       {
@@ -137,7 +167,15 @@ export const legalPages: LegalPage[] = [
       },
       {
         heading: "Contact",
-        paragraphs: ["Questions about this process can be sent to privacy@mns1express.com or info@mns1express.com."],
+        paragraphs: [
+          [
+            "Questions about this process can be sent to ",
+            { text: "privacy@mns1express.com", href: "mailto:privacy@mns1express.com" },
+            " or ",
+            { text: "info@mns1express.com", href: "mailto:info@mns1express.com" },
+            ".",
+          ],
+        ],
       },
     ],
   },
