@@ -2,6 +2,18 @@
 import BaseLayout from "@layouts/BaseLayout.astro";
 import CtaButton from "@components/CtaButton.astro";
 import PageHero from "@components/PageHero.astro";
+
+const checkIcon =
+  "display:block;width:20px;height:20px;margin-bottom:14px;color:var(--color-blue);fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round";
+
+const requirements = [
+  ["Age", "25 years or older"],
+  ["CDL Experience", "24 months Class A CDL required"],
+  ["Medical", "Current DOT physical card"],
+  ["Job History", "Max 4 jobs in the last 12 months"],
+  ["Criminal/DUI", "No DUI or felonies in the last 5 years"],
+  ["SAP Program", "No SAP (Substance Abuse Professional) history"],
+];
 ---
 
 <BaseLayout title="CDL-A Driver Requirements | MNS1 Express" description="No hidden disqualifiers. No wasted time. Here are the exact requirements to drive for MNS1 Express.">
@@ -15,29 +27,33 @@ import PageHero from "@components/PageHero.astro";
     </div>
   </PageHero>
   <section class="section">
-    <div class="wrap split">
-      <div>
-        <p class="eyebrow">Core Requirements</p>
-        <h2>The Basics</h2>
-        <div class="requirement-cards">
-          <article class="card requirement-card"><span>01</span><h3>Age</h3><p>25 years or older</p></article>
-          <article class="card requirement-card"><span>02</span><h3>CDL Experience</h3><p>24 months Class A CDL required</p></article>
-          <article class="card requirement-card"><span>03</span><h3>Medical</h3><p>Current DOT physical card</p></article>
-          <article class="card requirement-card"><span>04</span><h3>Job History</h3><p>Max 4 jobs in the last 12 months</p></article>
-          <article class="card requirement-card"><span>05</span><h3>Criminal/DUI</h3><p>No DUI or felonies in the last 5 years</p></article>
-          <article class="card requirement-card"><span>06</span><h3>SAP Program</h3><p>No SAP (Substance Abuse Professional) history</p></article>
-        </div>
+    <div class="wrap">
+      <p class="eyebrow">Core Requirements</p>
+      <h2>The Basics</h2>
+      <div class="requirement-cards">
+        {requirements.map(([title, description]) => (
+          <article class="card requirement-card">
+            <svg aria-hidden="true" viewBox="0 0 24 24" style={checkIcon}>
+              <path d="M21.8 10A10 10 0 1 1 17 3.3" />
+              <path d="m9 11 3 3L22 4" />
+            </svg>
+            <h3>{title}</h3>
+            <p>{description}</p>
+          </article>
+        ))}
       </div>
-      <aside class="panel">
-        <h3>Driving Record (MVR)</h3>
-        <p>Motor Vehicle Record Standards</p>
-        <p>Your MVR tells us about your driving history. Here's exactly what we're looking at:</p>
-        <ul class="check-list">
-          <li>5-Year Major Violations: No major violations in the last 5 years. This includes reckless driving, hit-and-run, and driving under suspension.</li>
-          <li>1-Year Moving Violations: Maximum 2 moving violations (tickets) in the last 12 months.</li>
-          <li>3-Year Accident History: Maximum 1 at-fault accident in the last 3 years.</li>
-        </ul>
-      </aside>
+    </div>
+  </section>
+  <section class="section section--panel">
+    <div class="wrap panel">
+      <p class="eyebrow">Driving Record (MVR)</p>
+      <h2>Motor Vehicle Record Standards</h2>
+      <p>Your MVR tells us about your driving history. Here's exactly what we're looking at:</p>
+      <ul class="check-list">
+        <li>5-Year Major Violations: No major violations in the last 5 years. This includes reckless driving, hit-and-run, and driving under suspension.</li>
+        <li>1-Year Moving Violations: Maximum 2 moving violations (tickets) in the last 12 months.</li>
+        <li>3-Year Accident History: Maximum 1 at-fault accident in the last 3 years.</li>
+      </ul>
     </div>
   </section>
   <section class="section section--panel">
