@@ -4,15 +4,16 @@ type Props = {
   title: string;
   lead: string;
   accent?: string;
+  centered?: boolean;
 };
 
-const { eyebrow, title, lead, accent } = Astro.props;
+const { eyebrow, title, lead, accent, centered = false } = Astro.props;
 const accentIndex = accent ? title.indexOf(accent) : -1;
 const beforeAccent = accentIndex >= 0 ? title.slice(0, accentIndex).trimEnd() : title;
 const afterAccent = accentIndex >= 0 ? title.slice(accentIndex + accent.length).trimStart() : "";
 ---
 
-<section class="hero page-hero">
+<section class="hero page-hero" style={centered ? "text-align: center" : undefined}>
   <div class="wrap">
     <p class="eyebrow">{eyebrow}</p>
     <h1 class="display-title">
@@ -27,7 +28,7 @@ const afterAccent = accentIndex >= 0 ? title.slice(accentIndex + accent.length).
         title
       )}
     </h1>
-    <p class="lead">{lead}</p>
+    <p class="lead" style={centered ? "margin-inline: auto" : undefined}>{lead}</p>
     <slot />
   </div>
 </section>
