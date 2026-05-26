@@ -3,6 +3,29 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import PageHero from "@components/PageHero.astro";
 import CtaButton from "@components/CtaButton.astro";
 import LaneMap from "@components/LaneMap.astro";
+import { site } from "@data/site";
+
+const checkIcon =
+  "display:block;width:16px;height:16px;color:var(--color-blue);fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0";
+const pinIcon =
+  "display:block;width:16px;height:16px;color:var(--color-blue);fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0";
+
+const hiringStates = [
+  ["Illinois", "/jobs/#illinois"],
+  ["Wisconsin", "/jobs/#wisconsin"],
+  ["Minnesota", "/jobs/#minnesota"],
+  ["Michigan", "/jobs/#michigan"],
+  ["Ohio", "/jobs/#ohio"],
+  ["Indiana", "/jobs/#indiana"],
+  ["Iowa", "/jobs/#iowa"],
+  ["Missouri", "/jobs/#missouri"],
+  ["Kentucky", "/jobs/#kentucky"],
+];
+
+const cityMarkets = [
+  ["Kansas City, KS", "/jobs/cdl-a-driver-kansas-city-ks/"],
+  ["Omaha, NE", "/jobs/cdl-a-driver-omaha-ne/"],
+];
 ---
 
 <BaseLayout title="Midwest OTR Lanes & Hiring Area | MNS1 Express" description="We run the Midwest. Consistent lanes, predictable routes, and home time that works because your loads stay in our coverage area.">
@@ -16,48 +39,61 @@ import LaneMap from "@components/LaneMap.astro";
       <CtaButton />
     </div>
   </PageHero>
-  <section class="section">
-    <div class="wrap split">
-      <div>
+  <section class="section section--panel">
+    <div class="wrap">
+      <div class="section-heading">
         <p class="eyebrow">Now Hiring From</p>
         <h2>13 Midwest States</h2>
-        <div class="route-list">
-          <a href="/jobs/cdl-a-driver-plainfield-il/">Illinois</a>
-          <a href="/jobs/cdl-a-driver-milwaukee-wi/">Wisconsin</a>
-          <a href="/jobs/cdl-a-driver-minneapolis-mn/">Minnesota</a>
-          <a href="/jobs/">Michigan</a>
-          <a href="/jobs/cdl-a-driver-toledo-oh/">Ohio</a>
-          <a href="/jobs/cdl-a-driver-indianapolis-in/">Indiana</a>
-          <a href="/jobs/cdl-a-driver-des-moines-ia/">Iowa</a>
-          <a href="/jobs/cdl-a-driver-st-louis-mo/">Missouri</a>
-          <a href="/jobs/cdl-a-driver-louisville-ky/">Kentucky</a>
-          <a href="/jobs/cdl-a-driver-kansas-city-ks/">Kansas City, KS</a>
-          <a href="/jobs/cdl-a-driver-omaha-ne/">Omaha, NE</a>
-        </div>
       </div>
-      <aside class="panel">
+      <div class="grid grid--cards">
+        {hiringStates.map(([state, href]) => (
+          <a class="card link-card" href={href} style="text-decoration:none">
+            <svg aria-hidden="true" viewBox="0 0 24 24" style={checkIcon}>
+              <path d="M21.8 10A10 10 0 1 1 17 3.3" />
+              <path d="m9 11 3 3L22 4" />
+            </svg>
+            <h3>{state}</h3>
+          </a>
+        ))}
+      </div>
+      <div class="hero-actions">
+        {cityMarkets.map(([city, href]) => (
+          <a class="button-secondary" href={href} style="gap:10px">
+            <svg aria-hidden="true" viewBox="0 0 24 24" style={pinIcon}>
+              <path d="M20 10c0 5-5.5 10.2-7.4 11.8a1 1 0 0 1-1.2 0C9.5 20.2 4 15 4 10a8 8 0 0 1 16 0" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+            {city}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <div class="section-heading">
         <p class="eyebrow">Coverage Map</p>
-        <h3>Where We Run</h3>
-        <LaneMap />
-        <p>Interactive lane density map — coming soon</p>
-      </aside>
+        <h2>Where We Run</h2>
+      </div>
+      <LaneMap />
+      <p class="lead-small">Interactive lane density map — coming soon</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap section-heading" style="max-width:640px">
+      <p class="eyebrow">Why Midwest Matters</p>
+      <h2>Focused Lanes = Better Home Time</h2>
+      <p>Mega carriers run you coast to coast and call it "flexibility." We call it chaos. MNS1 runs the Midwest because focused lanes mean predictable routes, consistent miles, and home time that actually works.</p>
+      <p>When your loads stay in the coverage area, dispatch can plan your home date weeks in advance — not scramble to relay you back from Florida.</p>
     </div>
   </section>
   <section class="section section--panel">
-    <div class="wrap split">
-      <div>
-        <p class="eyebrow">Why Midwest Matters</p>
-        <h2>Focused Lanes = Better Home Time</h2>
-        <p>Mega carriers run you coast to coast and call it "flexibility." We call it chaos. MNS1 runs the Midwest because focused lanes mean predictable routes, consistent miles, and home time that actually works.</p>
-        <p>When your loads stay in the coverage area, dispatch can plan your home date weeks in advance — not scramble to relay you back from Florida.</p>
+    <div class="wrap panel" style="max-width:640px;text-align:center">
+      <h2>In Our Coverage Area?</h2>
+      <p>CDL-A, 24+ months experience, based in one of our Midwest hiring areas. Apply in 4 mins.</p>
+      <div class="hero-actions" style="justify-content:center">
+        <a class="button-secondary" href={site.phoneHref}>{site.phoneDisplay}</a>
       </div>
-      <aside class="panel">
-        <h3>In Our Coverage Area?</h3>
-        <p>CDL-A, 24+ months experience, based in one of our Midwest hiring areas. Apply in 4 mins.</p>
-        <div class="hero-actions">
-          <a class="button-secondary" href="tel:6302463280">630-246-3280</a>
-        </div>
-      </aside>
     </div>
   </section>
 </BaseLayout>
