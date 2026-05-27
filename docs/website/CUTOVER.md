@@ -1,7 +1,7 @@
 # Website Cutover Readiness
 
 ## Current State
-The Astro site is built and deployed through the repo-owned GitHub Actions workflow. Public traffic is not cut over yet. The live apex domain still resolves outside this repository.
+The Astro site is built and deployed through the repo-owned GitHub Actions workflow with repository-path asset URLs, but public traffic is not cut over. The live apex domain still resolves outside this repository, and no `CNAME` file is committed here.
 
 GitHub Pages is configured for `build_type: workflow`, so `.github/workflows/deploy-pages.yml` is the deployment source of truth. If GitHub shows an extra `pages build and deployment` run immediately after a settings change, verify the run SHA and the repo-owned `Deploy Astro Site` run before treating it as a site failure.
 
@@ -18,7 +18,7 @@ Do not cut over until all items below are checked in a reviewed PR and Mike expl
 - [x] Performance smoke check passes against the built Astro output.
 - [x] Form/backout plan is confirmed against the pre-Astro backup archive.
 - [x] DNS plan is written with exact records, TTL, and rollback records.
-- [ ] GitHub Pages custom domain setting is applied and `public/CNAME` is merged only through the final reviewed cutover PR.
+- [ ] GitHub Pages custom domain setting and `CNAME` file are added only in the final cutover PR.
 - [ ] Post-cutover checks are ready for apex and `www`: HTTP status, canonical behavior, SSL, sitemap, and apply flow.
 
 ## Verification Progress

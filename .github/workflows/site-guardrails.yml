@@ -76,5 +76,5 @@ jobs:
         env:
           PLAYWRIGHT_CHANNEL: chrome
 
-      - name: Verify custom-domain output
-        run: npm run verify:custom-domain-output
+      - name: Verify GitHub Pages preview paths
+        run: npm run verify:pages-preview
