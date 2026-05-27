@@ -1,30 +1,27 @@
 ---
 import CtaButton from "@components/CtaButton.astro";
 import PageHero from "@components/PageHero.astro";
-import { blogPosts } from "@data/blog";
 import BaseLayout from "@layouts/BaseLayout.astro";
+import { getCollection, render } from "astro:content";
 
-export function getStaticPaths() {
+export async function getStaticPaths() {
+  const blogPosts = await getCollection("blog");
   return blogPosts.map((post) => ({
-    params: { slug: post.slug },
+    params: { slug: post.id },
     props: { post },
   }));
 }
 
 const { post } = Astro.props;
+const { Content } = await render(post);
 ---
 
-<BaseLayout title={`${post.title} | MNS1 Express`} description={post.description}>
-  <PageHero eyebrow={post.category} title={post.title} lead={post.description} />
+<BaseLayout title={`${post.data.title} | MNS1 Express`} description={post.data.description}>
+  <PageHero eyebrow={post.data.category} title={post.data.title} lead={post.data.description} />
 
   <article class="article wrap">
-    <p class="muted">{post.readingMinutes} min read</p>
-    {post.sections.map((section) => (
-      <section>
-        <h2>{section.heading}</h2>
-        <p>{section.body}</p>
-      </section>
-    ))}
+    <p class="muted">{post.data.readingMinutes} min read</p>
+    <Content />
     <div class="hero-actions">
       <CtaButton />
       <a class="button-secondary" href="/blog/">Back to blog</a>
