@@ -1,16 +1,26 @@
 :root {
   --color-canvas: #0b1020;
+  --c: 11 16 32;
+  --s: 16 24 54;
+  --h: 22 33 74;
+  --i: 248 251 255;
+  --a: 0 153 215;
+  --color-canvas-rgb: var(--c);
   --color-surface: #101836;
-  --color-surface-raised: rgba(16, 24, 54, 0.94);
+  --color-surface-rgb: var(--s);
+  --color-surface-raised: rgb(var(--s) / 0.94);
   --color-surface-strong: #16214a;
+  --color-surface-strong-rgb: var(--h);
   --color-ink: #f8fbff;
+  --color-ink-rgb: var(--i);
   --color-muted: #b9c1d9;
   --color-dim: #7a84a3;
   --color-line: #243063;
-  --color-line-soft: rgba(255, 255, 255, 0.08);
+  --color-line-soft: rgb(var(--i) / 0.08);
   --color-accent: #0099d7;
+  --color-accent-rgb: var(--a);
   --color-accent-hover: #007ab0;
-  --color-accent-soft: rgba(0, 153, 215, 0.15);
+  --color-accent-soft: rgb(var(--a) / 0.15);
   --color-cta: #007ab0;
   --color-bg: var(--color-canvas);
   --color-panel: var(--color-surface);
@@ -34,6 +44,6 @@
   --radius-control: 4px;
   --radius-card: 8px;
   --radius-panel: 8px;
-  --shadow-accent: 0 8px 28px -6px rgba(0, 153, 215, 0.55);
+  --shadow-accent: 0 8px 28px -6px rgb(var(--a) / 0.55);
   --shadow-blue: var(--shadow-accent);
 }

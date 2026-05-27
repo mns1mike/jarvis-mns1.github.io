@@ -26,13 +26,13 @@ const { href = site.applyUrl, label = "Apply in 4 mins", class: className = "" }
     min-height: var(--header-cta-height);
     padding: 9px 14px;
     gap: 10px;
-    border: 1px solid rgba(102, 212, 242, 0.95);
+    border: 1px solid rgb(var(--a)/.95);
     border-radius: 3px;
-    background: linear-gradient(135deg, #0099d7 0%, #007fbc 54%, #00689a 100%);
+    background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-cta) 54%, var(--color-accent-hover) 100%);
     box-shadow:
-      0 12px 30px -10px rgba(0, 153, 215, 0.95),
-      0 0 0 1px rgba(255, 255, 255, 0.18) inset,
-      0 0 30px -13px rgba(47, 208, 131, 0.86);
+      0 12px 30px -10px rgb(var(--a)/.95),
+      0 0 0 1px rgb(var(--i)/.18) inset,
+      0 0 30px -13px rgb(var(--a)/.72);
     color: var(--color-ink);
     font: 700 13px/1 var(--font-body);
     letter-spacing: 0.02em;
@@ -49,11 +49,11 @@ const { href = site.applyUrl, label = "Apply in 4 mins", class: className = "" }
     padding: 2px;
     background: conic-gradient(
       from 0deg,
-      rgba(0, 153, 215, 0),
-      rgba(0, 153, 215, 1),
-      rgba(102, 212, 242, 1),
-      rgba(47, 208, 131, 1),
-      rgba(0, 153, 215, 0)
+      rgb(var(--a)/0),
+      rgb(var(--a)/1),
+      rgb(var(--i)/.92),
+      rgb(var(--a)/1),
+      rgb(var(--a)/0)
     );
     content: "";
     mask: linear-gradient(var(--color-ink) 0 0) content-box, linear-gradient(var(--color-ink) 0 0);
@@ -70,8 +70,8 @@ const { href = site.applyUrl, label = "Apply in 4 mins", class: className = "" }
   .cta-button:hover {
     transform: translateY(-1px);
     box-shadow:
-      0 18px 38px -12px rgba(0, 153, 215, 1),
-      0 0 0 1px rgba(255, 255, 255, 0.2) inset,
-      0 0 36px -12px rgba(47, 208, 131, 0.92);
+      0 18px 38px -12px rgb(var(--a)/1),
+      0 0 0 1px rgb(var(--i)/.2) inset,
+      0 0 36px -12px rgb(var(--a)/.82);
   }
 </style>
