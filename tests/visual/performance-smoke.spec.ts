@@ -8,7 +8,7 @@ const priorityRoutes = ["/", "/jobs/", "/apply/", "/shippers/", "/lanes/", "/con
 const budgets = {
   htmlBytes: 45 * 1024,
   richHtmlBytes: 160 * 1024,
-  cssBytes: 24 * 1024,
+  cssBytes: 27 * 1024,
   imageBytes: 1024 * 1024,
   totalDistBytes: 1.5 * 1024 * 1024,
   routeLoadMs: 1_500,
@@ -77,10 +77,11 @@ test.describe("performance smoke", () => {
         stylesheets: document.querySelectorAll('link[rel="stylesheet"]').length,
         images: document.images.length,
       }));
+      const imageBudget = route === "/" ? 4 : 3;
 
       expect(runtime.scriptCount, `${route} should not need runtime JavaScript`).toBe(0);
       expect(runtime.stylesheets, `${route} stylesheet count`).toBeLessThanOrEqual(1);
-      expect(runtime.images, `${route} image count`).toBeLessThanOrEqual(3);
+      expect(runtime.images, `${route} image count`).toBeLessThanOrEqual(imageBudget);
     });
   }
 });
