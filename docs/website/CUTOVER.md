@@ -1,7 +1,9 @@
 # Website Cutover Readiness
 
 ## Current State
-The Astro site is built and deployed through GitHub Pages preview/staging with repository-path asset URLs, but public traffic is not cut over. The live apex domain still resolves outside this repository, and no `CNAME` file is committed here.
+The Astro site is built and deployed through the repo-owned GitHub Actions workflow with repository-path asset URLs, but public traffic is not cut over. The live apex domain still resolves outside this repository, and no `CNAME` file is committed here.
+
+GitHub Pages is configured for `build_type: workflow`, so `.github/workflows/deploy-pages.yml` is the deployment source of truth. If GitHub shows an extra `pages build and deployment` run immediately after a settings change, verify the run SHA and the repo-owned `Deploy Astro Site` run before treating it as a site failure.
 
 Cutover means changing public DNS and GitHub Pages custom-domain settings so `mns1express.com` and/or `www.mns1express.com` serve this Astro build.
 
@@ -30,6 +32,18 @@ Do not cut over until all items below are checked in a reviewed PR and Mike expl
 - Visual QA signoff is documented in `docs/website/VISUAL_QA.md`, including the priority route set, viewport coverage, live GitHub Pages spot checks, and CI run references.
 - Form/backout plan is documented in `docs/website/FORM_BACKOUT.md`; the pre-Astro backup SHA and archived apply/contact pages were verified.
 - DNS cutover plan is documented in `docs/website/DNS_PLAN.md` with GitHub Pages target records, TTLs, verification commands, and rollback records.
+- GitHub Pages source was changed from legacy branch deploy to GitHub Actions. Confirmed via GitHub API: `build_type: workflow`.
+
+## HTML Reference
+
+Use these local paths when comparing the old static export against the Astro-built output:
+
+- Legacy root-static home: `index.html`
+- Astro-built home: `dist/index.html`
+- Legacy route example: `shippers/index.html`
+- Astro-built route example: `dist/shippers/index.html`
+
+The legacy root-static HTML remains in the repo only as a reference until the final cutover cleanup. Do not patch those root HTML files as the normal workflow. Make website changes in Astro source under `src/`, then verify the generated output under `dist/`.
 
 ## Rollback
 Primary rollback is to restore the previous site from:
