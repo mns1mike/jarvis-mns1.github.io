@@ -13,7 +13,7 @@ const beforeAccent = accentIndex >= 0 ? title.slice(0, accentIndex).trimEnd() : 
 const afterAccent = accentIndex >= 0 ? title.slice(accentIndex + accent.length).trimStart() : "";
 ---
 
-<section class="hero page-hero" style={centered ? "text-align: center" : undefined}>
+<section class:list={["hero", "page-hero", { "text-center": centered }]}>
   <div class="wrap">
     <p class="eyebrow">{eyebrow}</p>
     <h1 class="display-title">
@@ -28,7 +28,7 @@ const afterAccent = accentIndex >= 0 ? title.slice(accentIndex + accent.length).
         title
       )}
     </h1>
-    <p class="lead" style={centered ? "margin-inline: auto" : undefined}>{lead}</p>
+    <p class:list={["lead", { "lead--centered": centered }]}>{lead}</p>
     <slot />
   </div>
 </section>

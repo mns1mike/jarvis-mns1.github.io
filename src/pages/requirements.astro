@@ -4,11 +4,6 @@ import CtaButton from "@components/CtaButton.astro";
 import PageHero from "@components/PageHero.astro";
 import { site } from "@data/site";
 
-const checkIcon =
-  "display:block;width:20px;height:20px;margin-bottom:14px;color:var(--color-blue);fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round";
-const rowIcon =
-  "display:block;width:18px;height:18px;color:var(--color-blue);fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0";
-
 const requirements = [
   ["Age", "25 years or older"],
   ["CDL Experience", "24 months Class A CDL required"],
@@ -54,7 +49,7 @@ const selfCheckItems = [
       <div class="requirement-cards">
         {requirements.map(([title, description]) => (
           <article class="card requirement-card">
-            <svg aria-hidden="true" viewBox="0 0 24 24" style={checkIcon}>
+            <svg class="icon icon--pin" aria-hidden="true" viewBox="0 0 24 24">
               <path d="M21.8 10A10 10 0 1 1 17 3.3" />
               <path d="m9 11 3 3L22 4" />
             </svg>
@@ -87,7 +82,7 @@ const selfCheckItems = [
       <div class="requirement-cards">
         {documents.map((document) => (
           <article class="card requirement-card">
-            <svg aria-hidden="true" viewBox="0 0 24 24" style={checkIcon}>
+            <svg class="icon icon--pin" aria-hidden="true" viewBox="0 0 24 24">
               <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
               <path d="M14 2v4a2 2 0 0 0 2 2h4" />
               <path d="M10 9H8" />
@@ -101,14 +96,14 @@ const selfCheckItems = [
     </div>
   </section>
   <section class="section">
-    <div class="wrap section-heading" style="max-width:640px">
+    <div class="wrap section-heading measure">
       <p class="eyebrow">Quick Self-Check</p>
       <h2>Not Sure If You Qualify?</h2>
       <p>If you can answer "yes" to all of these, you're good to apply:</p>
-      <div style="display:flex;flex-direction:column;gap:14px;margin-top:24px">
+      <div class="check-stack">
         {selfCheckItems.map((item) => (
-          <div style="display:flex;align-items:center;gap:12px;color:var(--color-muted);font:600 15px/1.5 var(--font-body)">
-            <svg aria-hidden="true" viewBox="0 0 24 24" style={rowIcon}>
+          <div class="check-row">
+            <svg class="icon icon--sm" aria-hidden="true" viewBox="0 0 24 24">
               <path d="M21.8 10A10 10 0 1 1 17 3.3" />
               <path d="m9 11 3 3L22 4" />
             </svg>
@@ -119,10 +114,10 @@ const selfCheckItems = [
     </div>
   </section>
   <section class="section section--panel">
-    <div class="wrap panel" style="max-width:640px;text-align:center">
+    <div class="wrap panel measure text-center">
       <h2>Meet the Requirements?</h2>
       <p>The application takes about 4 minutes. A recruiter will review your info and reach out within 24 hours.</p>
-      <div class="hero-actions" style="justify-content:center">
+      <div class="hero-actions hero-actions--center">
         <CtaButton />
         <a class="button-secondary" href={site.phoneHref}>{site.phoneDisplay}</a>
       </div>

@@ -4,9 +4,6 @@ import CtaButton from "@components/CtaButton.astro";
 import PageHero from "@components/PageHero.astro";
 import { site } from "@data/site";
 
-const iconStyle =
-  "display:block;width:22px;height:22px;margin-bottom:14px;color:var(--color-blue);fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round";
-
 const schedules = [
   {
     label: "Home every weekend",
@@ -56,7 +53,7 @@ const reviews = [
     </div>
     <div class="wrap grid grid--cards">
       {schedules.map((schedule) => (
-        <article class="card" style={schedule.featured ? "border-color:var(--color-blue);box-shadow:0 30px 72px -40px rgb(var(--a)/.95)" : undefined}>
+        <article class:list={["card", { "featured-card": schedule.featured }]}>
           <p class="eyebrow">{schedule.label}</p>
           <h2>{schedule.title}</h2>
           <p>{schedule.description}</p>
@@ -73,7 +70,7 @@ const reviews = [
     <div class="wrap grid grid--cards">
       {planningSteps.map(([icon, title, description]) => (
         <article class="card">
-          <svg aria-hidden="true" viewBox="0 0 24 24" style={iconStyle}>
+          <svg class="icon" aria-hidden="true" viewBox="0 0 24 24">
             {icon === "calendar" && (
               <>
                 <path d="M8 2v4" />
@@ -109,7 +106,7 @@ const reviews = [
     <div class="wrap grid grid--cards">
       {reviews.map(([name, quote]) => (
         <article class="card">
-          <svg aria-hidden="true" viewBox="0 0 24 24" style={iconStyle}>
+          <svg class="icon" aria-hidden="true" viewBox="0 0 24 24">
             <path d="M16 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z" />
             <path d="M5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z" />
           </svg>
@@ -129,10 +126,10 @@ const reviews = [
     </div>
   </section>
   <section class="section section--panel">
-    <div class="wrap panel" style="max-width:640px;text-align:center">
+    <div class="wrap panel measure text-center">
       <h2>Ready to Get Home?</h2>
       <p>CDL-A, 24+ months experience. Apply in 4 mins and pick your home time schedule at orientation.</p>
-      <div class="hero-actions" style="justify-content:center">
+      <div class="hero-actions hero-actions--center">
         <CtaButton />
         <a class="button-secondary" href={site.phoneHref}>{site.phoneDisplay}</a>
       </div>
