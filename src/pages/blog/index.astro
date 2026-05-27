@@ -2,9 +2,19 @@
 import BaseLayout from "@layouts/BaseLayout.astro";
 import PageHero from "@components/PageHero.astro";
 import { blogPosts } from "@data/blog";
+import { site } from "@data/site";
+
+const blogSchema = {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  name: "MNS1 Express Blog",
+  url: `${site.url}/blog/`,
+  description: "CDL-A driver and Midwest trucking guides from MNS1 Express.",
+};
 ---
 
 <BaseLayout title="MNS1 Express Blog" description="CDL-A driver and Midwest trucking guides from MNS1 Express.">
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(blogSchema)} />
   <PageHero
     eyebrow="MNS1 Express Blog"
     title="Driver Guides"
