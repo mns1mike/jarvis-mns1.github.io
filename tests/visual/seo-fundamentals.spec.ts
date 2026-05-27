@@ -88,4 +88,19 @@ test.describe("SEO fundamentals", () => {
     expect(schema.baseSalary.value.maxValue).toBe(1900);
     expect(schema.applicationUrl).toBe(site.applyUrl);
   });
+
+  test("apply page exposes the reference JobPosting schema", async ({ page }) => {
+    await page.goto("/apply/");
+
+    const jobPosting = await page.locator('script[type="application/ld+json"][data-schema="job-posting"]').textContent();
+    expect(jobPosting).toBeTruthy();
+
+    const schema = JSON.parse(jobPosting ?? "{}");
+    expect(schema["@type"]).toBe("JobPosting");
+    expect(schema.title).toBe("CDL-A Regional Truck Driver");
+    expect(schema.datePosted).toBe("2026-05-15");
+    expect(schema.jobLocation.address.streetAddress).toBe(site.addressLines[0]);
+    expect(schema.applicantLocationRequirements.name).toBe("United States");
+    expect(schema.baseSalary.value.unitText).toBe("WEEK");
+  });
 });

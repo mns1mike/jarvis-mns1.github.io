@@ -3,12 +3,56 @@ import CtaButton from "@components/CtaButton.astro";
 import PageHero from "@components/PageHero.astro";
 import { site } from "@data/site";
 import BaseLayout from "@layouts/BaseLayout.astro";
+
+const applyJobPostingSchema = {
+  "@context": "https://schema.org",
+  "@type": "JobPosting",
+  title: "CDL-A Regional Truck Driver",
+  description:
+    "MNS1 Express is hiring experienced CDL-A regional drivers for Midwest dry van, no-touch freight. Top drivers average $1,650-$1,900+ gross per week, run 2,500-3,000 miles per week, and are home every weekend.",
+  datePosted: "2026-05-15",
+  employmentType: "FULL_TIME",
+  hiringOrganization: {
+    "@type": "Organization",
+    name: site.name,
+    sameAs: site.url,
+    logo: new URL(site.logoPath, site.url).toString(),
+  },
+  jobLocation: {
+    "@type": "Place",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: site.addressLines[0],
+      addressLocality: "Plainfield",
+      addressRegion: "IL",
+      postalCode: "60544",
+      addressCountry: "US",
+    },
+  },
+  applicantLocationRequirements: {
+    "@type": "Country",
+    name: "United States",
+  },
+  baseSalary: {
+    "@type": "MonetaryAmount",
+    currency: "USD",
+    value: {
+      "@type": "QuantitativeValue",
+      minValue: 1650,
+      maxValue: 1900,
+      unitText: "WEEK",
+    },
+  },
+  industry: "Transportation and logistics",
+  occupationalCategory: "53-3032.00 Heavy and Tractor-Trailer Truck Drivers",
+};
 ---
 
 <BaseLayout
   title="Apply for CDL-A Regional Driver Jobs | MNS1 Express"
   description="Use the official IntelliApp application for MNS1 Express driver openings. Top drivers average $1,650-$1,900+ gross per week with Midwest regional lanes, 2023+ Freightliners, and weekend home time."
 >
+  <script slot="head" type="application/ld+json" data-schema="job-posting" set:html={JSON.stringify(applyJobPostingSchema)} />
   <meta slot="head" http-equiv="refresh" content={`10; url=${site.applyUrl}`} />
   <PageHero
     eyebrow="CDL-A Driver Application"
