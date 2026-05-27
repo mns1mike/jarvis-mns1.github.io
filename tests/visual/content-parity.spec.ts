@@ -5,7 +5,7 @@ const routePhrases = [
     route: "/",
     phrases: [
       "Always forward. · Hiring CDL-A across 11 states",
-      "A recruiter calls back within 15 minutes. Real person — no bots, no robocalls.",
+      "A recruiter calls back within 15 minutes. Real person, no bots, no robocalls.",
       "Four things we promise. And mean every word.",
       "Freight that moves when you said it would.",
     ],
@@ -46,8 +46,8 @@ const routePhrases = [
     route: "/shippers/",
     phrases: [
       "Midwest Dry Van Coverage. 180+ Trucks.",
-      "Asset-based, company-owned fleet — no brokered trucks, no surprises.",
-      "Asset-based — no brokered loads, no third-party carriers",
+      "Asset-based, company-owned fleet, no brokered trucks, no surprises.",
+      "Asset-based, no brokered loads, no third-party carriers",
     ],
   },
   {

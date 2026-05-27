@@ -6,7 +6,7 @@ colors:
   surface: "#101836"
   surface-raised: "#101836"
   surface-strong: "#16214a"
-  ink: "#ffffff"
+  ink: "#f8fbff"
   muted: "#b9c1d9"
   dim: "#7a84a3"
   line: "#243063"
@@ -96,7 +96,7 @@ The palette is a dark fleet-operations system: navy canvas, layered blue-black s
 - **Cab Surface** (`#101836`): Standard section, panel, and card surface.
 - **Raised Cab Surface** (`#101836`): Raised surface token. In code this can appear with opacity for overlays.
 - **Hard Surface** (`#16214a`): Stronger control or border-adjacent surface.
-- **Headlight White** (`#ffffff`): Primary text and CTA text.
+- **Headlight White** (`#f8fbff`): Primary text and CTA text.
 - **Road Mist** (`#b9c1d9`): Secondary body text and supporting proof.
 - **Dim Instrument Text** (`#7a84a3`): Low-priority metadata.
 - **Route Line** (`#243063`): Borders, dividers, and structural outlines.
