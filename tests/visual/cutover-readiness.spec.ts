@@ -22,7 +22,7 @@ const viewports = [
 
 const funnelRoutes = ["/", "/jobs/cdl-a-driver-plainfield-il/", "/apply/"];
 const ctaSurfaceRoutes = [
-  { route: "/", applyCount: 2, secondaryHref: site.phoneHref },
+  { route: "/", applyCount: 3, secondaryHref: site.phoneHref },
   { route: "/jobs/cdl-a-driver-plainfield-il/", applyCount: 2, secondaryHref: "/requirements/" },
   { route: "/blog/best-trucking-companies-midwest/", applyCount: 2, secondaryHref: "/blog/" },
   { route: "/lanes/", applyCount: 3, secondaryHref: site.phoneHref },
