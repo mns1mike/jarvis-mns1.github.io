@@ -3,6 +3,7 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import CtaButton from "@components/CtaButton.astro";
 import PageHero from "@components/PageHero.astro";
 import { jobMarkets } from "@data/jobs";
+import { site } from "@data/site";
 
 const stateOrder = [
   "Illinois",
@@ -19,9 +20,22 @@ const stateOrder = [
 ];
 const stateSlug = (state: string) => state.toLowerCase().replace(/\s+/g, "-");
 const marketsByState = new Map(stateOrder.map((state) => [state, jobMarkets.filter((market) => market.stateName === state)]));
+const jobsItemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "MNS1 Express CDL-A Driver Jobs by City",
+  description: "Regional CDL-A driver job directory for MNS1 Express Midwest hiring areas.",
+  itemListElement: jobMarkets.map((market, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: `CDL-A Driver Jobs in ${market.city}, ${market.state}`,
+    url: `${site.url}/jobs/${market.slug}/`,
+  })),
+};
 ---
 
 <BaseLayout title="CDL-A Regional Driver Jobs | MNS1 Express" description="MNS1 Express hires experienced CDL-A regional drivers for Midwest dry van, no-touch freight.">
+  <script slot="head" type="application/ld+json" data-schema="jobs-item-list" set:html={JSON.stringify(jobsItemListSchema)} />
   <PageHero
     eyebrow="CDL-A Regional Driver Jobs"
     title="Strong Miles During the Week. Home Where It Matters on the Weekend."

@@ -28,14 +28,14 @@ export const jobMarkets: JobMarket[] = [
   market("Des Moines", "IA", "Iowa"),
   market("Green Bay", "WI", "Wisconsin"),
   market("Indianapolis", "IN", "Indiana"),
-  market("Kansas City", "KS", "Kansas"),
   market("Louisville", "KY", "Kentucky"),
   market("Milwaukee", "WI", "Wisconsin"),
   market("Minneapolis", "MN", "Minnesota"),
-  market("Omaha", "NE", "Nebraska"),
   market("Plainfield", "IL", "Illinois"),
   market("St. Louis", "MO", "Missouri"),
   market("Toledo", "OH", "Ohio"),
+  market("Kansas City", "KS", "Kansas"),
+  market("Omaha", "NE", "Nebraska"),
 ];
 
 export const driverBenefits = [

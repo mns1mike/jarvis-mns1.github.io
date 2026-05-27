@@ -10,14 +10,14 @@ test.describe("Astro route parity", () => {
       "/jobs/cdl-a-driver-des-moines-ia/",
       "/jobs/cdl-a-driver-green-bay-wi/",
       "/jobs/cdl-a-driver-indianapolis-in/",
-      "/jobs/cdl-a-driver-kansas-city-ks/",
       "/jobs/cdl-a-driver-louisville-ky/",
       "/jobs/cdl-a-driver-milwaukee-wi/",
       "/jobs/cdl-a-driver-minneapolis-mn/",
-      "/jobs/cdl-a-driver-omaha-ne/",
       "/jobs/cdl-a-driver-plainfield-il/",
       "/jobs/cdl-a-driver-st-louis-mo/",
       "/jobs/cdl-a-driver-toledo-oh/",
+      "/jobs/cdl-a-driver-kansas-city-ks/",
+      "/jobs/cdl-a-driver-omaha-ne/",
     ]);
   });
 
