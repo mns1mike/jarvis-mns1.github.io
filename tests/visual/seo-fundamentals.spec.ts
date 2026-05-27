@@ -125,4 +125,20 @@ test.describe("SEO fundamentals", () => {
       url: `${site.url}/jobs/cdl-a-driver-omaha-ne/`,
     });
   });
+
+  test("blog index exposes the reference Blog schema", async ({ page }) => {
+    await page.goto("/blog/");
+
+    const scripts = await page.locator('script[type="application/ld+json"]').evaluateAll((nodes) =>
+      nodes.map((node) => JSON.parse(node.textContent ?? "{}")),
+    );
+    const schema = scripts.find((json) => json["@type"] === "Blog");
+
+    expect(schema).toMatchObject({
+      "@type": "Blog",
+      name: "MNS1 Express Blog",
+      url: `${site.url}/blog/`,
+      description: "CDL-A driver and Midwest trucking guides from MNS1 Express.",
+    });
+  });
 });
