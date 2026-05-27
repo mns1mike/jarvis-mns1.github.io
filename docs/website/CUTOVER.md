@@ -8,8 +8,8 @@ Cutover means changing public DNS and GitHub Pages custom-domain settings so `mn
 ## Cutover Gate
 Do not cut over until all items below are checked in a reviewed PR and Mike explicitly approves the DNS change.
 
-- [ ] Priority recruiting pages pass desktop and mobile visual QA: `/`, `/jobs/`, `/pay/`, `/equipment/`, `/home-time/`, `/requirements/`, `/apply/`.
-- [ ] Shipper/credibility pages pass desktop and mobile visual QA: `/shippers/`, `/lanes/`, `/about/`, `/contact/`.
+- [x] Priority recruiting pages pass desktop and mobile visual QA: `/`, `/jobs/`, `/pay/`, `/equipment/`, `/home-time/`, `/requirements/`, `/apply/`.
+- [x] Shipper/credibility pages pass desktop and mobile visual QA: `/shippers/`, `/lanes/`, `/about/`, `/contact/`.
 - [x] Apply and contact CTA paths are verified from header, hero, cards, footer, job-city pages, and blog pages.
 - [x] SEO fundamentals are verified: titles, descriptions, canonicals, robots, sitemap, and structured route inventory.
 - [x] Accessibility smoke checks pass for header, navigation, CTA contrast, keyboard focus, and mobile layout.
@@ -27,6 +27,7 @@ Do not cut over until all items below are checked in a reviewed PR and Mike expl
 - Automated SEO smoke verifies priority route metadata, canonical URLs, social metadata, organization schema, robots, and sitemap.
 - Automated accessibility smoke verifies landmarks, single H1, link names, image alt text, keyboard focus reachability, and primary CTA contrast.
 - Automated performance smoke verifies built asset budgets, no page JavaScript, no external runtime requests, image preloading, and priority route load timing.
+- Visual QA signoff is documented in `docs/website/VISUAL_QA.md`, including the priority route set, viewport coverage, live GitHub Pages spot checks, and CI run references.
 - Form/backout plan is documented in `docs/website/FORM_BACKOUT.md`; the pre-Astro backup SHA and archived apply/contact pages were verified.
 - DNS cutover plan is documented in `docs/website/DNS_PLAN.md` with GitHub Pages target records, TTLs, verification commands, and rollback records.
 
