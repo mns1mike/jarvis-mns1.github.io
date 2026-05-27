@@ -41,6 +41,9 @@ test.describe("Astro route parity", () => {
     const body = await sitemap.text();
     for (const route of siteRoutes) {
       expect(body).toContain(`https://www.mns1express.com${route}`);
+      expect(body).toContain(
+        `<loc>https://www.mns1express.com${route}</loc><lastmod>${route === "/jobs/cdl-a-driver-kansas-city-ks/" || route === "/jobs/cdl-a-driver-omaha-ne/" ? "2026-05-22" : "2026-05-19"}</lastmod>`,
+      );
     }
   });
 
