@@ -8,12 +8,17 @@ type Props = {
   title: string;
   description: string;
   robots?: string;
+  keywords?: string;
 };
 
-const { title, description, robots = "index, follow" } = Astro.props;
+const {
+  title,
+  description,
+  robots = "index, follow",
+  keywords = "CDL-A jobs, truck driver jobs, OTR trucking, Midwest trucking, MNS1 Express, Plainfield IL",
+} = Astro.props;
 const canonicalPath = Astro.url.pathname.endsWith("/") ? Astro.url.pathname : `${Astro.url.pathname}/`;
 const canonicalUrl = new URL(canonicalPath, site.url).toString();
-const socialImageUrl = new URL("/images/site/mns1-terminal-hero.jpg", site.url).toString();
 ---
 
 <!doctype html>
@@ -24,17 +29,16 @@ const socialImageUrl = new URL("/images/site/mns1-terminal-hero.jpg", site.url).
     <meta name="robots" content={robots} />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
     <link rel="canonical" href={canonicalUrl} />
     <meta property="og:site_name" content={site.name} />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:image" content={socialImageUrl} />
-    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={socialImageUrl} />
     <link rel="preload" as="image" href="/images/site/mns1-terminal-hero.jpg" fetchpriority="high" />
     <link rel="icon" href="/images/logo/mns1-logo-transparent.png" />
     <slot name="head" />

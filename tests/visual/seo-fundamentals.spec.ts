@@ -37,10 +37,10 @@ test.describe("SEO fundamentals", () => {
         return {
           description: meta('meta[name="description"]'),
           canonical,
+          keywords: meta('meta[name="keywords"]'),
           ogTitle: meta('meta[property="og:title"]'),
           ogDescription: meta('meta[property="og:description"]'),
           ogUrl: meta('meta[property="og:url"]'),
-          ogImage: meta('meta[property="og:image"]'),
           twitterCard: meta('meta[name="twitter:card"]'),
           structuredData: scripts,
         };
@@ -48,11 +48,12 @@ test.describe("SEO fundamentals", () => {
 
       expect(metadata.description.length, `${route} description length`).toBeGreaterThan(35);
       expect(metadata.canonical).toBe(expectedCanonical);
+      expect(metadata.keywords).toContain("CDL-A jobs");
+      expect(metadata.keywords).toContain("MNS1 Express");
       expect(metadata.ogTitle.length, `${route} og:title`).toBeGreaterThan(10);
       expect(metadata.ogDescription).toBe(metadata.description);
       expect(metadata.ogUrl).toBe(expectedCanonical);
-      expect(metadata.ogImage).toBe(`${site.url}/images/site/mns1-terminal-hero.jpg`);
-      expect(metadata.twitterCard).toBe("summary_large_image");
+      expect(metadata.twitterCard).toBe("summary");
       expect(metadata.structuredData.some((json) => json.includes('"@type":"Organization"'))).toBe(true);
     });
   }
