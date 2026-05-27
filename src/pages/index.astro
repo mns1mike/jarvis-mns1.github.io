@@ -132,46 +132,61 @@ import CtaButton from "@components/CtaButton.astro";
     </div>
   </section>
 
-  <section class="section">
-    <div class="wrap split">
-      <div>
-        <p class="eyebrow">The equipment</p>
-        <h2>One brand. One spec.</h2>
-        <p class="lead-small">2023 or newer Cascadias.</p>
+  <section class="section home-equipment-section" id="equipment">
+    <div class="wrap">
+      <div class="home-equipment-heading">
+        <div>
+          <p class="eyebrow">The equipment</p>
+          <h2>One brand. One spec.<br /><span>2023 or newer Cascadias.</span></h2>
+        </div>
         <p>We picked the Cascadia and stuck with it. Every truck spec'd the same way means our shop knows them inside out, and roadside fixes happen fast. In-house shop at our Plainfield, IL terminal.</p>
-        <a class="text-link" href="/equipment/">See full equipment details</a>
       </div>
-      <aside class="panel">
-        <p class="eyebrow">2025 · Double Bunk</p>
-        <h3>Freightliner Cascadia</h3>
-        <p>72'' Double Bunk · Detroit DD15 · 505 hp</p>
-        <p>DT12 Automated · eAPU · Inverter · Microwave</p>
-        <h3>53' Dry Van</h3>
-        <p>Standard 53' dry van trailers. Well-maintained · Road-ready</p>
-      </aside>
+      <div class="equipment-card-grid">
+        <article class="equipment-photo-card">
+          <img src="/images/site/mns1-truck-placeholder.jpg" alt="MNS1 Freightliner Cascadia tractor parked in fleet colors" loading="lazy" decoding="async" />
+          <div class="equipment-photo-card__body">
+            <p class="eyebrow">2025 · Double Bunk</p>
+            <h3>Freightliner Cascadia</h3>
+            <p>72'' Double Bunk · Detroit DD15 · 505 hp<br />DT12 Automated · eAPU · Inverter · Microwave</p>
+          </div>
+          <div class="equipment-photo-card__meta">
+            <span>Standard</span>
+            <strong>eAPU · Inverter · Microwave</strong>
+          </div>
+        </article>
+        <article class="equipment-photo-card">
+          <img src="/images/site/mns1-trailer-placeholder.jpg" alt="MNS1 dry van trailer in the yard" loading="lazy" decoding="async" />
+          <div class="equipment-photo-card__body">
+            <p class="eyebrow">53' Dry Van</p>
+            <h3>Trailer</h3>
+            <p>Standard 53' dry van trailers<br />Well-maintained · Road-ready</p>
+          </div>
+          <div class="equipment-photo-card__meta">
+            <span>Fleet</span>
+            <strong>Dry Van · 53'</strong>
+          </div>
+        </article>
+      </div>
+      <p class="home-equipment-link"><a class="text-link" href="/equipment/">See full equipment details</a></p>
     </div>
   </section>
 
-  <section class="section section--panel">
-    <div class="wrap split">
-      <div>
+  <section class="section section--panel home-map-section">
+    <div class="wrap home-map-grid">
+      <div class="home-map-copy">
         <p class="eyebrow">Where we run</p>
         <h2>16 states. One Midwest backbone.</h2>
         <p>Our lanes run through 16 states from our Plainfield, IL headquarters. We run the corridors we know, the shippers we trust, and the lanes that get drivers home.</p>
-        <p><strong>Plainfield, IL, HQ</strong><br />14458 S Depot Dr · Shop · Orientation · Dispatch</p>
-      </div>
-      <aside class="panel map-panel">
-        <div class="home-lane-card" aria-label="Midwest lane coverage">
-          <span>Plainfield, IL</span>
-          <strong>Midwest backbone</strong>
-          <div class="home-lane-card__grid">
-            <span>IL</span><span>WI</span><span>IA</span><span>IN</span>
-            <span>MN</span><span>MO</span><span>OH</span><span>KY</span>
-            <span>NE</span><span>KS</span><span>MI</span><span>TN</span>
-          </div>
+        <div class="home-hq-card">
+          <span aria-hidden="true">⌖</span>
+          <p><strong>Plainfield, IL, HQ</strong><br />14458 S Depot Dr · Shop · Orientation · Dispatch</p>
         </div>
-        <div class="map-panel__caption">
-          <strong>16 states active</strong>
+      </div>
+      <aside class="home-map-panel" aria-label="Midwest lane coverage">
+        <div class="home-map-frame" role="img" aria-label="MNS1 Midwest lane coverage map"></div>
+        <div class="home-map-legend">
+          <span><strong>16</strong> states active</span>
+          <span><strong>11</strong> hiring states</span>
           <a class="text-link" href="/lanes/">View lanes & coverage</a>
         </div>
       </aside>
