@@ -95,8 +95,32 @@ test.describe("cutover readiness smoke", () => {
     const header = page.locator("[data-site-header]");
     await expect(header.locator(`a.header-cta[href="${site.applyUrl}"]`)).toBeHidden();
     await header.locator(".mobile-menu").click();
-    await expect(header.locator('nav[aria-label="Primary"]')).toBeVisible();
-    await expect(header.locator('nav[aria-label="Primary"] a[href="/shippers/"]')).toBeVisible();
+    const mobileNav = header.locator('nav[aria-label="Primary"]');
+    await expect(mobileNav).toBeVisible();
+    await expect(mobileNav.locator('a[href="/shippers/"]')).toBeVisible();
+
+    const menuLayout = await page.evaluate(() => {
+      const headerBox = document.querySelector("[data-site-header]")?.getBoundingClientRect();
+      const navBox = document.querySelector(".mobile-nav[open] + .primary-nav")?.getBoundingClientRect();
+      return {
+        headerBottom: headerBox?.bottom ?? 0,
+        navTop: navBox?.top ?? 0,
+      };
+    });
+    expect(menuLayout.navTop, "mobile nav should open below the header row").toBeGreaterThanOrEqual(
+      menuLayout.headerBottom - 1,
+    );
+  });
+
+  test("shipper quote CTAs lead to contact instead of phone-only dead ends", async ({ page }) => {
+    await page.goto("/shippers/");
+    await expect(page.locator('main .hero-actions a[href="/contact/"]')).toContainText("Get a quote");
+    await expect(page.locator(`main .hero-actions a[href="${site.phoneHref}"]`).first()).toBeVisible();
+
+    await page.goto("/");
+    await expect(page.locator('main section:has-text("For shippers") a[href="/contact/"]')).toContainText(
+      "Get a quote",
+    );
   });
 
   test("mobile sticky CTA matches page intent", async ({ page }) => {
