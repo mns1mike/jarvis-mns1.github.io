@@ -48,22 +48,11 @@ select:focus-visible {
   position: relative;
   overflow: hidden;
   padding: 82px 0 56px;
-  border-bottom: 1px solid var(--color-line);
-  background:
-    radial-gradient(ellipse at 82% 20%, rgb(var(--a)/.14), transparent 42%),
-    linear-gradient(180deg, rgb(var(--s)/.94), rgb(var(--c)/1));
+  background: var(--color-canvas);
 }
 
 .page-hero::after {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgb(var(--i)/.026) 1px, transparent 1px),
-    linear-gradient(90deg, rgb(var(--i)/.026) 1px, transparent 1px);
-  background-size: 58px 58px;
-  content: "";
-  mask-image: radial-gradient(ellipse at 50% 35%, black 16%, transparent 78%);
-  pointer-events: none;
+  display: none;
 }
 
 .page-hero > .wrap {
@@ -91,10 +80,15 @@ select:focus-visible {
   grid-row: 1 / span 4;
   display: grid;
   gap: 16px;
+  min-height: 360px;
   padding: 26px;
   border: 1px solid var(--color-line);
   border-radius: var(--radius-panel);
   background: var(--color-surface);
+}
+
+.hero-snapshot--tall {
+  min-height: 454px;
 }
 
 .hero-snapshot .eyebrow {
@@ -249,6 +243,11 @@ select:focus-visible {
   transform: translateY(-1px);
 }
 
+.section:has(.stat-grid--icons) {
+  padding: 52px 0;
+  background: var(--color-surface);
+}
+
 .home-stat-strip {
   padding: 0;
   border-block: 1px solid var(--color-line);
@@ -307,6 +306,15 @@ select:focus-visible {
     border-color 220ms,
     box-shadow 220ms,
     filter 220ms;
+}
+
+.stat-grid--icons article {
+  min-height: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .stat-grid strong {
@@ -1024,6 +1032,10 @@ select:focus-visible {
     padding: 82px 0 44px;
   }
 
+  .page-hero:has(.hero-snapshot) {
+    padding-top: 64px;
+  }
+
   .display-title {
     max-width: 100%;
     font-size: clamp(28px, 8.2vw, 34px);
@@ -1033,6 +1045,11 @@ select:focus-visible {
   }
 
   .page-hero .display-title {
+    font-size: 34px;
+    line-height: 1.08;
+  }
+
+  .page-hero:has(.hero-snapshot) .display-title {
     font-size: 34px;
     line-height: 1.08;
   }
