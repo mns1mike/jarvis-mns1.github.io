@@ -86,30 +86,50 @@ import CtaButton from "@components/CtaButton.astro";
       <h2>Four things we promise. And mean every word.</h2>
       <a class="text-link" href="/pay/">See the full pay sheet</a>
     </div>
-    <div class="wrap grid grid--cards">
-      <article class="card">
-        <p class="eyebrow">01</p>
+    <div class="wrap grid grid--cards home-promise-grid">
+      <article class="card home-promise-card">
+        <div class="home-promise-card__top">
+          <span class="home-promise-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" role="img"><path d="M12 2v20M5 9l7-7 7 7M5 15l7 7 7-7" /></svg>
+          </span>
+          <p class="eyebrow">01</p>
+        </div>
         <h2>Freedom on the road</h2>
         <p>Consistent miles, planned loads. Your dispatcher knows your name and works with your schedule, not against it.</p>
-        <p class="card-stat"><strong>24/7</strong> dispatch that picks up</p>
+        <p class="card-stat"><strong>24/7</strong><span>Dispatch that picks up</span></p>
       </article>
-      <article class="card">
-        <p class="eyebrow">02</p>
+      <article class="card home-promise-card">
+        <div class="home-promise-card__top">
+          <span class="home-promise-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" role="img"><path d="M4 7h16M4 17h16M7 4v16M17 4v16" /></svg>
+          </span>
+          <p class="eyebrow">02</p>
+        </div>
         <h2>Earn what you're worth</h2>
         <p>Top drivers $1,650-$1,900/wk, paid weekly. Detention, stop, layover, every accessorial is published, not promised.</p>
-        <p class="card-stat"><strong>$0.68</strong> top driver mile rate</p>
+        <p class="card-stat"><strong>$0.68</strong><span>Per mile, top tier</span></p>
       </article>
-      <article class="card">
-        <p class="eyebrow">03</p>
+      <article class="card home-promise-card">
+        <div class="home-promise-card__top">
+          <span class="home-promise-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" role="img"><path d="M3 7h11v8H3zM14 10h4l3 3v2h-7zM7 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM17 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" /></svg>
+          </span>
+          <p class="eyebrow">03</p>
+        </div>
         <h2>Trucks built for the long haul</h2>
         <p>2023 or newer Freightliner Cascadias. eAPU, double bunk, inverter, fridge, standard on every truck.</p>
-        <p class="card-stat"><strong>2023+</strong> Freightliner Cascadia</p>
+        <p class="card-stat"><strong>2023+</strong><span>Freightliner Cascadia</span></p>
       </article>
-      <article class="card">
-        <p class="eyebrow">04</p>
+      <article class="card home-promise-card">
+        <div class="home-promise-card__top">
+          <span class="home-promise-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" role="img"><path d="M4 11 12 4l8 7v9H4zM9 20v-6h6v6" /></svg>
+          </span>
+          <p class="eyebrow">04</p>
+        </div>
         <h2>Home time, your way</h2>
         <p>Weekly, bi-weekly, or hometown lanes, talk to dispatch and we'll build the rotation around your life.</p>
-        <p class="card-stat"><strong>Weekly</strong> home for most drivers</p>
+        <p class="card-stat"><strong>Weekly</strong><span>Home for most drivers</span></p>
       </article>
     </div>
   </section>
@@ -193,38 +213,108 @@ import CtaButton from "@components/CtaButton.astro";
     </div>
   </section>
 
-  <section class="section">
-    <div class="wrap split">
-      <div>
+  <section class="section home-shipper-section" id="shippers">
+    <div class="wrap home-shipper-grid">
+      <div class="home-shipper-copy">
         <p class="eyebrow">For shippers</p>
-        <h2>Freight that moves when you said it would.</h2>
+        <h2>Freight that moves{" "}<br /><span>when you said it would.</span></h2>
         <p>We're a Midwest carrier with our own equipment, our own drivers, and our own dispatch desk, not a broker passing your load down a chain. One number, one team, one account owner accountable for your freight.</p>
+        <div class="home-shipper-stats">
+          <div><strong>99.4%</strong><span>On-time delivery (rolling 12-mo)</span></div>
+          <div><strong>&lt;3 hr</strong><span>Avg quote turnaround</span></div>
+          <div><strong>180+</strong><span>Trucks ready to dispatch</span></div>
+          <div><strong>1</strong><span>Account manager. Yours.</span></div>
+        </div>
         <div class="hero-actions">
           <a class="button-secondary" href="/contact/">Get a quote</a>
           <a class="button-secondary" href="tel:6302463280">630-246-3280</a>
         </div>
       </div>
-      <aside class="panel">
-        <p><strong>99.4%</strong> On-time delivery (rolling 12-mo)</p>
-        <p><strong>&lt;3 hr</strong> Avg quote turnaround</p>
-        <p><strong>180+</strong> Trucks ready to dispatch</p>
-        <p><strong>1</strong> Account manager. Yours.</p>
+      <aside class="home-shipper-services" aria-label="Shipper service highlights">
+        <article>
+          <span>01</span>
+          <h3>Dry van</h3>
+          <p>53' dry vans, it's all we run, and nobody does it better.</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>Drop trailers</h3>
+          <p>Pre-loaded trailers ready at your dock. Less wait time, more freight moving.</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>24/7/365 support</h3>
+          <p>Real people answering real calls: nights, weekends, holidays.</p>
+        </article>
+        <article>
+          <span>04</span>
+          <h3>Full GPS tracking</h3>
+          <p>Live visibility on every load. Trucks and trailers are GPS-equipped.</p>
+        </article>
       </aside>
     </div>
   </section>
 
-  <section class="section section--panel">
-    <div class="wrap split">
-      <div>
+  <section class="section home-story-section">
+    <div class="wrap home-story-grid">
+      <div class="home-story-copy">
         <p class="eyebrow">Our story</p>
-        <h2>Started with one truck. Built on one promise.</h2>
+        <h2>Started with one truck.{" "}<br /><span>Built on one promise.</span></h2>
         <p>In 2011, we put one truck on the road from Plainfield, Illinois with a simple idea, treat drivers and shippers the way you'd want to be treated. No shortcuts on equipment, no bait-and-switch on pay, no broker games on freight.</p>
         <p>Fourteen years and 180+ trucks later, that's still the company. Family-owned. Always forward.</p>
+        <div class="home-founder-note">
+          <span aria-hidden="true">MN</span>
+          <p>"You run good equipment, pay drivers fair, and answer the phone. Everything else is a shortcut."<br /><strong>Founder · MNS1 Express</strong></p>
+        </div>
       </div>
-      <aside class="panel">
-        <p>"You run good equipment, pay drivers fair, and answer the phone. Everything else is a shortcut."</p>
-        <p class="muted">Founder · MNS1 Express</p>
+      <aside class="home-timeline" aria-label="MNS1 growth timeline">
+        <div class="home-timeline__heading">
+          <span>The road so far</span>
+          <strong>Always forward.</strong>
+        </div>
+        <div class="home-timeline__items">
+          <article><span>2011</span><strong>1</strong><p>Company inception, one truck, one driver, Plainfield, IL.</p></article>
+          <article><span>2018</span><strong>100</strong><p>Trucks on the road, operations scaled across the Midwest.</p></article>
+          <article><span>2024</span><strong>150</strong><p>Trucks, steady growth through Midwest lanes.</p></article>
+          <article class="home-timeline__current"><span>Current</span><strong>180+</strong><p>Trucks, current fleet serving Midwest freight.</p></article>
+        </div>
       </aside>
+    </div>
+  </section>
+
+  <section class="section home-faq-section">
+    <div class="wrap home-faq-grid">
+      <div>
+        <p class="eyebrow">Straight answers</p>
+        <h2>Questions you're{" "}<br /><span>actually asking.</span></h2>
+        <p>Short, honest answers. If you don't see yours, ask the recruiter on the call.</p>
+        <div class="hero-actions">
+          <CtaButton />
+          <a class="button-secondary" href="tel:6302463280">630-246-3280</a>
+        </div>
+      </div>
+      <div class="home-faq-list">
+        <details open>
+          <summary><span>01</span><strong>How fast can I start?</strong></summary>
+          <p>Apply today, orient Monday. Most qualified drivers are seated in a truck within 7 days of first contact. Paid $200 orientation, lodging and travel covered.</p>
+        </details>
+        <details>
+          <summary><span>02</span><strong>What CDL-A experience do you require?</strong></summary>
+          <p>We hire drivers who have at least 2 years experience, valid CDL-A, DOT-qualifying driving record, and ability to pass DOT physical plus drug screen.</p>
+        </details>
+        <details>
+          <summary><span>03</span><strong>How is pay calculated, exactly?</strong></summary>
+          <p>Practical mile at your published per-mile rate. Detention after 2 hrs at $25/hr. Stop pay $35. Layover $150/day. Qualified drivers receive yearly pay raises. Weekly direct deposit every Friday.</p>
+        </details>
+        <details>
+          <summary><span>04</span><strong>Can I bring my pet? Passenger?</strong></summary>
+          <p>Yes to both. Pet policy: $500 non-refundable deposit, no breed restrictions, no weight limits. Spouse or partner ride-along approved on day 1. Passengers must be 18+.</p>
+        </details>
+        <details>
+          <summary><span>05</span><strong>What does your safety score look like?</strong></summary>
+          <p>All CSA scores are below intervention thresholds in all BASICs, resulting in a green ISS score. We turn down loads before we turn down a safety concern.</p>
+        </details>
+      </div>
     </div>
   </section>
 </BaseLayout>
