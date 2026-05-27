@@ -56,7 +56,7 @@ const reviews = [
     </div>
     <div class="wrap grid grid--cards">
       {schedules.map((schedule) => (
-        <article class="card" style={schedule.featured ? "border-color:var(--color-blue);box-shadow:0 30px 72px -40px rgba(0,153,215,.95)" : undefined}>
+        <article class="card" style={schedule.featured ? "border-color:var(--color-blue);box-shadow:0 30px 72px -40px rgb(var(--a)/.95)" : undefined}>
           <p class="eyebrow">{schedule.label}</p>
           <h2>{schedule.title}</h2>
           <p>{schedule.description}</p>

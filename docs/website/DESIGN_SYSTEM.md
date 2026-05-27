@@ -6,11 +6,11 @@ The public site should feel like a serious Midwest carrier operating at fleet sc
 ## Tokens
 Source of truth: `src/styles/tokens.css`.
 
-- Canvas: `--color-canvas` for page background.
-- Surface: `--color-surface`, `--color-surface-raised`, and `--color-surface-strong` for sections, panels, and controls.
-- Text: `--color-ink`, `--color-muted`, and `--color-dim`.
+- Canvas: `--color-canvas` for page background, with `--color-canvas-rgb` for alpha overlays.
+- Surface: `--color-surface`, `--color-surface-raised`, and `--color-surface-strong` for sections, panels, and controls; RGB companion tokens support alpha overlays.
+- Text: `--color-ink`, `--color-muted`, and `--color-dim`; `--color-ink-rgb` is used for soft lines and inset highlights.
 - Lines: `--color-line` and `--color-line-soft`.
-- Accent: `--color-accent`, `--color-accent-hover`, and `--color-accent-soft`.
+- Accent: `--color-accent`, `--color-accent-hover`, and `--color-accent-soft`; `--color-accent-rgb` is used for glow and alpha states.
 - Radius: `--radius-control` for buttons and inputs; `--radius-card` and `--radius-panel` stay at 8px or less.
 - Spacing: `--space-section-y`, `--space-section-y-compact`, and `--space-card`.
 

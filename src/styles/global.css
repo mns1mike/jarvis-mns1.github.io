@@ -49,16 +49,16 @@ select:focus-visible {
   overflow: hidden;
   border-bottom: 1px solid var(--color-line);
   background:
-    radial-gradient(ellipse at 82% 20%, rgba(0, 153, 215, 0.14), transparent 42%),
-    linear-gradient(180deg, rgba(16, 24, 54, 0.94), rgba(11, 16, 32, 1));
+    radial-gradient(ellipse at 82% 20%, rgb(var(--a)/.14), transparent 42%),
+    linear-gradient(180deg, rgb(var(--s)/.94), rgb(var(--c)/1));
 }
 
 .page-hero::after {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.026) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.026) 1px, transparent 1px);
+    linear-gradient(rgb(var(--i)/.026) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(var(--i)/.026) 1px, transparent 1px);
   background-size: 58px 58px;
   content: "";
   mask-image: radial-gradient(ellipse at 50% 35%, black 16%, transparent 78%);
@@ -90,14 +90,14 @@ select:focus-visible {
   display: grid;
   gap: 10px;
   padding: 24px;
-  border: 1px solid rgba(0, 153, 215, 0.32);
+  border: 1px solid rgb(var(--a)/.32);
   border-radius: var(--radius-panel);
   background:
-    radial-gradient(circle at 100% 0%, rgba(47, 208, 131, 0.13), transparent 34%),
-    linear-gradient(180deg, rgba(23, 33, 74, 0.84), rgba(16, 24, 54, 0.95));
+    radial-gradient(circle at 100% 0%, rgb(var(--a)/.13), transparent 34%),
+    linear-gradient(180deg, rgb(var(--h)/.84), rgb(var(--s)/.95));
   box-shadow:
-    0 24px 62px -34px rgba(0, 153, 215, 0.7),
-    0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+    0 24px 62px -34px rgb(var(--a)/.7),
+    0 0 0 1px rgb(var(--i)/.05) inset;
 }
 
 .hero-snapshot .eyebrow {
@@ -108,7 +108,7 @@ select:focus-visible {
   padding: 18px 18px 16px;
   border: 1px solid var(--color-line);
   border-radius: var(--radius-card);
-  background: rgba(11, 16, 32, 0.46);
+  background: rgb(var(--c)/.46);
 }
 
 .hero-snapshot strong {
@@ -130,7 +130,7 @@ select:focus-visible {
 .hero--image {
   position: relative;
   overflow: hidden;
-  background: #0b1020;
+  background: var(--color-canvas);
   border-bottom: 1px solid var(--color-line);
 }
 
@@ -147,10 +147,10 @@ select:focus-visible {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse at 80% 50%, rgba(11, 16, 32, 0.85) 0%, transparent 60%),
-    linear-gradient(180deg, rgba(11, 16, 32, 0.5) 0%, rgba(11, 16, 32, 0.25) 30%, rgba(11, 16, 32, 0.88) 85%, #0b1020 100%),
-    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    radial-gradient(ellipse at 80% 50%, rgb(var(--c)/.85) 0%, transparent 60%),
+    linear-gradient(180deg, rgb(var(--c)/.5) 0%, rgb(var(--c)/.25) 30%, rgb(var(--c)/.88) 85%, var(--color-canvas) 100%),
+    linear-gradient(rgb(var(--i)/.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(var(--i)/.025) 1px, transparent 1px);
   background-size: 64px 64px;
   content: "";
   mask-image: radial-gradient(ellipse at 50% 40%, black 20%, transparent 80%);
@@ -168,9 +168,9 @@ select:focus-visible {
   gap: 10px;
   margin-bottom: 28px;
   padding: 6px 14px 6px 10px;
-  border: 1px solid rgba(0, 153, 215, 0.35);
+  border: 1px solid rgb(var(--a)/.35);
   border-radius: 999px;
-  background: rgba(0, 153, 215, 0.12);
+  background: rgb(var(--a)/.12);
   color: var(--color-muted);
   letter-spacing: 0.14em;
 }
@@ -294,7 +294,7 @@ select:focus-visible {
   padding: 26px 22px;
   border: 1px solid var(--color-line);
   border-radius: 0;
-  background: linear-gradient(180deg, rgba(16, 24, 54, 0.78), rgba(11, 16, 32, 0.92));
+  background: linear-gradient(180deg, rgb(var(--s)/.78), rgb(var(--c)/.92));
   transition:
     transform 220ms cubic-bezier(0.2, 0.7, 0.2, 1),
     border-color 220ms,
@@ -335,8 +335,8 @@ select:focus-visible {
   padding: var(--space-card);
   border: 1px solid var(--color-line);
   border-radius: var(--radius-card);
-  background: linear-gradient(180deg, rgba(16, 24, 54, 0.88), rgba(11, 16, 32, 0.94));
-  box-shadow: 0 20px 60px -42px rgba(0, 0, 0, 0.9);
+  background: linear-gradient(180deg, rgb(var(--s)/.88), rgb(var(--c)/.94));
+  box-shadow: 0 20px 60px -42px rgb(var(--c)/.9);
   transition:
     transform 220ms cubic-bezier(0.2, 0.7, 0.2, 1),
     border-color 220ms,
@@ -345,51 +345,14 @@ select:focus-visible {
     filter 220ms;
 }
 
-.card::before,
-.panel::before,
-.stat-grid article::before {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
-  background:
-    linear-gradient(135deg, rgba(0, 153, 215, 0.12), transparent 38%),
-    radial-gradient(circle at 90% 10%, rgba(47, 208, 131, 0.1), transparent 26%);
-  content: "";
-  opacity: 0.68;
-  pointer-events: none;
-}
-
-.card::after,
-.panel::after,
-.stat-grid article::after {
-  position: absolute;
-  right: 18px;
-  bottom: 0;
-  left: 18px;
-  z-index: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--color-blue), rgba(47, 208, 131, 0.72), transparent);
-  content: "";
-  opacity: 0.72;
-  pointer-events: none;
-}
-
-.card > *,
-.panel > *,
-.stat-grid article > * {
-  position: relative;
-  z-index: 1;
-}
-
 .card:hover,
 .panel:hover,
 .stat-grid article:hover {
   transform: translateY(-5px);
-  border-color: rgba(0, 153, 215, 0.86);
+  border-color: rgb(var(--a)/.86);
   box-shadow:
-    0 32px 74px -34px rgba(0, 153, 215, 0.9),
-    0 0 0 1px rgba(255, 255, 255, 0.08) inset;
+    0 32px 74px -34px rgb(var(--a)/.9),
+    0 0 0 1px rgb(var(--i)/.08) inset;
   filter: brightness(1.05);
 }
 
@@ -472,12 +435,12 @@ select:focus-visible {
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  border-color: rgba(0, 153, 215, 0.35);
-  background: linear-gradient(180deg, rgba(23, 33, 74, 0.92) 0%, rgba(16, 24, 54, 0.96) 100%);
+  border-color: rgb(var(--a)/.35);
+  background: linear-gradient(180deg, rgb(var(--h)/.92) 0%, rgb(var(--s)/.96) 100%);
   box-shadow:
-    0 28px 60px -18px rgba(0, 0, 0, 0.7),
-    0 0 0 1px rgba(255, 255, 255, 0.05) inset,
-    0 0 40px -12px rgba(0, 153, 215, 0.35);
+    0 28px 60px -18px rgb(var(--c)/.7),
+    0 0 0 1px rgb(var(--i)/.05) inset,
+    0 0 40px -12px rgb(var(--a)/.35);
 }
 
 .quick-panel::before {
@@ -488,9 +451,9 @@ select:focus-visible {
     from 0deg,
     transparent 0deg,
     transparent 104deg,
-    rgba(0, 153, 215, 0.98) 132deg,
-    rgba(102, 212, 242, 1) 150deg,
-    rgba(47, 208, 131, 0.98) 172deg,
+    rgb(var(--a)/.98) 132deg,
+    rgb(var(--i)/.88) 150deg,
+    rgb(var(--a)/.98) 172deg,
     transparent 210deg,
     transparent 360deg
   );
@@ -506,8 +469,8 @@ select:focus-visible {
   z-index: 1;
   border-radius: 7px;
   background:
-    linear-gradient(180deg, rgba(23, 33, 74, 0.94) 0%, rgba(16, 24, 54, 0.98) 100%),
-    #101836;
+    linear-gradient(180deg, rgb(var(--h)/.94) 0%, rgb(var(--s)/.98) 100%),
+    var(--color-surface);
   content: "";
   pointer-events: none;
 }
@@ -572,9 +535,9 @@ select:focus-visible {
 .quick-form input,
 .quick-form select {
   width: 100%;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgb(var(--i)/.08);
   border-radius: var(--radius-control);
-  background: rgba(11, 16, 32, 0.6);
+  background: rgb(var(--c)/.6);
   color: var(--color-ink);
   font: 15px/1.2 var(--font-body);
   padding: 13px 14px 13px 42px;
@@ -632,7 +595,7 @@ select:focus-visible {
   min-height: 48px;
   border: 0;
   border-radius: var(--radius-control);
-  background: #414d8e;
+  background: var(--color-cta);
   box-shadow: none;
   color: var(--color-ink);
   cursor: pointer;
@@ -669,9 +632,9 @@ select:focus-visible {
 .contact-form input,
 .contact-form textarea {
   width: 100%;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgb(var(--i)/.08);
   border-radius: var(--radius-control);
-  background: rgba(11, 16, 32, 0.6);
+  background: rgb(var(--c)/.6);
   color: var(--color-ink);
   font: 15px/1.35 var(--font-body);
   padding: 13px 14px;
@@ -812,10 +775,10 @@ select:focus-visible {
   padding: 26px;
   border: 1px solid var(--color-line);
   background:
-    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    radial-gradient(circle at 52% 44%, rgba(0, 153, 215, 0.24), transparent 42%),
-    rgba(11, 16, 32, 0.62);
+    linear-gradient(rgb(var(--i)/.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(var(--i)/.035) 1px, transparent 1px),
+    radial-gradient(circle at 52% 44%, rgb(var(--a)/.24), transparent 42%),
+    rgb(var(--c)/.62);
   background-size: 42px 42px, 42px 42px, auto, auto;
 }
 
@@ -847,8 +810,8 @@ select:focus-visible {
   display: grid;
   min-height: 38px;
   place-items: center;
-  border: 1px solid rgba(0, 153, 215, 0.28);
-  background: rgba(0, 153, 215, 0.08);
+  border: 1px solid rgb(var(--a)/.28);
+  background: rgb(var(--a)/.08);
   color: var(--color-muted);
   font-size: 12px;
   font-weight: 800;
@@ -857,8 +820,8 @@ select:focus-visible {
 
 .home-lane-card__grid span:hover {
   transform: translateY(-3px);
-  border-color: rgba(0, 153, 215, 0.8);
-  background: rgba(0, 153, 215, 0.2);
+  border-color: rgb(var(--a)/.8);
+  background: rgb(var(--a)/.2);
 }
 
 .map-panel__caption {
