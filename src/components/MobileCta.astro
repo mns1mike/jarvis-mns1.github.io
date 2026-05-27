@@ -2,15 +2,31 @@
 import { site } from "@data/site";
 
 const applyUrl = new URL(site.applyUrl);
+const pathname = Astro.url.pathname;
+const isShipperRoute = pathname.startsWith("/shippers/");
+const isQuietRoute = ["/contact/", "/privacy/", "/terms/", "/accessibility/", "/data-deletion/"].some((route) =>
+  pathname.startsWith(route),
+);
 ---
 
-<div class="mobile-cta" aria-label="Quick contact actions">
-  <form action={applyUrl.origin + applyUrl.pathname} method="get">
-    <input type="hidden" name="r" value={applyUrl.searchParams.get("r") ?? "CompanyWebsite"} />
-    <button type="submit">Apply in 4 mins <span aria-hidden="true">-&gt;</span></button>
-  </form>
-  <a href={site.phoneHref}>Call</a>
-</div>
+{!isQuietRoute && (
+  <div class="mobile-cta" aria-label="Quick contact actions">
+    {isShipperRoute ? (
+      <>
+        <a class="mobile-cta__primary" href="/contact/">Get a quote <span aria-hidden="true">-&gt;</span></a>
+        <a href={`mailto:${site.email}`}>Email</a>
+      </>
+    ) : (
+      <>
+        <form action={applyUrl.origin + applyUrl.pathname} method="get">
+          <input type="hidden" name="r" value={applyUrl.searchParams.get("r") ?? "CompanyWebsite"} />
+          <button type="submit">Apply in 4 mins <span aria-hidden="true">-&gt;</span></button>
+        </form>
+        <a href={site.phoneHref}>Call</a>
+      </>
+    )}
+  </div>
+)}
 
 <style is:global>
   .mobile-cta{display:none}
@@ -20,5 +36,6 @@ const applyUrl = new URL(site.applyUrl);
     .mobile-cta button,.mobile-cta a{display:grid;min-height:46px;place-items:center;border-radius:var(--radius-control);font:800 13px/1 var(--font-body);text-decoration:none}
     .mobile-cta button{width:100%;border:0;background:var(--color-blue);color:#fff}
     .mobile-cta a{width:92px;border:1px solid var(--color-surface-strong);color:#fff}
+    .mobile-cta a.mobile-cta__primary{flex:1;width:auto;border:0;background:var(--color-blue)}
   }
 </style>

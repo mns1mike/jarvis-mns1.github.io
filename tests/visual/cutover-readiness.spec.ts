@@ -88,6 +88,33 @@ test.describe("cutover readiness smoke", () => {
     }
   });
 
+  test("mobile header menu opens and keeps the external apply CTA hidden", async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 900 });
+    await page.goto("/");
+
+    const header = page.locator("[data-site-header]");
+    await expect(header.locator(`a.header-cta[href="${site.applyUrl}"]`)).toBeHidden();
+    await header.locator(".mobile-menu").click();
+    await expect(header.locator('nav[aria-label="Primary"]')).toBeVisible();
+    await expect(header.locator('nav[aria-label="Primary"] a[href="/shippers/"]')).toBeVisible();
+  });
+
+  test("mobile sticky CTA matches page intent", async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 900 });
+
+    await page.goto("/");
+    await expect(page.locator(".mobile-cta button")).toContainText("Apply in 4 mins");
+    await expect(page.locator(`.mobile-cta a[href="${site.phoneHref}"]`)).toBeVisible();
+
+    await page.goto("/shippers/");
+    await expect(page.locator('.mobile-cta a[href="/contact/"]')).toContainText("Get a quote");
+    await expect(page.locator(`.mobile-cta a[href="mailto:${site.email}"]`)).toBeVisible();
+    await expect(page.locator(".mobile-cta")).not.toContainText("Apply in 4 mins");
+
+    await page.goto("/contact/");
+    await expect(page.locator(".mobile-cta")).toHaveCount(0);
+  });
+
   test("footer keeps apply, jobs, and contact paths available", async ({ page }) => {
     await page.goto("/");
     const footer = page.locator(".site-footer");
