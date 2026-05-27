@@ -3,6 +3,7 @@ import CtaButton from "@components/CtaButton.astro";
 import PageHero from "@components/PageHero.astro";
 import { benefitsSummary, equipmentSummary, jobMarkets, perksSummary, requirementSummary } from "@data/jobs";
 import BaseLayout from "@layouts/BaseLayout.astro";
+import { site } from "@data/site";
 
 export function getStaticPaths() {
   return jobMarkets.map((market) => ({
@@ -12,9 +13,68 @@ export function getStaticPaths() {
 }
 
 const { market } = Astro.props;
+const cityStateSlug = market.slug.replace("cdl-a-driver-", "");
+const jobDescription = `CDL-A regional truck driver jobs near ${market.city} with MNS1 Express. Home weekends, Midwest dry van freight, newer Freightliners, and top weekly pay. Top drivers average $1,650-$1,900+ gross per week, run 2,500-3,000 miles per week, and are home every weekend.`;
+const jobPostingSchema = {
+  "@context": "https://schema.org",
+  "@type": "JobPosting",
+  title: `CDL-A Driver Jobs in ${market.city}, ${market.state}`,
+  description: jobDescription,
+  identifier: {
+    "@type": "PropertyValue",
+    name: site.name,
+    value: `mns1-cdl-a-${cityStateSlug}`,
+  },
+  datePosted: "2026-05-16",
+  employmentType: "FULL_TIME",
+  hiringOrganization: {
+    "@type": "Organization",
+    name: site.name,
+    sameAs: site.url,
+    logo: new URL(site.logoPath, site.url).toString(),
+  },
+  jobLocation: {
+    "@type": "Place",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: market.city,
+      addressRegion: market.state,
+      addressCountry: "US",
+      ...(market.slug === "cdl-a-driver-plainfield-il" ? { postalCode: "60544" } : {}),
+    },
+  },
+  baseSalary: {
+    "@type": "MonetaryAmount",
+    currency: "USD",
+    value: {
+      "@type": "QuantitativeValue",
+      minValue: 1650,
+      maxValue: 1900,
+      unitText: "WEEK",
+    },
+  },
+  incentiveCompensation: "Recruiting can confirm base pay, per diem, bonuses, accessorial pay, and benefits.",
+  industry: "Truck Transportation",
+  occupationalCategory: "53-3032.00 Heavy and Tractor-Trailer Truck Drivers",
+  skills: "CDL-A, regional dry van freight, no-touch freight, Midwest lanes",
+  qualifications: "Experienced CDL-A driver. Ask recruiting for current hiring requirements and eligibility details.",
+  responsibilities: "Run regional Midwest dry van freight, 2,500-3,000 miles per week, with home time every weekend.",
+  jobBenefits:
+    "Medical, dental, vision, life insurance, PTO/holidays, 401(k), EAP, fuel cards, cash advances, pet/passenger program, 24/7 dispatch, roadside assistance, and terminal perks.",
+  directApply: false,
+  applicationContact: {
+    "@type": "ContactPoint",
+    telephone: "+1-630-246-3280",
+    email: site.recruitingEmail,
+    contactType: "recruiting",
+  },
+  url: `${site.url}/jobs/${market.slug}/`,
+  applicationUrl: site.applyUrl,
+};
 ---
 
 <BaseLayout title={market.title} description={market.description}>
+  <script slot="head" type="application/ld+json" data-schema="job-posting" set:html={JSON.stringify(jobPostingSchema)} />
   <PageHero eyebrow={`CDL-A Driver Jobs in ${market.city}, ${market.state}`} title={market.headline} lead={market.description}>
     <div class="hero-actions">
       <CtaButton />
