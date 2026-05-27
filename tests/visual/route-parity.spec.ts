@@ -1,7 +1,26 @@
 import { expect, test } from "@playwright/test";
-import { siteRoutes } from "../../src/data/routes";
+import { jobRoutes, siteRoutes } from "../../src/data/routes";
 
 test.describe("Astro route parity", () => {
+  test("job route inventory matches the reference site", () => {
+    expect(jobRoutes).toEqual([
+      "/jobs/cdl-a-driver-bolingbrook-il/",
+      "/jobs/cdl-a-driver-cedar-rapids-ia/",
+      "/jobs/cdl-a-driver-chippewa-falls-wi/",
+      "/jobs/cdl-a-driver-des-moines-ia/",
+      "/jobs/cdl-a-driver-green-bay-wi/",
+      "/jobs/cdl-a-driver-indianapolis-in/",
+      "/jobs/cdl-a-driver-kansas-city-ks/",
+      "/jobs/cdl-a-driver-louisville-ky/",
+      "/jobs/cdl-a-driver-milwaukee-wi/",
+      "/jobs/cdl-a-driver-minneapolis-mn/",
+      "/jobs/cdl-a-driver-omaha-ne/",
+      "/jobs/cdl-a-driver-plainfield-il/",
+      "/jobs/cdl-a-driver-st-louis-mo/",
+      "/jobs/cdl-a-driver-toledo-oh/",
+    ]);
+  });
+
   for (const route of siteRoutes) {
     test(`${route} renders source-backed content`, async ({ page }) => {
       const response = await page.goto(route);

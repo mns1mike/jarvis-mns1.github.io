@@ -29,7 +29,6 @@ export const jobMarkets: JobMarket[] = [
   market("Green Bay", "WI", "Wisconsin"),
   market("Indianapolis", "IN", "Indiana"),
   market("Kansas City", "KS", "Kansas"),
-  market("Kansas City", "MO", "Missouri"),
   market("Louisville", "KY", "Kentucky"),
   market("Milwaukee", "WI", "Wisconsin"),
   market("Minneapolis", "MN", "Minnesota"),
