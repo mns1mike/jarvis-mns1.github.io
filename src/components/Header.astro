@@ -37,6 +37,11 @@ const isActive = (href: string) => {
       ))}
     </nav>
     <CtaButton class="header-cta" />
+    <button class="mobile-menu" type="button" aria-label="Menu">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </button>
   </div>
 </header>
 
@@ -144,6 +149,10 @@ const isActive = (href: string) => {
     border-bottom-color: var(--color-blue);
   }
 
+  .mobile-menu {
+    display: none;
+  }
+
   @media (max-width: 768px) {
     .site-header {
       height: 73px;
@@ -160,8 +169,27 @@ const isActive = (href: string) => {
       padding: 14px 24px;
     }
 
-    .header-cta {
+    :global(.header-cta) {
+      display: none;
+    }
+
+    .mobile-menu {
+      display: flex;
+      width: 40px;
+      height: 40px;
       margin-left: auto;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 5px;
+      border: 0;
+      background: transparent;
+    }
+
+    .mobile-menu span {
+      width: 22px;
+      height: 2px;
+      background: #fff;
     }
   }
 </style>
