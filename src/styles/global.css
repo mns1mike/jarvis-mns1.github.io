@@ -202,16 +202,6 @@ select:focus-visible {
   text-transform: uppercase;
 }
 
-.section-heading h2,
-.split h2,
-.card h2,
-.card h3,
-.panel h2,
-.panel h3 {
-  animation: mns1-write-text 520ms ease-out both;
-  will-change: opacity, transform;
-}
-
 .display-title em,
 .display-title span {
   color: var(--color-blue);
@@ -228,6 +218,10 @@ select:focus-visible {
   color: var(--color-muted);
   font-size: clamp(16px, 1.35vw, 19px);
   line-height: 1.6;
+}
+
+.lead--centered {
+  margin-inline: auto;
 }
 
 .section {
@@ -385,6 +379,7 @@ select:focus-visible {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  text-decoration: none;
 }
 
 .text-link {
@@ -415,6 +410,7 @@ select:focus-visible {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 10px;
   min-height: var(--header-cta-height);
   padding: 9px 14px;
   border: 1px solid var(--color-surface-strong);
@@ -443,52 +439,11 @@ select:focus-visible {
 }
 
 .quick-panel {
-  position: relative;
-  overflow: hidden;
-  isolation: isolate;
   border-color: rgb(var(--a)/.35);
   background: linear-gradient(180deg, rgb(var(--h)/.92) 0%, rgb(var(--s)/.96) 100%);
   box-shadow:
     0 28px 60px -18px rgb(var(--c)/.7),
-    0 0 0 1px rgb(var(--i)/.05) inset,
-    0 0 40px -12px rgb(var(--a)/.35);
-}
-
-.quick-panel::before {
-  position: absolute;
-  inset: -60%;
-  z-index: 0;
-  background: conic-gradient(
-    from 0deg,
-    transparent 0deg,
-    transparent 104deg,
-    rgb(var(--a)/.98) 132deg,
-    rgb(var(--i)/.88) 150deg,
-    rgb(var(--a)/.98) 172deg,
-    transparent 210deg,
-    transparent 360deg
-  );
-  content: "";
-  opacity: 0.82;
-  pointer-events: none;
-  animation: mns1-quick-glow-spin 5.8s linear infinite;
-}
-
-.quick-panel::after {
-  position: absolute;
-  inset: 1px;
-  z-index: 1;
-  border-radius: 7px;
-  background:
-    linear-gradient(180deg, rgb(var(--h)/.94) 0%, rgb(var(--s)/.98) 100%),
-    var(--color-surface);
-  content: "";
-  pointer-events: none;
-}
-
-.quick-panel > * {
-  position: relative;
-  z-index: 2;
+    0 0 0 1px rgb(var(--i)/.05) inset;
 }
 
 .quick-panel .eyebrow::before {
@@ -497,14 +452,6 @@ select:focus-visible {
 
 .quick-panel .eyebrow {
   margin-bottom: 4px;
-}
-
-.quick-panel .eyebrow,
-.quick-form input,
-.quick-form select,
-.quick-form button {
-  position: relative;
-  z-index: 3;
 }
 
 .quick-panel h2,
@@ -929,6 +876,124 @@ select:focus-visible {
   color: var(--color-dim);
 }
 
+.icon {
+  display: block;
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  margin: 0 0 14px;
+  color: var(--color-blue);
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+
+.icon--sm {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+}
+
+.icon--button {
+  margin-right: 8px;
+}
+
+.icon--stat {
+  margin: 0 auto 12px;
+}
+
+.icon--pin {
+  width: 20px;
+  height: 20px;
+  margin-top: 3px;
+}
+
+.featured-card {
+  border-color: var(--color-blue);
+  box-shadow: 0 30px 72px -40px rgb(var(--a)/.95);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-ink {
+  color: var(--color-ink);
+}
+
+.measure {
+  max-width: 640px;
+}
+
+.measure--xs {
+  max-width: 500px;
+}
+
+.measure--sm {
+  max-width: 600px;
+}
+
+.measure--md {
+  max-width: 720px;
+}
+
+.flow-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: var(--color-muted);
+  line-height: 1.8;
+}
+
+.flow-copy p,
+.address-block {
+  margin: 0;
+}
+
+.address-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  color: var(--color-muted);
+  line-height: 1.8;
+}
+
+.check-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.check-stack--wide {
+  gap: 16px;
+}
+
+.check-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--color-muted);
+  font: 600 15px/1.5 var(--font-body);
+}
+
+.benefit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.card--stacked {
+  margin-top: 18px;
+}
+
+.section--flush-top {
+  padding-top: 0;
+}
+
 @media (max-width: 768px) {
   body {
     padding-bottom: calc(76px + env(safe-area-inset-bottom));
@@ -1011,24 +1076,6 @@ select:focus-visible {
 
   to {
     transform: translate3d(calc(-50% - 27px), 0, 0);
-  }
-}
-
-@keyframes mns1-write-text {
-  from {
-    opacity: 0;
-    transform: translateY(6px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes mns1-quick-glow-spin {
-  to {
-    transform: rotate(1turn);
   }
 }
 

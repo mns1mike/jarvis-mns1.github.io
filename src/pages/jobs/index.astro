@@ -62,7 +62,7 @@ const jobsItemListSchema = {
       {stateOrder.map((state) => {
         const markets = marketsByState.get(state) ?? [];
         return (
-          <a class="card link-card" href={`#${stateSlug(state)}`} style="text-decoration: none;">
+          <a class="card link-card" href={`#${stateSlug(state)}`}>
             <h2>{state}</h2>
             <p>{markets.length} active local {markets.length === 1 ? "page" : "pages"}</p>
           </a>
@@ -81,7 +81,7 @@ const jobsItemListSchema = {
         <div class="wrap grid grid--cards">
           {markets.length > 0 ? (
             markets.map((market) => (
-              <a class="card link-card" href={`/jobs/${market.slug}/`} style="text-decoration: none;">
+              <a class="card link-card" href={`/jobs/${market.slug}/`}>
                 <h2>{market.title.replace(" | MNS1 Express", "")}</h2>
                 <p>Regional Midwest dry van routes, strong weekly pay, and weekend home time.</p>
               </a>

@@ -67,7 +67,7 @@ const terminalPerks = [
     <div class="hero-actions">
       <CtaButton />
       <a class="button-secondary" href={site.phoneHref}>
-        <svg aria-hidden="true" viewBox="0 0 24 24" style="width:18px;height:18px;margin-right:8px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0">
+        <svg class="icon icon--sm icon--button" aria-hidden="true" viewBox="0 0 24 24">
           <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.18 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.72c.1.95.34 1.88.7 2.81a2 2 0 0 1-.45 2.11L8.1 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.93.36 1.86.6 2.81.7A2 2 0 0 1 22 16.92z" />
         </svg>
         {site.phoneDisplay}
@@ -103,7 +103,7 @@ const terminalPerks = [
         <h2>Benefits That Support the Pay</h2>
         <p>A stronger paycheck matters more when the rest of the job is built to support the driver. We separate the personal benefit package from the operational support that keeps the week moving.</p>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-top:24px">
+      <div class="benefit-grid">
         {benefitGroups.map((group) => (
           <article class="card">
             <h2>{group.title}</h2>
@@ -113,7 +113,7 @@ const terminalPerks = [
           </article>
         ))}
       </div>
-      <article class="card" style="margin-top:18px">
+      <article class="card card--stacked">
         <h2>Plainfield Terminal Perks</h2>
         <ul class="check-list">
           {terminalPerks.map((item) => <li>{item}</li>)}
