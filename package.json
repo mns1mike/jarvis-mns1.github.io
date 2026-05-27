@@ -18,6 +18,7 @@
     "verify:content": "playwright test tests/visual/content-parity.spec.ts",
     "verify:pages-preview": "npm run build && npm run prepare:pages-preview",
     "prepare:pages-preview": "node scripts/prepare-pages-preview.mjs",
+    "content:new-blog": "node scripts/new-blog-post.mjs",
     "audit:deps": "npm audit --audit-level=moderate",
     "security:release-age": "node scripts/check-npm-release-age.mjs",
     "security:osv": "node scripts/check-osv.mjs",

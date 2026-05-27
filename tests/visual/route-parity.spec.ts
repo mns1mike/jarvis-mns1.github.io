@@ -1,7 +1,17 @@
 import { expect, test } from "@playwright/test";
-import { jobRoutes, siteRoutes } from "../../src/data/routes";
+import { readdirSync } from "node:fs";
+import { jobRoutes, blogRoutes, siteRoutes } from "../../src/data/routes";
 
 test.describe("Astro route parity", () => {
+  test("blog route inventory matches content collection files", () => {
+    const contentRoutes = readdirSync("src/content/blog")
+      .filter((file) => file.endsWith(".md"))
+      .map((file) => `/blog/${file.replace(/\.md$/, "")}/`)
+      .sort();
+
+    expect(blogRoutes).toEqual(contentRoutes);
+  });
+
   test("job route inventory matches the reference site", () => {
     expect(jobRoutes).toEqual([
       "/jobs/cdl-a-driver-bolingbrook-il/",

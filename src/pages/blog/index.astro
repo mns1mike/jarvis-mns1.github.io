@@ -1,8 +1,10 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
 import PageHero from "@components/PageHero.astro";
-import { blogPosts } from "@data/blog";
 import { site } from "@data/site";
+import { getCollection } from "astro:content";
+
+const blogPosts = (await getCollection("blog")).sort((a, b) => a.data.order - b.data.order);
 
 const blogSchema = {
   "@context": "https://schema.org",
@@ -26,10 +28,10 @@ const blogSchema = {
     </div>
     <div class="wrap grid grid--cards">
       {blogPosts.map((post) => (
-        <a class="card link-card" href={`/blog/${post.slug}/`}>
-          <p class="eyebrow">{post.category}</p>
-          <h2>{post.title}</h2>
-          <p>{post.description}</p>
+        <a class="card link-card" href={`/blog/${post.id}/`}>
+          <p class="eyebrow">{post.data.category}</p>
+          <h2>{post.data.title}</h2>
+          <p>{post.data.description}</p>
         </a>
       ))}
     </div>
