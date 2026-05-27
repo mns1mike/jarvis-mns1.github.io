@@ -11,8 +11,8 @@
   - OSV batch query with zero known vulnerabilities.
 
 ## Current Direct Dependencies
-- `astro@6.3.3` — MIT, released 2026-05-14.
-- `@playwright/test@1.60.0` — Apache-2.0, released 2026-05-11.
+- `astro@6.3.3`, MIT, released 2026-05-14.
+- `@playwright/test@1.60.0`, Apache-2.0, released 2026-05-11.
 
 ## Browser Policy
 - Playwright is configured to use installed Chrome via `PLAYWRIGHT_CHANNEL=chrome`.
