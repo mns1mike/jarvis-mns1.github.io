@@ -9,6 +9,7 @@ type Props = {
   description: string;
   robots?: string;
   keywords?: string;
+  preloadHero?: boolean;
 };
 
 const {
@@ -16,9 +17,11 @@ const {
   description,
   robots = "index, follow",
   keywords = "CDL-A jobs, truck driver jobs, OTR trucking, Midwest trucking, MNS1 Express, Plainfield IL",
+  preloadHero = false,
 } = Astro.props;
 const canonicalPath = Astro.url.pathname.endsWith("/") ? Astro.url.pathname : `${Astro.url.pathname}/`;
 const canonicalUrl = new URL(canonicalPath, site.url).toString();
+const preloadImage = preloadHero ? "/images/site/mns1-terminal-hero.jpg" : site.logoPath;
 ---
 
 <!doctype html>
@@ -39,7 +42,7 @@ const canonicalUrl = new URL(canonicalPath, site.url).toString();
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <link rel="preload" as="image" href="/images/site/mns1-terminal-hero.jpg" fetchpriority="high" />
+    <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />
     <link rel="icon" href="/images/logo/mns1-logo-transparent.png" />
     <slot name="head" />
     <script
