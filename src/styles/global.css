@@ -418,6 +418,13 @@ select:focus-visible {
   color: var(--color-ink);
   font: 700 13px/1 var(--font-body);
   text-decoration: none;
+  transition: border-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1), color 180ms cubic-bezier(0.2, 0.7, 0.2, 1), transform 180ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.button-secondary:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  transform: translateY(-1px);
 }
 
 .quick-panel,
@@ -540,44 +547,7 @@ select:focus-visible {
   background: rgb(var(--c)/.6);
   color: var(--color-ink);
   font: 15px/1.2 var(--font-body);
-  padding: 13px 14px 13px 42px;
-}
-
-.quick-form label {
-  position: relative;
-}
-
-.quick-form label::before {
-  position: absolute;
-  top: 50%;
-  left: 14px;
-  z-index: 4;
-  width: 16px;
-  height: 16px;
-  color: var(--color-dim);
-  font-size: 16px;
-  line-height: 1;
-  transform: translateY(-50%);
-}
-
-.quick-form label:nth-child(1)::before {
-  content: "○";
-}
-
-.quick-form label:nth-child(2)::before {
-  content: "☎";
-}
-
-.quick-form label:nth-child(3)::before {
-  content: "✉";
-}
-
-.quick-form__row label:nth-child(1)::before {
-  content: "⌖";
-}
-
-.quick-form__row label:nth-child(2)::before {
-  content: "♙";
+  padding: 13px 14px;
 }
 
 .quick-form input::placeholder {
