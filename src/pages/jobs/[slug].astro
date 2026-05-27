@@ -14,12 +14,11 @@ export function getStaticPaths() {
 
 const { market } = Astro.props;
 const cityStateSlug = market.slug.replace("cdl-a-driver-", "");
-const jobDescription = `CDL-A regional truck driver jobs near ${market.city} with MNS1 Express. Home weekends, Midwest dry van freight, newer Freightliners, and top weekly pay. Top drivers average $1,650-$1,900+ gross per week, run 2,500-3,000 miles per week, and are home every weekend.`;
 const jobPostingSchema = {
   "@context": "https://schema.org",
   "@type": "JobPosting",
   title: `CDL-A Driver Jobs in ${market.city}, ${market.state}`,
-  description: jobDescription,
+  description: market.description,
   identifier: {
     "@type": "PropertyValue",
     name: site.name,
@@ -53,12 +52,12 @@ const jobPostingSchema = {
       unitText: "WEEK",
     },
   },
-  incentiveCompensation: "Recruiting can confirm base pay, per diem, bonuses, accessorial pay, and benefits.",
+  incentiveCompensation: "Recruiting confirms pay and benefits.",
   industry: "Truck Transportation",
   occupationalCategory: "53-3032.00 Heavy and Tractor-Trailer Truck Drivers",
   skills: "CDL-A, regional dry van freight, no-touch freight, Midwest lanes",
-  qualifications: "Experienced CDL-A driver. Ask recruiting for current hiring requirements and eligibility details.",
-  responsibilities: "Run regional Midwest dry van freight, 2,500-3,000 miles per week, with home time every weekend.",
+  qualifications: "Experienced CDL-A driver.",
+  responsibilities: "Run regional Midwest dry van freight with weekend home time.",
   jobBenefits: "Health, PTO, 401(k), EAP, pet/passenger program, dispatch, roadside, and terminal support.",
   directApply: false,
   applicationContact: {

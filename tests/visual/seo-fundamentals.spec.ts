@@ -103,4 +103,26 @@ test.describe("SEO fundamentals", () => {
     expect(schema.applicantLocationRequirements.name).toBe("United States");
     expect(schema.baseSalary.value.unitText).toBe("WEEK");
   });
+
+  test("jobs index exposes the reference ItemList schema", async ({ page }) => {
+    await page.goto("/jobs/");
+
+    const itemList = await page.locator('script[type="application/ld+json"][data-schema="jobs-item-list"]').textContent();
+    expect(itemList).toBeTruthy();
+
+    const schema = JSON.parse(itemList ?? "{}");
+    expect(schema["@type"]).toBe("ItemList");
+    expect(schema.name).toBe("MNS1 Express CDL-A Driver Jobs by City");
+    expect(schema.itemListElement).toHaveLength(14);
+    expect(schema.itemListElement[0]).toMatchObject({
+      position: 1,
+      name: "CDL-A Driver Jobs in Bolingbrook, IL",
+      url: `${site.url}/jobs/cdl-a-driver-bolingbrook-il/`,
+    });
+    expect(schema.itemListElement[13]).toMatchObject({
+      position: 14,
+      name: "CDL-A Driver Jobs in Omaha, NE",
+      url: `${site.url}/jobs/cdl-a-driver-omaha-ne/`,
+    });
+  });
 });
