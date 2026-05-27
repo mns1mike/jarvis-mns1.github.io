@@ -7,9 +7,10 @@ import "@styles/global.css";
 type Props = {
   title: string;
   description: string;
+  robots?: string;
 };
 
-const { title, description } = Astro.props;
+const { title, description, robots = "index, follow" } = Astro.props;
 const canonicalPath = Astro.url.pathname.endsWith("/") ? Astro.url.pathname : `${Astro.url.pathname}/`;
 const canonicalUrl = new URL(canonicalPath, site.url).toString();
 const socialImageUrl = new URL("/images/site/mns1-terminal-hero.jpg", site.url).toString();
@@ -20,6 +21,7 @@ const socialImageUrl = new URL("/images/site/mns1-terminal-hero.jpg", site.url).
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content={robots} />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
