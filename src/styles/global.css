@@ -400,6 +400,10 @@ select:focus-visible {
   margin-top: 32px;
 }
 
+.hero-actions--center {
+  justify-content: center;
+}
+
 .hero--image .hero-actions .cta-button,
 .hero--image .hero-actions .button-secondary {
   min-height: 52px;

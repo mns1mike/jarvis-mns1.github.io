@@ -25,7 +25,7 @@ const ctaSurfaceRoutes = [
   { route: "/", applyCount: 2, secondaryHref: site.phoneHref },
   { route: "/jobs/cdl-a-driver-plainfield-il/", applyCount: 2, secondaryHref: "/requirements/" },
   { route: "/blog/best-trucking-companies-midwest/", applyCount: 2, secondaryHref: "/blog/" },
-  { route: "/lanes/", applyCount: 2, secondaryHref: site.phoneHref },
+  { route: "/lanes/", applyCount: 3, secondaryHref: site.phoneHref },
 ];
 
 test.describe("cutover readiness smoke", () => {
@@ -114,7 +114,8 @@ test.describe("cutover readiness smoke", () => {
 
   test("shipper quote CTAs lead to contact instead of phone-only dead ends", async ({ page }) => {
     await page.goto("/shippers/");
-    await expect(page.locator('main .hero-actions a[href="/contact/"]')).toContainText("Get a quote");
+    await expect(page.locator('main .hero-actions a[href="/contact/"]')).toHaveCount(2);
+    await expect(page.locator('main .hero-actions a[href="/contact/"]').first()).toContainText("Get a quote");
     await expect(page.locator(`main .hero-actions a[href="${site.phoneHref}"]`).first()).toBeVisible();
 
     await page.goto("/");
