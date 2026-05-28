@@ -140,17 +140,21 @@ test.describe("cutover readiness smoke", () => {
         heroSelf: heroApply ? getComputedStyle(heroApply).animationName : "",
         heroOutline: heroApply ? getComputedStyle(heroApply, "::before").animationName : "",
         heroBloom: heroApply ? getComputedStyle(heroApply, "::after").animationName : "",
+        heroOutlineTransform: heroApply ? getComputedStyle(heroApply, "::before").transform : "",
         stickySelf: stickyApply ? getComputedStyle(stickyApply).animationName : "",
         stickyOutline: stickyApply ? getComputedStyle(stickyApply, "::before").animationName : "",
         stickyBloom: stickyApply ? getComputedStyle(stickyApply, "::after").animationName : "",
+        stickyOutlineTransform: stickyApply ? getComputedStyle(stickyApply, "::before").transform : "",
       };
     });
     expect(applyMotion.heroSelf).toBe("none");
     expect(applyMotion.heroOutline).toBe("mns1-liquid-outline");
     expect(applyMotion.heroBloom).toContain("mns1-liquid-outline");
+    expect(applyMotion.heroOutlineTransform).toBe("none");
     expect(applyMotion.stickySelf).toBe("none");
     expect(applyMotion.stickyOutline).toBe("mns1-liquid-outline");
     expect(applyMotion.stickyBloom).toContain("mns1-liquid-outline");
+    expect(applyMotion.stickyOutlineTransform).toBe("none");
 
     await page.goto("/shippers/");
     await expect(page.locator('.mobile-cta a[href="/contact/"]')).toContainText("Get a quote");
