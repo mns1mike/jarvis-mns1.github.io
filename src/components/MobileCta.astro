@@ -20,7 +20,7 @@ const isQuietRoute = ["/contact/", "/privacy/", "/terms/", "/accessibility/", "/
       <>
         <form action={applyUrl.origin + applyUrl.pathname} method="get">
           <input type="hidden" name="r" value={applyUrl.searchParams.get("r") ?? "CompanyWebsite"} />
-          <button class="mobile-cta__apply" type="submit">Apply in 4 mins <span aria-hidden="true">-&gt;</span></button>
+          <button class="mobile-cta__apply" type="submit"><span>Apply in 4 mins</span><span aria-hidden="true">-&gt;</span></button>
         </form>
         <a href={site.phoneHref}>Call</a>
       </>
@@ -34,11 +34,15 @@ const isQuietRoute = ["/contact/", "/privacy/", "/terms/", "/accessibility/", "/
     .mobile-cta{position:fixed;inset:auto 0 0;z-index:50;display:flex;gap:10px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));border-top:1px solid var(--color-line);background:var(--color-canvas)}
     .mobile-cta form{flex:1}
     .mobile-cta button,.mobile-cta a{display:grid;min-height:46px;place-items:center;border-radius:var(--radius-control);font:800 13px/1 var(--font-body);text-decoration:none}
-    .mobile-cta button{width:100%;border:0;background:linear-gradient(135deg,var(--color-accent) 0%,var(--color-cta) 54%,var(--color-accent-hover) 100%);color:var(--color-ink);animation:mns1-cta-glow 2.6s cubic-bezier(.2,.7,.2,1) infinite}
+    .mobile-cta button{display:inline-flex;align-items:center;justify-content:center;gap:8px}
+    .mobile-cta button{position:relative;isolation:isolate;overflow:visible;width:100%;border:0;background:linear-gradient(135deg,var(--color-accent) 0%,var(--color-cta) 54%,var(--color-accent-hover) 100%);color:var(--color-ink)}
+    .mobile-cta button::before{position:absolute;inset:-2px;z-index:0;border-radius:inherit;padding:2px;background:conic-gradient(from 18deg,rgb(var(--a)/.08) 0deg,rgb(var(--a)/.92) 26deg,rgb(var(--i)/.96) 38deg,rgb(var(--a)/.72) 55deg,rgb(var(--a)/.1) 92deg,rgb(var(--a)/.22) 150deg,rgb(var(--i)/.86) 188deg,rgb(var(--a)/.96) 206deg,rgb(var(--a)/.12) 248deg,rgb(var(--a)/.08) 360deg);content:"";mask:linear-gradient(var(--color-ink) 0 0) content-box,linear-gradient(var(--color-ink) 0 0);mask-composite:exclude;animation:mns1-liquid-outline 5.2s linear infinite;pointer-events:none}
+    .mobile-cta button::after{position:absolute;inset:-5px;z-index:-1;border-radius:calc(var(--radius-control) + 3px);background:conic-gradient(from 198deg,rgb(var(--a)/0),rgb(var(--a)/.74),rgb(var(--i)/.66),rgb(var(--a)/.18),rgb(var(--a)/0));content:"";filter:blur(8px);opacity:0;animation:mns1-liquid-outline 5.2s linear infinite,mns1-liquid-bloom 2.8s ease-in-out infinite;pointer-events:none}
+    .mobile-cta button span{position:relative;z-index:1}
     .mobile-cta a{width:92px;border:1px solid var(--color-surface-strong);color:var(--color-ink)}
     .mobile-cta a.mobile-cta__primary{flex:1;width:auto;border:0;background:var(--color-blue)}
   }
   @media(prefers-reduced-motion:reduce){
-    .mobile-cta button{animation:none}
+    .mobile-cta button::before,.mobile-cta button::after{animation:none}
   }
 </style>
