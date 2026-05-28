@@ -130,6 +130,19 @@ test.describe("cutover readiness smoke", () => {
     await page.goto("/");
     await expect(page.locator(".mobile-cta button")).toContainText("Apply in 4 mins");
     await expect(page.locator(`.mobile-cta a[href="${site.phoneHref}"]`)).toBeVisible();
+    await expect(page.locator(".hero-actions .cta-button--liquid").first()).toBeVisible();
+
+    const applyMotion = await page.evaluate(() => {
+      const heroApply = document.querySelector(".hero-actions .cta-button--liquid");
+      const stickyApply = document.querySelector(".mobile-cta button");
+
+      return {
+        heroGlow: heroApply ? getComputedStyle(heroApply).animationName : "",
+        stickyGlow: stickyApply ? getComputedStyle(stickyApply).animationName : "",
+      };
+    });
+    expect(applyMotion.heroGlow).toBe("mns1-cta-glow");
+    expect(applyMotion.stickyGlow).toBe("mns1-cta-glow");
 
     await page.goto("/shippers/");
     await expect(page.locator('.mobile-cta a[href="/contact/"]')).toContainText("Get a quote");
