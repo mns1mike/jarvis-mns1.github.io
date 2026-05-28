@@ -20,7 +20,7 @@ const isQuietRoute = ["/contact/", "/privacy/", "/terms/", "/accessibility/", "/
       <>
         <form action={applyUrl.origin + applyUrl.pathname} method="get">
           <input type="hidden" name="r" value={applyUrl.searchParams.get("r") ?? "CompanyWebsite"} />
-          <button type="submit">Apply in 4 mins <span aria-hidden="true">-&gt;</span></button>
+          <button class="mobile-cta__apply" type="submit">Apply in 4 mins <span aria-hidden="true">-&gt;</span></button>
         </form>
         <a href={site.phoneHref}>Call</a>
       </>
@@ -34,8 +34,11 @@ const isQuietRoute = ["/contact/", "/privacy/", "/terms/", "/accessibility/", "/
     .mobile-cta{position:fixed;inset:auto 0 0;z-index:50;display:flex;gap:10px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));border-top:1px solid var(--color-line);background:var(--color-canvas)}
     .mobile-cta form{flex:1}
     .mobile-cta button,.mobile-cta a{display:grid;min-height:46px;place-items:center;border-radius:var(--radius-control);font:800 13px/1 var(--font-body);text-decoration:none}
-    .mobile-cta button{width:100%;border:0;background:var(--color-blue);color:var(--color-ink)}
+    .mobile-cta button{width:100%;border:0;background:linear-gradient(135deg,var(--color-accent) 0%,var(--color-cta) 54%,var(--color-accent-hover) 100%);color:var(--color-ink);animation:mns1-cta-glow 2.6s cubic-bezier(.2,.7,.2,1) infinite}
     .mobile-cta a{width:92px;border:1px solid var(--color-surface-strong);color:var(--color-ink)}
     .mobile-cta a.mobile-cta__primary{flex:1;width:auto;border:0;background:var(--color-blue)}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .mobile-cta button{animation:none}
   }
 </style>
