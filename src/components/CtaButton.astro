@@ -48,19 +48,9 @@ const isApplyCta = href === site.applyUrl;
     z-index: 0;
     border-radius: inherit;
     padding: 2px;
-    background: conic-gradient(
-      from 18deg,
-      rgb(var(--a)/.08) 0deg,
-      rgb(var(--a)/.92) 26deg,
-      rgb(var(--i)/.96) 38deg,
-      rgb(var(--a)/.72) 55deg,
-      rgb(var(--a)/.1) 92deg,
-      rgb(var(--a)/.22) 150deg,
-      rgb(var(--i)/.86) 188deg,
-      rgb(var(--a)/.96) 206deg,
-      rgb(var(--a)/.12) 248deg,
-      rgb(var(--a)/.08) 360deg
-    );
+    background: linear-gradient(105deg, rgb(var(--a)/.16), rgb(var(--i)/.92) 18%, rgb(var(--a)/.18) 46%, rgb(var(--i)/.74) 66%, rgb(var(--a)/.9) 78%, rgb(var(--a)/.16));
+    background-position: 0% 50%;
+    background-size: 240% 100%;
     content: "";
     mask: linear-gradient(var(--color-ink) 0 0) content-box, linear-gradient(var(--color-ink) 0 0);
     mask-composite: exclude;
@@ -72,14 +62,9 @@ const isApplyCta = href === site.applyUrl;
     inset: -5px;
     z-index: -1;
     border-radius: calc(var(--radius-control) + 3px);
-    background: conic-gradient(
-      from 198deg,
-      rgb(var(--a)/0),
-      rgb(var(--a)/.74),
-      rgb(var(--i)/.66),
-      rgb(var(--a)/.18),
-      rgb(var(--a)/0)
-    );
+    background: linear-gradient(105deg, rgb(var(--a)/0), rgb(var(--a)/.72), rgb(var(--i)/.54), rgb(var(--a)/.16), rgb(var(--a)/0));
+    background-position: 0% 50%;
+    background-size: 240% 100%;
     content: "";
     filter: blur(8px);
     opacity: 0;
@@ -87,11 +72,11 @@ const isApplyCta = href === site.applyUrl;
   }
 
   .cta-button--liquid::before {
-    animation: mns1-liquid-outline 5.2s linear infinite;
+    animation: mns1-liquid-outline 4.8s ease-in-out infinite;
   }
 
   .cta-button--liquid::after {
-    animation: mns1-liquid-outline 5.2s linear infinite, mns1-liquid-bloom 2.8s ease-in-out infinite;
+    animation: mns1-liquid-outline 4.8s ease-in-out infinite, mns1-liquid-bloom 2.8s ease-in-out infinite;
   }
 
   .cta-button > span {
@@ -108,8 +93,8 @@ const isApplyCta = href === site.applyUrl;
   }
 
   @keyframes mns1-liquid-outline {
-    to {
-      transform: rotate(1turn);
+    50% {
+      background-position: 100% 50%;
     }
   }
 
