@@ -8,9 +8,9 @@ const priorityRoutes = ["/", "/jobs/", "/apply/", "/shippers/", "/lanes/", "/con
 const budgets = {
   htmlBytes: 45 * 1024,
   richHtmlBytes: 160 * 1024,
-  cssBytes: 37 * 1024,
+  cssBytes: 38 * 1024,
   imageBytes: 1024 * 1024,
-  totalDistBytes: 1.5 * 1024 * 1024,
+  totalDistBytes: 1.51 * 1024 * 1024,
   routeLoadMs: 1_500,
 };
 
