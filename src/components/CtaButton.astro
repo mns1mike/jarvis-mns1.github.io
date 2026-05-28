@@ -8,9 +8,10 @@ type Props = {
 };
 
 const { href = site.applyUrl, label = "Apply in 4 mins", class: className = "" } = Astro.props;
+const isApplyCta = href === site.applyUrl;
 ---
 
-<a class={`cta-button ${className}`} href={href}>
+<a class={`cta-button ${isApplyCta ? "cta-button--liquid" : ""} ${className}`} href={href}>
   <span>{label}</span><span aria-hidden="true">-></span>
 </a>
 
@@ -61,6 +62,10 @@ const { href = site.applyUrl, label = "Apply in 4 mins", class: className = "" }
     pointer-events: none;
   }
 
+  .cta-button--liquid::before {
+    animation: mns1-liquid-rim 4.8s linear infinite;
+  }
+
   .cta-button > span {
     position: relative;
     z-index: 1;
@@ -72,5 +77,17 @@ const { href = site.applyUrl, label = "Apply in 4 mins", class: className = "" }
       0 18px 38px -12px rgb(var(--a)/1),
       0 0 0 1px rgb(var(--i)/.2) inset,
       0 0 36px -12px rgb(var(--a)/.82);
+  }
+
+  @keyframes mns1-liquid-rim {
+    to {
+      transform: rotate(1turn);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cta-button--liquid::before {
+      animation: none;
+    }
   }
 </style>
