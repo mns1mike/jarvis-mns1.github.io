@@ -137,12 +137,20 @@ test.describe("cutover readiness smoke", () => {
       const stickyApply = document.querySelector(".mobile-cta button");
 
       return {
-        heroGlow: heroApply ? getComputedStyle(heroApply).animationName : "",
-        stickyGlow: stickyApply ? getComputedStyle(stickyApply).animationName : "",
+        heroSelf: heroApply ? getComputedStyle(heroApply).animationName : "",
+        heroOutline: heroApply ? getComputedStyle(heroApply, "::before").animationName : "",
+        heroBloom: heroApply ? getComputedStyle(heroApply, "::after").animationName : "",
+        stickySelf: stickyApply ? getComputedStyle(stickyApply).animationName : "",
+        stickyOutline: stickyApply ? getComputedStyle(stickyApply, "::before").animationName : "",
+        stickyBloom: stickyApply ? getComputedStyle(stickyApply, "::after").animationName : "",
       };
     });
-    expect(applyMotion.heroGlow).toBe("mns1-cta-glow");
-    expect(applyMotion.stickyGlow).toBe("mns1-cta-glow");
+    expect(applyMotion.heroSelf).toBe("none");
+    expect(applyMotion.heroOutline).toBe("mns1-liquid-outline");
+    expect(applyMotion.heroBloom).toContain("mns1-liquid-outline");
+    expect(applyMotion.stickySelf).toBe("none");
+    expect(applyMotion.stickyOutline).toBe("mns1-liquid-outline");
+    expect(applyMotion.stickyBloom).toContain("mns1-liquid-outline");
 
     await page.goto("/shippers/");
     await expect(page.locator('.mobile-cta a[href="/contact/"]')).toContainText("Get a quote");

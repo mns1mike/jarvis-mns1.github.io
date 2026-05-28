@@ -21,7 +21,7 @@ const isApplyCta = href === site.applyUrl;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
+    overflow: visible;
     isolation: isolate;
     min-width: var(--header-cta-width);
     min-height: var(--header-cta-height);
@@ -49,12 +49,17 @@ const isApplyCta = href === site.applyUrl;
     border-radius: inherit;
     padding: 2px;
     background: conic-gradient(
-      from 0deg,
-      rgb(var(--a)/0),
-      rgb(var(--a)/1),
-      rgb(var(--i)/.92),
-      rgb(var(--a)/1),
-      rgb(var(--a)/0)
+      from 18deg,
+      rgb(var(--a)/.08) 0deg,
+      rgb(var(--a)/.92) 26deg,
+      rgb(var(--i)/.96) 38deg,
+      rgb(var(--a)/.72) 55deg,
+      rgb(var(--a)/.1) 92deg,
+      rgb(var(--a)/.22) 150deg,
+      rgb(var(--i)/.86) 188deg,
+      rgb(var(--a)/.96) 206deg,
+      rgb(var(--a)/.12) 248deg,
+      rgb(var(--a)/.08) 360deg
     );
     content: "";
     mask: linear-gradient(var(--color-ink) 0 0) content-box, linear-gradient(var(--color-ink) 0 0);
@@ -62,8 +67,31 @@ const isApplyCta = href === site.applyUrl;
     pointer-events: none;
   }
 
-  .cta-button--liquid {
-    animation: mns1-cta-glow 2.6s cubic-bezier(0.2, 0.7, 0.2, 1) infinite;
+  .cta-button::after {
+    position: absolute;
+    inset: -5px;
+    z-index: -1;
+    border-radius: calc(var(--radius-control) + 3px);
+    background: conic-gradient(
+      from 198deg,
+      rgb(var(--a)/0),
+      rgb(var(--a)/.74),
+      rgb(var(--i)/.66),
+      rgb(var(--a)/.18),
+      rgb(var(--a)/0)
+    );
+    content: "";
+    filter: blur(8px);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .cta-button--liquid::before {
+    animation: mns1-liquid-outline 5.2s linear infinite;
+  }
+
+  .cta-button--liquid::after {
+    animation: mns1-liquid-outline 5.2s linear infinite, mns1-liquid-bloom 2.8s ease-in-out infinite;
   }
 
   .cta-button > span {
@@ -79,14 +107,21 @@ const isApplyCta = href === site.applyUrl;
       0 0 36px -12px rgb(var(--a)/.82);
   }
 
-  @keyframes mns1-cta-glow {
-    50% {
-      filter: brightness(1.18) saturate(1.12);
+  @keyframes mns1-liquid-outline {
+    to {
+      transform: rotate(1turn);
+    }
+  }
+
+  @keyframes mns1-liquid-bloom {
+    45% {
+      opacity: .58;
     }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .cta-button--liquid {
+    .cta-button--liquid::before,
+    .cta-button--liquid::after {
       animation: none;
     }
   }
